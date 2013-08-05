@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 
+  week: 
+  location: MyString
+  home_score: 
+  away_score: 
+  date: 2013-08-04 15:57:30
+
+two:
+  year: 
+  week: 
+  location: MyString
+  home_score: 
+  away_score: 
+  date: 2013-08-04 15:57:30

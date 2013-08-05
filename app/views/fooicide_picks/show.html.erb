@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Year:</b>
+  <%= @fooicide_pick.year %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @fooicide_pick.week %>
+</p>
+
+<p>
+  <b>Game:</b>
+  <%= @fooicide_pick.game_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @fooicide_pick.user_id %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%= @fooicide_pick.team_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_fooicide_pick_path(@fooicide_pick) %> |
+<%= link_to 'Back', fooicide_picks_path %>

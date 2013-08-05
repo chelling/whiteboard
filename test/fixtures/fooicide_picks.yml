@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 
+  week: 
+  game_id: 
+  user_id: 
+  team_id: 
+
+two:
+  year: 
+  week: 
+  game_id: 
+  user_id: 
+  team_id: 

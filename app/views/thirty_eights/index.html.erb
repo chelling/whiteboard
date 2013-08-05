@@ -1,0 +1,29 @@
+<h1>Listing thirty_eights</h1>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Team</th>
+    <th>User</th>
+    <th>Shares</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @thirty_eights.each do |thirty_eight| %>
+  <tr>
+    <td><%= thirty_eight.year %></td>
+    <td><%= thirty_eight.team_id %></td>
+    <td><%= thirty_eight.user_id %></td>
+    <td><%= thirty_eight.shares %></td>
+    <td><%= link_to 'Show', thirty_eight %></td>
+    <td><%= link_to 'Edit', edit_thirty_eight_path(thirty_eight) %></td>
+    <td><%= link_to 'Destroy', thirty_eight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Thirty eight', new_thirty_eight_path %>

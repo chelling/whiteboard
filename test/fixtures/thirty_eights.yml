@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: 
+  team_id: 
+  user_id: 
+  shares: 
+
+two:
+  year: 
+  team_id: 
+  user_id: 
+  shares: 

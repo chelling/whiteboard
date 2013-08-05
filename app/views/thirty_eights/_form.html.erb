@@ -1,0 +1,33 @@
+<%= form_for(@thirty_eight) do |f| %>
+  <% if @thirty_eight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thirty_eight.errors.count, "error") %> prohibited this thirty_eight from being saved:</h2>
+
+      <ul>
+      <% @thirty_eight.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :team_id %><br />
+    <%= f.text_field :team_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :shares %><br />
+    <%= f.text_field :shares %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

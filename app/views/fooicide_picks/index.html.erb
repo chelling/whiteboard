@@ -1,0 +1,31 @@
+<h1>Listing fooicide_picks</h1>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Week</th>
+    <th>Game</th>
+    <th>User</th>
+    <th>Team</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fooicide_picks.each do |fooicide_pick| %>
+  <tr>
+    <td><%= fooicide_pick.year %></td>
+    <td><%= fooicide_pick.week %></td>
+    <td><%= fooicide_pick.game_id %></td>
+    <td><%= fooicide_pick.user_id %></td>
+    <td><%= fooicide_pick.team_id %></td>
+    <td><%= link_to 'Show', fooicide_pick %></td>
+    <td><%= link_to 'Edit', edit_fooicide_pick_path(fooicide_pick) %></td>
+    <td><%= link_to 'Destroy', fooicide_pick, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fooicide pick', new_fooicide_pick_path %>

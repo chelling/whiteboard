@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Year:</b>
+  <%= @pickem_pick.year %>
+</p>
+
+<p>
+  <b>Week:</b>
+  <%= @pickem_pick.week %>
+</p>
+
+<p>
+  <b>Game:</b>
+  <%= @pickem_pick.game_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @pickem_pick.user_id %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%= @pickem_pick.team_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_pickem_pick_path(@pickem_pick) %> |
+<%= link_to 'Back', pickem_picks_path %>

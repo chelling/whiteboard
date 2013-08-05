@@ -1,0 +1,2 @@
+module FooicidePicksHelper
+end
