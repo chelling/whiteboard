@@ -31,9 +31,14 @@ gem 'pg'
 # end
 
 gem 'devise'
-gem 'prototype-rails'
 gem 'jquery-rails'
 
 group :assets do
-	gem 'bootstrap-sass-rails'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'simple_form'
+gem 'bootstrap-sass'
+gem 'cancan'
