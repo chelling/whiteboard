@@ -1,6 +1,8 @@
 Whiteboard::Application.routes.draw do
   root to: "home#index"
   
+  match "/scores" => "games#scores"
+  
   resources :home
   resources :thirty_eights
   resources :fooicide_picks

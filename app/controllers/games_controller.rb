@@ -80,4 +80,9 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def scores
+    @year = 2013
+    @games = Game.all
+  end
 end

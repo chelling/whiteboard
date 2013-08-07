@@ -1,10 +1,10 @@
 class CreateRecords < ActiveRecord::Migration
   def up
     create_table :records do |t|
-      t.int :team_id
-      t.int :year
-      t.int :wins
-      t.int :losses
+      t.integer :team_id
+      t.integer :year
+      t.integer :wins
+      t.integer :losses
 
       t.timestamps
     end

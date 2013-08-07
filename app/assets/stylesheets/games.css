@@ -1,4 +1,98 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+div.scorebox-wrapper {
+	width: 307px;
+	height: 102px;
+	margin: 0 18px 10px 0;
+	float: left;
+	background: url('shadow.png') no-repeat	bottom;
+	font: normal normal 11px/13px arial, sans-serif;
+	text-align: left;
+}
+
+div.scorebox-header {
+	background: url('scorebox-bg.png') repeat-x 0 0;
+	height: 20px;
+	color: white;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
+div.scorebox {
+	width: 307px;
+	height: 102px;
+	border: 1px solid #cacaca;
+	border-left: none;
+	border-right: none;
+}
+
+div.team-wrapper {
+	border: 1px solid #BDBDBD;
+	border-bottom: none;
+}
+
+div.team-data {
+	float: left;
+	margin: 0 0 0 9px;
+	width: 225px;
+}
+
+div.away-team {
+	color: #222221;
+	height: 49px;
+	background: url('scorebox-bg.png') repeat-x 0 -20px;
+	border: 1px solid white;
+	border-top: none;
+}
+
+div.home-team {
+	color: #222221;
+	height: 49px;
+	background: url('scorebox-bg.png') repeat-x 0 -20px;
+	border: 1px solid white;
+	border-top: none;
+}
+
+div.team-logo {
+	float: left;
+	margin: 5px 0 0 8px;
+	width: 60px;
+	vertical-align: bottom;
+	color: #364C88;
+	cursor: auto;
+}
+
+div.team-info {
+	float: left;
+}
+
+p.score-date {
+	background: url('scorebox-bg.png') repeat-x 0 0;
+	height: 20px;
+	color: white;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
+p.team-name {
+	font: 21px NFLEndzoneSansCondMedium, sans-serif;
+	color: #222221;
+	text-align: left;
+	margin: 0;
+}
+
+p.team-record {
+	color: #5d5d5d;
+	display: inline-block;
+	width: 42px;
+	margin: 0;
+}
+
+p.team-score {
+	float: right;
+	font: 28px/49px NFLEndzoneSlabBold, sans-serif;
+	margin: 0 10px 0 0;
+	text-align: center;
+	width: 38px;
+	display: block;
+	height: 49px;
+	overflow: hidden;
+}
