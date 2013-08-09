@@ -83,6 +83,9 @@ class GamesController < ApplicationController
   
   def scores
     @year = 2013
-    @games = Game.all
+    @week = 1
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+    @games = Game.find_all_by_year_and_week(@year, @week)
   end
 end

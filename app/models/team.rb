@@ -6,6 +6,6 @@ class Team < ActiveRecord::Base
   # methods
   def record_formatted(year)
     record = records.find_by_year(year)
-    return "(#{record.wins}-#{record.losses})"
+    return "(#{record.wins}-#{record.losses})" unless record.nil?
   end
 end

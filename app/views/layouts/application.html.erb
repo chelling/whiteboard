@@ -7,16 +7,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<%= render :partial => "layouts/main_header" %>
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2">
-      foo
-    </div>
-    <div class="span10">
-      <%= yield %>
-    </div>
-  </div>
+<div class="global">
+	<%= render :partial => "layouts/main_header" %>
+</div>
+<div class="doc">
+	<%= yield %>
 </div>
 </body>
 </html>

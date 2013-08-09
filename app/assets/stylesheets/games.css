@@ -1,3 +1,18 @@
+div.doc {
+	font: normal normal 11px/13px arial, sans-serif;
+	margin: 0 auto;
+	text-align: left;
+	min-height: 1px;
+	width: 999px;
+}
+
+div.doc-wrapper {
+	background: transparent;
+	position: relative;
+	width: 999px;
+	padding: 10px 0 20px;
+}
+
 div.scorebox-wrapper {
 	width: 307px;
 	height: 102px;
@@ -95,4 +110,116 @@ p.team-score {
 	display: block;
 	height: 49px;
 	overflow: hidden;
+}
+
+.navbar {
+  float:none;
+  display:inline-block;
+  display:inline; /* ie7 fix */
+  zoom:1; /* hasLayout ie7 trigger */
+  vertical-align: top;
+}
+
+.navbar-inner {
+  text-align:center;
+}
+
+.navbar{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.mod-container {
+	font-family: verdana,helvetica,arial,sans-serif;
+	width: 100%;
+	clear: both;
+}
+
+.mod-content {
+	padding: 8px 12px;
+	border: 1px solid #c2c2c2;
+	color: #565656;
+	background: #e3e3e3 url('gray_grad.jpg') top left repeat-x;
+	border-width: 0;
+}​
+
+.dates {
+	float: left;
+	margin: 8px 40px 0 0;
+	line-height: 1;
+	font: 13px/1.385 helvetica,arial,clean,sans-serif;
+}
+
+.select-dates {
+	height: 1%;
+	margin-top: 6px;
+	overflow: hidden;
+}
+
+.week {
+	margin-top: 9px;
+	overflow: hidden;
+	height: 1%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+	display: block;
+}
+
+.bye-week {
+	margin-top: 3px;
+	overflow: hidden;
+	height: 1%;
+}
+
+.week-caption {
+	display: block;
+	float: left;
+	margin-right: 5px;
+	padding-top: 4px;
+	width: 50px;
+	text-align: right;
+}
+
+.teams {
+	padding-left: 55px;
+	padding-top: 5px;
+	float: left;
+}
+
+.select-year {
+	display: block;
+	float: left;
+	margin-right: 5px;
+	padding-top: 4px;
+	width: 50px;
+	text-align: right;
+}
+
+.week a {
+	display: block;
+	float: left;
+	height: 19px;
+	background: transparent url('bg_week.gif') repeat-x bottom;
+	text-align: center;
+	border: 1px solid #a5a5a5;
+	border-right: 0;
+	font-size: 12px;
+	font-family: Helvetica;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+	color: #3e3e3e!important;
+	width: 25px;
+	vertical-align: baseline;
+	margin: 0;
+}
+
+.week a.selected {
+	background: #000;
+	color: #fff!important;
 }

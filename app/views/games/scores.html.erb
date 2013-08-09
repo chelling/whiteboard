@@ -1,5 +1,7 @@
+<div class="doc-wrapper">
+<%= render :partial => "games/header" %>
 <h3>NFL Scores</h3>
-<% @games.map do |game| %>
+<% @games.try(:map) do |game| %>
 	<div class="scorebox-wrapper">
 		<div class="scorebox-header">
 			<p class="score-date"><small><%= game.date.strftime("%a, %b %d") %></small></p>
@@ -32,3 +34,4 @@
 		</div>
 	</div>
 <% end %>
+</div>
