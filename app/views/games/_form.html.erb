@@ -1,4 +1,4 @@
-<%= form_for(@game) do |f| %>
+<%= simple_form_for(@game) do |f| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -11,31 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :week %><br />
-    <%= f.text_field :week %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :home_score %><br />
-    <%= f.text_field :home_score %>
-  </div>
-  <div class="field">
-    <%= f.label :away_score %><br />
-    <%= f.text_field :away_score %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
-  </div>
+    <%= f.input :year %><br />
+	
+    <%= f.input :week %><br />
+	
+    <%= f.association :away_team, collection: Team.all(order: 'name'), prompt: "Away Team" %><br />
+	
+    <%= f.association :home_team, collection: Team.all(order: 'name'), prompt: "Home Team" %><br />
+	
+    <%= f.input :location %><br />
+	
+    <%= f.input :line %><br />
+	
+    <%= f.input :home_score %><br />
+	
+    <%= f.input :away_score %><br />
+	
+    <%= f.input :date %><br />
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

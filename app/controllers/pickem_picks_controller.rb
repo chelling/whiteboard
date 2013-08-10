@@ -122,12 +122,12 @@ class PickemPicksController < ApplicationController
       print game.first + " " + game.last + " " + value
       if game.first == "game"
         pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
-        if pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
-          redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
-        else
-          redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
+          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end
       end
     end
+    
+    redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
   end
 end
