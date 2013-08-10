@@ -7,6 +7,7 @@ class PickemPicksController < ApplicationController
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
     @games = Game.find_all_by_year_and_week(@year, @week)
+    @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,6 +83,27 @@ class PickemPicksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pickem_picks_url }
       format.json { head :no_content }
+    end
+  end
+  
+  # add picks to user table
+  def update_picks
+    @year = '2013'
+    @week = '1'
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+    
+    params.each do |key,value|
+      game = key.split('_')
+      print game.first + " " + game.last + " " + value
+      if game.first == "game"
+        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
+        if pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
+          redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
+        else
+          redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        end
+      end
     end
   end
 end

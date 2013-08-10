@@ -1,33 +1,41 @@
 <div class="doc-wrapper">
-<%= render :partial => "games/header" %>
+<%= render :partial => "pickem_picks/header" %>
 <h3>NFL Scores</h3>
 <% @games.try(:map) do |game| %>
 	<div class="scorebox-wrapper">
 		<div class="scorebox-header">
-			<p class="score-date"><small><%= game.date.strftime("%a, %b %d") %></small></p>
+			<p class="score-date"><%= game.date.strftime("%a, %b %d") %></p>
 		</div>
 		<div class="scorebox" id="1">	
 			<div class="team-wrapper">
 				<div class="away-team">
-					<div class="team-logo"><img src="<%= game.away_team.image %>"></div>
+					<img class="team-logo" src="<%= game.away_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
 							<p class="team-name"><%= game.away_team.name %></p>
 						</div>
-						<p class="team-score"><%= game.away_score %></p>
+						<% if game.away_score.nil? %>
+							<p class="team-score"><%= "--" %></p>
+						<% else %>
+							<p class="team-score"><%= game.away_score %></p>
+						<% end %>
 					</div>
 				</div>
 			</div>
 			<div class="team-wrapper">
 				<div class="home-team">
-					<div class="team-logo"><img src="<%= game.home_team.image %>"></div>
+					<img class="team-logo" src="<%= game.home_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
 							<p class="team-name"><%= game.home_team.name %></p>
 						</div>
-						<p class="team-score"><%= game.home_score %></p>
+						<% if game.home_score.nil? %>
+							<p class="team-score"><%= "--" %></p>
+						<% else %>
+							<p class="team-score"><%= game.home_score %></p>
+						<% end %>
 					</div>
 				</div>
 			</div>

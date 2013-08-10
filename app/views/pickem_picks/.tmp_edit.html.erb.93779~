@@ -1,0 +1,6 @@
+<h1>Editing pickem_pick</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @pickem_pick %> |
+<%= link_to 'Back', pickem_picks_path %>

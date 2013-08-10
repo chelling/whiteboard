@@ -65,6 +65,22 @@ div.scorebox-header {
 	padding: 0 5px;
 }
 
+.scoreboard-footer {
+	background: url('scorebox-bg.png') repeat-x 0 0;
+	height: 20px;
+	color: white;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
+.team-line {
+	background: url('scorebox-bg.png') repeat-x 0 0;
+	height: 20px;
+	color: white;
+	line-height: 20px;
+	padding: 0 5px;
+}
+
 div.scorebox {
 	width: 307px;
 	height: 102px;
