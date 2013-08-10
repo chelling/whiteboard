@@ -1,3 +1,37 @@
+div.main-nav {
+	position: relative;
+	z-index: 3;
+	background: url("nav-bg.png") top left repeat-x;
+}
+
+div.main-nav .top-nav-items {
+	margin-left: 100px;
+	width: 905px;
+	display: table;
+}
+
+.b-nav-group {
+	border-left: 1px solid #a1a1a1;
+	padding: 0px;
+	margin: 0px;
+	display: table-cell;
+}
+
+.nav-list {
+	display: block;
+	width: 100%;
+	height: 40px;
+	text-decoration: none;
+	padding: 10px 0px 0px 0px;
+	font: 26px NFLEndzoneSansCondMedium, "sans-serif", serif;
+	color: #262626;
+	text-transform: uppercase;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	text-shadow: 0px 1px 1px white;
+}
+
 div.doc {
 	font: normal normal 11px/13px arial, sans-serif;
 	margin: 0 auto;
@@ -66,7 +100,7 @@ div.home-team {
 	border-top: none;
 }
 
-div.team-logo {
+.team-logo {
 	float: left;
 	margin: 5px 0 0 8px;
 	width: 60px;
@@ -160,7 +194,7 @@ p.team-score {
 	margin-top: 9px;
 	overflow: hidden;
 	height: 1%;
-	margin: 0;
+	margin: 1;
 	padding: 0;
 	border: 0;
 	outline: 0;
@@ -207,7 +241,7 @@ p.team-score {
 	background: transparent url('bg_week.gif') repeat-x bottom;
 	text-align: center;
 	border: 1px solid #a5a5a5;
-	border-right: 0;
+	border-right: 1;
 	font-size: 12px;
 	font-family: Helvetica;
 	font-weight: bold;

@@ -40,5 +40,4 @@ group :assets do
 end
 
 gem 'simple_form'
-gem 'bootstrap-sass'
 gem 'cancan'

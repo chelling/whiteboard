@@ -1,33 +1,33 @@
-<div class="navbar navbar-fixed-top">
-  <ul class="nav navbar-inner">
+<div class="main-nav">
+  <ul class="top-nav-items">
   	<% if request.fullpath == "/home" %>
-    	<li class="active"><a href="/home">Home</a></li>
+    	<li class="b-nav-group"><a class="nav-list" href="/home">Home</a></li>
 	<% else %>
-		<li><a href="/home">Home</a></li>
+		<li class="b-nav-group"><a class="nav-list" href="/home">Home</a></li>
 	<% end %>
 	
 	<% if request.fullpath == "/scores" %>
-    	<li class="active"><a href="/scores">Scores</a></li>
+    	<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
 	<% else %>
-		<li><a href="/scores">Scores</a></li>
+		<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
 	<% end %>
 	
 	<% if request.fullpath == "/pigskinpickem" %>
-    	<li class="active"><a href="/pigskinpickem">Pigskin Pick'em</a></li>
+    	<li class="b-nav-group"><a class="nav-list" href="/pickem">Pigskin Pick'em</a></li>
 	<% else %>
-		<li><a href="/pigskinpickem">Pigskin Pick'em</a></li>
+		<li class="b-nav-group"><a class="nav-list" href="/pickem">Pigskin Pick'em</a></li>
 	<% end %>
 	
 	<% if request.fullpath == "/fooicide" %>
-    	<li class="active"><a href="/fooicide">Fooicide</a></li>
+    	<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
 	<% else %>
-		<li><a href="/fooicide">Fooicide</a></li>
+		<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
 	<% end %>
 	
 	<% if request.fullpath == "/thirtyeight" %>
-    	<li class="active"><a href="/thirtyeight">Thirty Eight Club</a></li>
+    	<li class="b-nav-group"><a class="nav-list" href="/thirtyeight">Thirty Eight Club</a></li>
 	<% else %>
-		<li><a href="/thirtyeight">Thirty Eight Club</a></li>
+		<li class="b-nav-group"><a class="nav-list" href="/thirtyeight">Thirty Eight Club</a></li>
 	<% end %>
   </ul>
 </div>

@@ -2,6 +2,7 @@ Whiteboard::Application.routes.draw do
   root to: "home#index"
   
   match "/scores" => "games#scores"
+  match "/pickem" => "pickem_picks#index"
   
   resources :home
   resources :thirty_eights

@@ -2,7 +2,11 @@ class PickemPicksController < ApplicationController
   # GET /pickem_picks
   # GET /pickem_picks.json
   def index
-    @pickem_picks = PickemPick.all
+    @year = '2013'
+    @week = '1'
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+    @games = Game.find_all_by_year_and_week(@year, @week)
 
     respond_to do |format|
       format.html # index.html.erb
