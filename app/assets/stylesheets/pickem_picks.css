@@ -1,4 +1,11 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+input[type=radio] {
+    margin:10px;
+}
+
+.pickem-radio-wrapper {
+	text-align:right
+}
+
+.pickem-submit-button {
+	display:block
+}

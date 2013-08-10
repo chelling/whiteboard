@@ -19,11 +19,13 @@
 								<p class="team-name"><%= game.away_team.name %></p>
 							</div>
 							<% if game.away_score.nil? %>
-								<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
-									<%= radio_button_tag("game_#{game.id}", game.away_team.id, true) %>
-								<% else %>
-									<%= radio_button_tag("game_#{game.id}", game.away_team.id, false) %>
-								<% end %>
+								<div class='pickem-radio-wrapper'>
+									<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
+										<%= radio_button_tag("game_#{game.id}", game.away_team.id, true, class: "radio-pickem-pick") %>
+									<% else %>
+										<%= radio_button_tag("game_#{game.id}", game.away_team.id, false, class: "radio-pickem-pick") %>
+									<% end %>
+								</div>
 							<% else %>
 								<p class="team-score"><%= game.away_score %></p>
 							<% end %>
@@ -39,11 +41,13 @@
 								<p class="team-name"><%= game.home_team.name %></p>
 							</div>
 							<% if game.home_score.nil? %>
-								<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
-									<%= radio_button_tag("game_#{game.id}", game.home_team.id, true) %>
-								<% else %>
-									<%= radio_button_tag("game_#{game.id}", game.home_team.id, false) %>
-								<% end %>
+								<div class='pickem-radio-wrapper'>
+									<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
+										<%= radio_button_tag("game_#{game.id}", game.home_team.id, true) %>
+									<% else %>
+										<%= radio_button_tag("game_#{game.id}", game.home_team.id, false) %>
+									<% end %>
+								</div>
 							<% else %>
 								<p class="team-score"><%= game.home_score %></p>
 							<% end %>
@@ -59,7 +63,7 @@
 		</div>
 	<% end %>
 	</div>
-	<div>
+	<div class='pickem-submit-button'>
 		<% if !@games.empty? %>
 			<%= submit_tag('Submit', :class => 'btn btn-primary') %>
 		<% end %>

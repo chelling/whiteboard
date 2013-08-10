@@ -79,6 +79,9 @@ div.scorebox-header {
 	color: white;
 	line-height: 20px;
 	padding: 0 5px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
 }
 
 div.scorebox {
