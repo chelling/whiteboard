@@ -1,0 +1,33 @@
+<div class="main-nav">
+  <ul class="top-nav-items">
+  	<% if request.fullpath == "/home" %>
+    	<li class="b-nav-group"><a class="nav-list" href="/home">Home</a></li>
+	<% else %>
+		<li class="b-nav-group"><a class="nav-list" href="/home">Home</a></li>
+	<% end %>
+	
+	<% if request.fullpath == "/scores" %>
+    	<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
+	<% else %>
+		<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
+	<% end %>
+	
+	<% if request.fullpath == "/pigskinpickem" %>
+    	<li class="b-nav-group"><a class="nav-list" href="/pickem">Pigskin Pick'em</a></li>
+	<% else %>
+		<li class="b-nav-group"><a class="nav-list" href="/pickem">Pigskin Pick'em</a></li>
+	<% end %>
+	
+	<% if request.fullpath == "/fooicide" %>
+    	<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
+	<% else %>
+		<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
+	<% end %>
+	
+	<% if request.fullpath == "/thirtyeight" %>
+    	<li class="b-nav-group"><a class="nav-list" href="/thirtyeight">Thirty Eight Club</a></li>
+	<% else %>
+		<li class="b-nav-group"><a class="nav-list" href="/thirtyeight">Thirty Eight Club</a></li>
+	<% end %>
+  </ul>
+</div>

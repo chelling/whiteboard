@@ -1,5 +1,5 @@
 <div class="doc-wrapper">
-<%= render :partial => "pickem_picks/header" %>
+<%= render :partial => "games/header" %>
 <h3>NFL Scores</h3>
 <% @games.try(:map) do |game| %>
 	<div class="scorebox-wrapper">

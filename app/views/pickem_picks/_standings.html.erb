@@ -1,0 +1,25 @@
+<div class="standings-wrapper">
+	<h3>Standings</h3>
+	<div class="standings-table-wrapper">
+		<div class="table-scroll">
+			<table>
+				<thead>
+					<tr>
+						<th><span class="text">User</span></th>
+						<th><span class="text">Week</span></th>
+						<th><span class="text">Overall</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.map do |user| %>
+						<tr>
+							<td class="td-name"><%= user.name %></td>
+							<td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
+							<td class="td-record"><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3063912375">
+    <data-source source="LOCAL" name="Rails whiteboard: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e7ac2722-e333-464e-b0c7-a61255ce1493">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/whiteboard_test</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>df9bdf98df99df9e</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.2-1002.jdbc3.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails whiteboard: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="79e1b28b-0dde-4a2e-a853-9e18b022a6d6">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-54-227-238-21.compute-1.amazonaws.com/d8idqejjlgujs4</jdbc-url>
+      <user-name>qwzahvnrnygicv</user-name>
+      <user-password>dfc8dfe6dfebdfc2df9adfc9dfdfdfcedf9bdf99dfecdff3dfd3dffadfe9df9bdf9adf9ddffcdfc1df9adfcedfc2dfc9dfeedfe3</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.2-1002.jdbc3.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails whiteboard: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="98c3ff9e-6c45-4b6a-97e7-616153c9a148">
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/whiteboard_development</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>df9bdf98df99df9e</user-password>
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.2-1002.jdbc3.jar!/</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+
