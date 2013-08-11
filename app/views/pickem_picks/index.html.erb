@@ -3,13 +3,16 @@
 <%= form_tag({controller: :pickem_picks, action: :update_picks}, method: "get", class: "nifty_form") do %>
 	<div class="doc-wrapper">
 	<%= render :partial => "pickem_picks/header" %>
-	<h3>NFL Scores</h3>
+	<div class="pickem-standings">
+		<%= render :partial => "pickem_picks/standings" %>	
+	</div>
+	<h2>Pickskin Pick'em</h2>
 	<% @games.try(:map) do |game| %>
 		<div class="scorebox-wrapper">
 			<div class="scorebox-header">
 				<p class="score-date"><%= game.date.strftime("%a, %b %d") %></p>
 			</div>
-			<div class="scorebox" id="1">	
+			<div class="scorebox" id="<%= @week %>">	
 				<div class="team-wrapper">
 					<div class="away-team">
 						<img class="team-logo" src="<%= game.away_team.image %>">
@@ -57,7 +60,11 @@
 			</div>
 			<div class="scoreboard-footer">
 				<div class="team-line">
-					<%= "Line: #{game.line}" %>
+					<% if !game.line.nil? && game.line != 0 %>
+						<%= "Line: #{game.line}" %>
+					<% else %>
+						<%= "Line: Even" %>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -65,7 +72,7 @@
 	</div>
 	<div class='pickem-submit-button'>
 		<% if !@games.empty? %>
-			<%= submit_tag('Submit', :class => 'btn btn-primary') %>
+			<%= submit_tag('Submit', :class => 'button btn btn-primary') %>
 		<% end %>
 	</div>
 <% end %>

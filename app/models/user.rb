@@ -19,4 +19,26 @@ class User < ActiveRecord::Base
   def pickem_picks_by_year_and_week(year, week)
     pickem_picks.find_all_by_year_and_week(year, week)
   end
+  
+  def pickem_picks_record_by_year(year)
+    wins = 0
+    losses = 0
+    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+      if !pick.win.nil?
+        pick.win == true ? wins += 1 : losses += 1       
+      end
+    end
+    return "(#{wins}-#{losses})"
+  end
+  
+  def pickem_picks_record_by_year_and_week(year, week)
+    wins = 0
+    losses = 0
+    pickem_picks.find_all_by_year_and_week(year, week).try(:map) do |pick|
+      if !pick.win.nil?
+        pick.win == true ? wins += 1 : losses += 1       
+      end
+    end
+    return "(#{wins}-#{losses})"
+  end
 end

@@ -49,7 +49,7 @@ div.doc-wrapper {
 
 div.scorebox-wrapper {
 	width: 307px;
-	height: 102px;
+	height: 152px;
 	margin: 0 18px 10px 0;
 	float: left;
 	background: url('shadow.png') no-repeat	bottom;
@@ -275,4 +275,50 @@ p.team-score {
 .week a.selected {
 	background: #000;
 	color: #fff!important;
+}
+
+.pickem-submit-button {
+	float:none;
+	display: block;
+	clear: both;
+	padding: 10px;
+}
+
+.button {
+	display: inline-block;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: 0;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: .5em 1.5em .4em 1.5em;
+	font: bold 11px/1em arial,helvetica,sans-serif;
+	color: #606060;
+	border: solid 1px #606060;
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-border-radius: .5em .5em .5em .5em;
+	-webkit-border-radius: .5em .5em .5em .5em;
+	border-radius: .5em .5em .5em .5em;
+	background: #fff;
+	background-color: #fff;
+	filter: progid:DXImageTransform.Microsoft.gra
+}
+
+.button.disabled {
+	color: #777;
+	border-color: #777;
+	background: #d7d7d7;
+	cursor: default;
+	position: static;
+	top: 0;
+	text-shadow: none;
+}
+
+.button:hover {
+	background-color: #000;
+	color: #fff;
 }

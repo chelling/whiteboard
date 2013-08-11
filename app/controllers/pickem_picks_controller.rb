@@ -2,16 +2,15 @@ class PickemPicksController < ApplicationController
   # GET /pickem_picks
   # GET /pickem_picks.json
   def index
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @year = '2013'
-    @week = '1'
+    @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
     @games = Game.find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
-
+    @users = User.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pickem_picks }
@@ -21,9 +20,7 @@ class PickemPicksController < ApplicationController
   # GET /pickem_picks/1
   # GET /pickem_picks/1.json
   def show
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.find(params[:id])
 
     respond_to do |format|
@@ -35,9 +32,7 @@ class PickemPicksController < ApplicationController
   # GET /pickem_picks/new
   # GET /pickem_picks/new.json
   def new
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.new
 
     respond_to do |format|
@@ -48,18 +43,14 @@ class PickemPicksController < ApplicationController
 
   # GET /pickem_picks/1/edit
   def edit
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.find(params[:id])
   end
 
   # POST /pickem_picks
   # POST /pickem_picks.json
   def create
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.new(params[:pickem_pick])
 
     respond_to do |format|
@@ -76,9 +67,7 @@ class PickemPicksController < ApplicationController
   # PUT /pickem_picks/1
   # PUT /pickem_picks/1.json
   def update
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.find(params[:id])
 
     respond_to do |format|
@@ -95,9 +84,7 @@ class PickemPicksController < ApplicationController
   # DELETE /pickem_picks/1
   # DELETE /pickem_picks/1.json
   def destroy
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @pickem_pick = PickemPick.find(params[:id])
     @pickem_pick.destroy
 
@@ -109,11 +96,9 @@ class PickemPicksController < ApplicationController
   
   # add picks to user table
   def update_picks
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
+    check_signed_in
     @year = '2013'
-    @week = '1'
+    @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
     
