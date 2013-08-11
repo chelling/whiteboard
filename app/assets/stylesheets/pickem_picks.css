@@ -22,7 +22,6 @@ input[type=radio] {
 
 .table-wrapper table {
   width:100%;
-    
 }
 
 .table-wrapper table {
@@ -63,6 +62,5 @@ table td {
 }
 
 .th-record {
-	width: 50px;
 	text-align: center;
 }
