@@ -9,7 +9,7 @@
 		<div class="scorebox" id="1">	
 			<div class="team-wrapper">
 				<div class="away-team">
-					<img class="team-logo" src="<%= game.away_team.image %>">
+					<img class="team-logo" src="<%= asset_path game.away_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
@@ -25,7 +25,7 @@
 			</div>
 			<div class="team-wrapper">
 				<div class="home-team">
-					<img class="team-logo" src="<%= game.home_team.image %>">
+					<img class="team-logo" src="<%= asset_path game.home_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.home_team.record_formatted(@year) %></p>

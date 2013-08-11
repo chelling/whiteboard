@@ -29,5 +29,7 @@
 	<% else %>
 		<li class="b-nav-group"><a class="nav-list" href="/thirtyeight">Thirty Eight Club</a></li>
 	<% end %>
+    <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in" %></li>
+    <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
   </ul>
 </div>

@@ -1,5 +1,5 @@
 Whiteboard::Application.routes.draw do
-  root to: "home#index"
+  root :to => "home#index"
   
   match "/scores" => "games#scores"
   match "/pickem" => "pickem_picks#index"

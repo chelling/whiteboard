@@ -1,12 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  def check_signed_in
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"  
-    end
-  end
-  
   def find_week
     week1 = Time.new(2013, 9, 9)
     week2 = Time.new(2013, 9, 16)
