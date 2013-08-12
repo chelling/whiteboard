@@ -10,10 +10,17 @@
 	<% @games.try(:map) do |game| %>
 		<div class="scorebox-wrapper">
 			<div class="scorebox-header">
-              <p class="score-date"><%= game.date.strftime("%a, %b %d -- %I:%M %p") %></p>
+              <p class="score-date"><%= game.date.strftime("%a, %b %d") %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= game.date.strftime("%I:%M %p") %></p>
 			</div>
-			<div class="scorebox" id="<%= @week %>">	
-				<div class="team-wrapper">
+			<div class="scorebox" id="<%= @week %>">
+              <% if Time.now > game.date && current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
+				<div class="team-wrapper-picked">
+              <% else %>
+                <div class="team-wrapper">
+              <% end %>
 					<div class="away-team">
 						<img class="team-logo" src="<%= asset_path game.away_team.image %>">
 						<div class="team-data">
@@ -21,7 +28,7 @@
 								<p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
 								<p class="team-name"><%= game.away_team.name %></p>
 							</div>
-							<% if game.away_score.nil? %>
+							<% if game.away_score.nil? && Time.now < game.date %>
 								<div class='pickem-radio-wrapper'>
 									<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
 										<%= radio_button_tag("game_#{game.id}", game.away_team.id, true, class: "radio-pickem-pick") %>
@@ -35,7 +42,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="team-wrapper">
+                  <% if Time.now > game.date && current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
+                      <div class="team-wrapper-picked">
+                  <% else %>
+                      <div class="team-wrapper">
+                  <% end %>
 					<div class="home-team">
 						<img class="team-logo" src="<%= asset_path game.home_team.image %>">
 						<div class="team-data">
@@ -43,7 +54,7 @@
 								<p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
 								<p class="team-name"><%= game.home_team.name %></p>
 							</div>
-							<% if game.home_score.nil? %>
+							<% if game.home_score.nil? && Time.now < game.date %>
 								<div class='pickem-radio-wrapper'>
 									<% if current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
 										<%= radio_button_tag("game_#{game.id}", game.home_team.id, true) %>

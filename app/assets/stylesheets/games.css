@@ -65,6 +65,14 @@ div.scorebox-header {
 	padding: 0 5px;
 }
 
+.score-date {
+    background: url('scorebox-bg.png') repeat-x 0 0;
+    height: 20px;
+    color: white;
+    line-height: 20px;
+    padding: 0 5px;
+}
+
 .scoreboard-footer {
 	background: url('scorebox-bg.png') repeat-x 0 0;
 	height: 20px;
@@ -95,6 +103,10 @@ div.scorebox {
 div.team-wrapper {
 	border: 1px solid #BDBDBD;
 	border-bottom: none;
+}
+
+div.team-wrapper-picked {
+    border: 1px solid #000;
 }
 
 div.team-data {
@@ -130,14 +142,6 @@ div.home-team {
 
 div.team-info {
 	float: left;
-}
-
-p.score-date {
-	background: url('scorebox-bg.png') repeat-x 0 0;
-	height: 20px;
-	color: white;
-	line-height: 20px;
-	padding: 0 5px;
 }
 
 p.team-name {
