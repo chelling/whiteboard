@@ -4,7 +4,11 @@ Whiteboard::Application.routes.draw do
   match "/scores" => "games#scores"
   match "/pickem" => "pickem_picks#index"
   match "/pickem_pick/update_picks" => "pickem_picks#update_picks"
-  match "/fooicide/rules" => "fooicide#rules"
+  match "/fooicide" => "fooicide_picks#scores"
+  match "/fooicide/rules" => "fooicide_picks#rules"
+  match "/thirtyeight" => "thirty_eights#scores"
+  match "/thirtyeight/rules" => "thirty_eights#rules"
+
   
   resources :home
   resources :thirty_eights

@@ -80,4 +80,12 @@ class ThirtyEightsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def scores
+
+  end
+
+  def rules
+
+  end
 end

@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   def pickem_pick_by_game(game)
     pickem_picks.find_by_game_id(game.id)
   end
+
+  def pickem_pick_by_game_id(id)
+    pickem_picks.find_by_game_id(id)
+  end
   
   def pickem_picks_by_year_and_week(year, week)
     pickem_picks.find_all_by_year_and_week(year, week)
@@ -23,22 +27,32 @@ class User < ActiveRecord::Base
   def pickem_picks_record_by_year(year)
     wins = 0
     losses = 0
+    ties = 0
     pickem_picks.find_all_by_year(year).try(:map) do |pick|
       if !pick.win.nil?
-        pick.win == true ? wins += 1 : losses += 1       
+        pick.win == true ? wins += 1 : losses += 1
+        if pick.tie
+          losses -= 1
+          ties += 1
+        end
       end
     end
-    return "(#{wins}-#{losses})"
+    return "(#{wins}-#{losses}-#{ties})"
   end
   
   def pickem_picks_record_by_year_and_week(year, week)
     wins = 0
     losses = 0
+    ties = 0
     pickem_picks.find_all_by_year_and_week(year, week).try(:map) do |pick|
       if !pick.win.nil?
-        pick.win == true ? wins += 1 : losses += 1       
+        pick.win == true ? wins += 1 : losses += 1
+        if pick.tie
+          losses -= 1
+          ties += 1
+        end
       end
     end
-    return "(#{wins}-#{losses})"
+    return "(#{wins}-#{losses}-#{ties})"
   end
 end

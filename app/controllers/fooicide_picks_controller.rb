@@ -80,6 +80,14 @@ class FooicidePicksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def scores
+    @week = find_week
+    @year = '2013'
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
+  end
   
   def rules
   end

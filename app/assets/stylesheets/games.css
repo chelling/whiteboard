@@ -109,6 +109,68 @@ div.team-wrapper-picked {
     border: 1px solid #000;
 }
 
+div.team-wrapper-win {
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #0F6B04 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #0F6B04 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #0F6B04 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #0F6B04));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #0F6B04 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: linear-gradient(to bottom, #FFFFFF 0%, #0F6B04 100%);
+    border: 1px solid #000;
+}
+
+div.team-wrapper-loss {
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #961B0E 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #961B0E 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #961B0E 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #961B0E));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #961B0E 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: linear-gradient(to bottom, #FFFFFF 0%, #961B0E 100%);
+}
+
+div.team-wrapper-tie {
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #C9B608));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: linear-gradient(to bottom, #FFFFFF 0%, #C9B608 100%);
+}
+
+div.team-wrapper-picked-tie {
+    /* IE10 Consumer Preview */
+    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Mozilla Firefox */
+    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Opera */
+    background-image: -o-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #C9B608));
+    /* Webkit (Chrome 11+) */
+    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #C9B608 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: linear-gradient(to bottom, #FFFFFF 0%, #C9B608 100%);
+    border: 1px solid #000;
+}
+
 div.team-data {
 	float: left;
 	margin: 0 0 0 9px;
@@ -123,12 +185,26 @@ div.away-team {
 	border-top: none;
 }
 
+div.away-team-no-back {
+    color: #222221;
+    height: 49px;
+    border: 1px solid white;
+    border-top: none;
+}
+
 div.home-team {
 	color: #222221;
 	height: 49px;
 	background: url('scorebox-bg.png') repeat-x 0 -20px;
 	border: 1px solid white;
 	border-top: none;
+}
+
+div.home-team-no-back {
+    color: #222221;
+    height: 49px;
+    border: 1px solid white;
+    border-top: none;
 }
 
 .team-logo {

@@ -14,8 +14,8 @@
 					<% @users.map do |user| %>
 						<tr>
 							<td class="td-name"><%= user.name %></td>
-							<td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
 							<td class="td-record"><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
+							<td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
 						</tr>
 					<% end %>
 				</tbody>

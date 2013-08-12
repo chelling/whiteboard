@@ -16,12 +16,33 @@
                 <%= game.date.strftime("%I:%M %p") %></p>
 			</div>
 			<div class="scorebox" id="<%= @week %>">
-              <% if Time.now > game.date && current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
-				<div class="team-wrapper-picked">
+              <% @pick = current_user.pickem_pick_by_game(game) %>
+              <% if Time.now > game.date && @pick.try(:team_id) == game.away_team.id %>
+                <% if @pick.try(:win) == true %>
+                  <div class="team-wrapper-win">
+                    <div class="away-team-no-back">
+                <% elsif @pick.try(:tie) == true %>
+                  <div class="team-wrapper-picked-tie">
+                    <div class="away-team-no-back">
+                <% else %>
+                  <div class="team-wrapper-picked">
+                    <div class="away-team">
+                <% end %>
+              <% elsif Time.now > game.date && @pick.try(:team_id) != game.away_team.id %>
+                <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
+                    <div class="team-wrapper-loss">
+                      <div class="away-team-no-back">
+                <% elsif @pick.try(:tie) == true %>
+                    <div class="team-wrapper-tie">
+                      <div class="away-team-no-back">
+                <% else %>
+                    <div class="team-wrapper">
+                      <div class="away-team">
+                <% end %>
               <% else %>
                 <div class="team-wrapper">
+                  <div class="away-team">
               <% end %>
-					<div class="away-team">
 						<img class="team-logo" src="<%= asset_path game.away_team.image %>">
 						<div class="team-data">
 							<div class="team-info">
@@ -42,12 +63,32 @@
 						</div>
 					</div>
 				</div>
-                  <% if Time.now > game.date && current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
-                      <div class="team-wrapper-picked">
+                  <% if Time.now > game.date && @pick.try(:team_id) == game.home_team.id %>
+                      <% if @pick.try(:win) == true %>
+                          <div class="team-wrapper-win">
+                            <div class="away-team-no-back">
+                      <% elsif @pick.try(:tie) == true %>
+                          <div class="team-wrapper-picked-tie">
+                            <div class="away-team-no-back">
+                      <% else %>
+                          <div class="team-wrapper-picked">
+                            <div class="away-team">
+                      <% end %>
+                  <% elsif Time.now > game.date && @pick.try(:team_id) != game.home_team.id %>
+                      <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
+                          <div class="team-wrapper-loss">
+                            <div class="home-team-no-back">
+                      <% elsif @pick.try(:tie) == true %>
+                          <div class="team-wrapper-tie">
+                            <div class="home-team-no-back">
+                      <% else %>
+                          <div class="team-wrapper">
+                            <div class="home-team">
+                      <% end %>
                   <% else %>
                       <div class="team-wrapper">
+                        <div class="home-team">
                   <% end %>
-					<div class="home-team">
 						<img class="team-logo" src="<%= asset_path game.home_team.image %>">
 						<div class="team-data">
 							<div class="team-info">
