@@ -9,7 +9,7 @@ class PickemPicksController < ApplicationController
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
-    @games = Game.find_all_by_year_and_week(@year, @week)
+    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
     @users = User.all
     
@@ -123,6 +123,7 @@ class PickemPicksController < ApplicationController
       print game.first + " " + game.last + " " + value
       if game.first == "game"
         pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
+        authorize! :update, pick
         if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end

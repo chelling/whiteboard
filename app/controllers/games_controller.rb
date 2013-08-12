@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     @games = Game.all
+    authorize! :manage, @games
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @game = Game.find(params[:id])
+    authorize! :manage, @game
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
+    authorize! :manage, @game
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class GamesController < ApplicationController
   # GET /games/1/edit
   def edit
     @game = Game.find(params[:id])
+    authorize! :manage, @game
   end
 
   # POST /games
   # POST /games.json
   def create
     @game = Game.new(params[:game])
+    authorize! :manage, @game
 
     respond_to do |format|
       if @game.save
@@ -57,6 +62,7 @@ class GamesController < ApplicationController
   # PUT /games/1.json
   def update
     @game = Game.find(params[:id])
+    authorize! :manage, @game
 
     respond_to do |format|
       if @game.update_attributes(params[:game])
@@ -73,6 +79,7 @@ class GamesController < ApplicationController
   # DELETE /games/1.json
   def destroy
     @game = Game.find(params[:id])
+    authorize! :manage, @game
     @game.destroy
 
     respond_to do |format|
@@ -86,6 +93,6 @@ class GamesController < ApplicationController
     @year = '2013'
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
-    @games = Game.find_all_by_year_and_week(@year, @week)
+    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
   end
 end

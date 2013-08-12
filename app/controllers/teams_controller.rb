@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @teams = Team.all
+    authorize! :manage, @teams
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class TeamsController < ApplicationController
   # GET /teams/1.json
   def show
     @team = Team.find(params[:id])
+    authorize! :manage, @team
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class TeamsController < ApplicationController
   # GET /teams/new.json
   def new
     @team = Team.new
+    authorize! :manage, @team
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @team = Team.find(params[:id])
+    authorize! :manage, @team
   end
 
   # POST /teams
   # POST /teams.json
   def create
     @team = Team.new(params[:team])
+    authorize! :manage, @team
 
     respond_to do |format|
       if @team.save
@@ -57,6 +62,7 @@ class TeamsController < ApplicationController
   # PUT /teams/1.json
   def update
     @team = Team.find(params[:id])
+    authorize! :manage, @team
 
     respond_to do |format|
       if @team.update_attributes(params[:team])
@@ -73,6 +79,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1.json
   def destroy
     @team = Team.find(params[:id])
+    authorize! :manage, @team
     @team.destroy
 
     respond_to do |format|

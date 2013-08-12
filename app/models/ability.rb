@@ -6,7 +6,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-       can :read, [Score, PickemPick, FooicidePick, ThirtyEight]
+       can :read, [PickemPick, FooicidePick, ThirtyEight]
        # pickem
        can :create, PickemPick
        can [:update, :destroy], PickemPick do |pick|

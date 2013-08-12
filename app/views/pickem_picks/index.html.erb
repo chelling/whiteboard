@@ -10,7 +10,7 @@
 	<% @games.try(:map) do |game| %>
 		<div class="scorebox-wrapper">
 			<div class="scorebox-header">
-				<p class="score-date"><%= game.date.strftime("%a, %b %d") %></p>
+              <p class="score-date"><%= game.date.strftime("%a, %b %d -- %I:%M %p") %></p>
 			</div>
 			<div class="scorebox" id="<%= @week %>">	
 				<div class="team-wrapper">
