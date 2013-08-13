@@ -1,48 +1,130 @@
-<div class="doc-wrapper">
-  <%= render :partial => "games/header" %>
-  <h2>NFL Scores</h2>
-  <% @games.try(:map) do |game| %>
-      <div class="scorebox-wrapper">
-        <div class="scorebox-header">
-          <p class="score-date"><%= game.date.strftime("%a, %b %d") %>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <%= game.date.strftime("%I:%M %p") %></p>
-        </div>
-        <div class="scorebox" id="1">
-          <div class="team-wrapper">
-            <div class="away-team">
+<%= flash[:notice] %>
+<%= flash[:alert] %>
+<%= form_tag({controller: :pickem_picks, action: :update_picks}, method: "get", class: "nifty_form") do %>
+    <div class="doc-wrapper">
+      <%= render :partial => "pickem_picks/header" %>
+      <div class="pickem-standings">
+        <%= render :partial => "pickem_picks/standings" %>
+      </div>
+      <h2>Pickskin Pick'em</h2>
+      <% @games.try(:map) do |game| %>
+          <div class="scorebox-wrapper">
+            <div class="scorebox-header">
+              <p class="score-date"><%= game.date.strftime("%a, %b %d") %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <%= game.date.strftime("%I:%M %p") %></p>
+            </div>
+            <div class="scorebox" id="<%= @week %>">
+              <% @pick = current_user.pickem_pick_by_game(game) %>
+              <% if Time.now > game.date && @pick.try(:team_id) == game.away_team.id %>
+                  <% if @pick.try(:win) == true %>
+                      <div class="team-wrapper-win">
+                        <div class="away-team-no-back">
+                  <% elsif @pick.try(:tie) == true %>
+                      <div class="team-wrapper-picked-tie">
+                        <div class="away-team-no-back">
+                  <% else %>
+                      <div class="team-wrapper-picked">
+                        <div class="away-team">
+                  <% end %>
+              <% elsif Time.now > game.date && @pick.try(:team_id) != game.away_team.id %>
+                  <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
+                      <div class="team-wrapper-loss">
+                        <div class="away-team-no-back">
+                  <% elsif @pick.try(:tie) == true %>
+                      <div class="team-wrapper-tie">
+                        <div class="away-team-no-back">
+                  <% else %>
+                      <div class="team-wrapper">
+                        <div class="away-team">
+                  <% end %>
+              <% else %>
+                  <div class="team-wrapper">
+                    <div class="away-team">
+              <% end %>
               <img class="team-logo" src="<%= asset_path game.away_team.image %>">
               <div class="team-data">
                 <div class="team-info">
                   <p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
                   <p class="team-name"><%= game.away_team.name %></p>
                 </div>
-                <% if game.away_score.nil? %>
-                    <p class="team-score"><%= "--" %></p>
-                <% else %>
-                    <p class="team-score"><%= game.away_score %></p>
+                <% if game.away_score.nil? && Time.now < game.date %>
+                    <div class='pickem-radio-wrapper'>
+                      <% if current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
+                          <%= radio_button_tag("game_#{game.id}", game.away_team.id, true, class: "radio-pickem-pick") %>
+                          <% else %>
+                              <%= radio_button_tag("game_#{game.id}", game.away_team.id, false, class: "radio-pickem-pick") %>
+                              <% end %>
+                              </div>
+                              <% else %>
+                              <p class="team-score"><%= game.away_score %></p>
+                          <% end %>
+                          </div>
+                          </div>
+                          </div>
+                          <% if Time.now > game.date && @pick.try(:team_id) == game.home_team.id %>
+                              <% if @pick.try(:win) == true %>
+                                  <div class="team-wrapper-win">
+                                    <div class="away-team-no-back">
+                              <% elsif @pick.try(:tie) == true %>
+                                  <div class="team-wrapper-picked-tie">
+                                    <div class="away-team-no-back">
+                              <% else %>
+                                  <div class="team-wrapper-picked">
+                                    <div class="away-team">
+                              <% end %>
+                          <% elsif Time.now > game.date && @pick.try(:team_id) != game.home_team.id %>
+                              <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
+                                  <div class="team-wrapper-loss">
+                                    <div class="home-team-no-back">
+                              <% elsif @pick.try(:tie) == true %>
+                                  <div class="team-wrapper-tie">
+                                    <div class="home-team-no-back">
+                              <% else %>
+                                  <div class="team-wrapper">
+                                    <div class="home-team">
+                              <% end %>
+                          <% else %>
+                              <div class="team-wrapper">
+                                <div class="home-team">
+                          <% end %>
+                          <img class="team-logo" src="<%= asset_path game.home_team.image %>">
+                          <div class="team-data">
+                            <div class="team-info">
+                              <p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
+                              <p class="team-name"><%= game.home_team.name %></p>
+                            </div>
+                            <% if game.home_score.nil? && Time.now < game.date %>
+                                <div class='pickem-radio-wrapper'>
+                                  <% if current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
+                                      <%= radio_button_tag("game_#{game.id}", game.home_team.id, true) %>
+                                  <% else %>
+                                      <%= radio_button_tag("game_#{game.id}", game.home_team.id, false) %>
+                                  <% end %>
+                                </div>
+                            <% else %>
+                                <p class="team-score"><%= game.home_score %></p>
+                            <% end %>
+                          </div>
+                          </div>
+                          </div>
+                          </div>
+                          <div class="scoreboard-footer">
+                            <div class="team-line">
+                              <% if !game.line.nil? && game.line != 0 %>
+                                  <%= "Line: #{game.line}" %>
+                              <% else %>
+                                  <%= "Line: Even" %>
+                              <% end %>
+                            </div>
+                          </div>
+                          </div>
+                      <% end %>
+                      </div>
+                      <div class='pickem-submit-button'>
+                        <% if !@games.empty? %>
+                            <%= submit_tag('Submit', :class => 'button btn btn-primary') %>
+                        <% end %>
+                      </div>
                 <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="team-wrapper">
-            <div class="home-team">
-              <img class="team-logo" src="<%= asset_path game.home_team.image %>">
-              <div class="team-data">
-                <div class="team-info">
-                  <p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
-                  <p class="team-name"><%= game.home_team.name %></p>
-                </div>
-                <% if game.home_score.nil? %>
-                    <p class="team-score"><%= "--" %></p>
-                <% else %>
-                    <p class="team-score"><%= game.home_score %></p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  <% end %>
-</div>

@@ -117,10 +117,10 @@ class PickemPicksController < ApplicationController
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
-    
+
+    # loop through params to find game
     params.each do |key,value|
       game = key.split('_')
-      print game.first + " " + game.last + " " + value
       if game.first == "game"
         pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
         authorize! :update, pick
