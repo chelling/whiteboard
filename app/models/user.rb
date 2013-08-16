@@ -67,8 +67,8 @@ class User < ActiveRecord::Base
     fooicide_picks.find_by_game_id(id)
   end
 
-  def fooicide_picks_by_year_and_week(year, week)
-    fooicide_picks.find_all_by_year_and_week(year, week)
+  def fooicide_pick_by_year_and_week(year, week)
+    fooicide_picks.find_by_year_and_week(year, week)
   end
 
   def fooicide_picks_correct_by_year(year)
@@ -93,6 +93,22 @@ class User < ActiveRecord::Base
     end
 
     return incorrect
+  end
+
+  def fooicide_picks_record_by_year(year)
+    correct = 0
+    incorrect = 0
+    fooicide_picks.find_all_by_year(year).try(:map) do |pick|
+      if !pick.win.nil?
+        pick.win ? correct += 1 : incorrect += 1
+      end
+    end
+
+    return "(#{correct}-#{incorrect})"
+  end
+
+  def is_team_available?(year, team_id)
+    fooicide_picks.find_by_year_and_team_id(year, team_id).nil?
   end
 
   def is_eliminated?(year)

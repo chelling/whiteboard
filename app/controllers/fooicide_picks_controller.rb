@@ -128,17 +128,25 @@ class FooicidePicksController < ApplicationController
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
 
+    # go through each "week_#"
     params.each do |key,value|
-      game = key.split('_')
-      if game.first == "game"
-        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
+      week = key.split('_')
+      if week.first == "week"
+        pick = FooicidePick.find_by_year_and_week_and_user_id(@year, week.last, current_user.id) || FooicidePick.new
         authorize! :update, pick
-        if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
-          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        # find game id for this team
+        game_id = Game.find_by_year_and_week_and_away_team_id(@year, week.last, value).try(:id)
+        if game_id.nil?
+          game_id = Game.find_by_year_and_week_and_home_team_id(@year, week.last, value).try(:id)
+        end
+        # attempt to update
+        if !current_user.is_team_available?(@year, value) ||
+            !pick.update_attributes(:user_id => current_user.id, :game_id => game_id, :team_id => value, :week => week.last, :year => @year)
+          return redirect_to "/fooicide?year=#{@year}&week=#{@week}", alert: 'Team already chosen'
         end
       end
     end
 
-    redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
+    redirect_to "/fooicide?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
   end
 end

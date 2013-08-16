@@ -6,8 +6,8 @@
 				<thead>
 					<tr>
 						<th><span class="text">User</span></th>
-						<th><span class="th-record">Week</span></th>
-						<th><span class="th-record">Overall</span></th>
+						<th><span class="th-record">Record</span></th>
+						<th><span class="th-record">Pick</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -18,8 +18,8 @@
                             <% else %>
                                 <td class="td-name"><%= user.name %></td>
                             <% end %>
-							<td class="td-record"><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
-							<td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
+							<td class="td-record"><%= user.fooicide_picks_record_by_year(@year) %></td>
+							<td class="td-record"><%= user.fooicide_pick_by_year_and_week(@year, @week).try(:team).try(:name) %></td>
 						</tr>
 					<% end %>
 				</tbody>
