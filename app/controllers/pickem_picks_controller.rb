@@ -5,16 +5,10 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
-    @year = '2013'
-    @week = find_week
-    @year = params[:year] if params[:year]
-    @week = params[:week] if params[:week]
-    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
-    @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
-    @users = User.all
-    
+    @pickem_picks = PickemPick.all
+
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # show.html.erb
       format.json { render json: @pickem_picks }
     end
   end
@@ -105,6 +99,24 @@ class PickemPicksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pickem_picks_url }
       format.json { head :no_content }
+    end
+  end
+
+  def scores
+    if !user_signed_in?
+      return redirect_to "/users/sign_in"
+    end
+    @year = '2013'
+    @week = find_week
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
+    @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
+    @users = User.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @pickem_picks }
     end
   end
   

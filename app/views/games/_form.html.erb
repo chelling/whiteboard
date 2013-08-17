@@ -15,9 +15,9 @@
 	
     <%= f.input :week %><br />
 	
-    <%= f.association :away_team, collection: Team.all(order: 'name'), prompt: "Away Team" %><br />
+    <%= f.association :away_team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Away Team" %><br />
 	
-    <%= f.association :home_team, collection: Team.all(order: 'name'), prompt: "Home Team" %><br />
+    <%= f.association :home_team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Home Team" %><br />
 	
     <%= f.input :location %><br />
 	
