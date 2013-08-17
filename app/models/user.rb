@@ -107,8 +107,13 @@ class User < ActiveRecord::Base
     return "(#{correct}-#{incorrect})"
   end
 
-  def is_team_available?(year, team_id)
-    fooicide_picks.find_by_year_and_team_id(year, team_id).nil?
+  def is_team_available?(year, week, team_id)
+    pick = fooicide_picks.find_by_year_and_team_id(year, team_id)
+    if pick.nil? || pick.week.to_i == week.to_i
+      return true
+    else
+      return false
+    end
   end
 
   def is_eliminated?(year)

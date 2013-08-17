@@ -105,6 +105,12 @@ div.team-wrapper {
 	border-bottom: none;
 }
 
+div.team-wrapper-not-available {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+    background-color: #000;
+}
+
 div.team-wrapper-picked {
     border: 1px solid #000;
 }

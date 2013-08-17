@@ -140,7 +140,7 @@ class FooicidePicksController < ApplicationController
           game_id = Game.find_by_year_and_week_and_home_team_id(@year, week.last, value).try(:id)
         end
         # attempt to update
-        if !current_user.is_team_available?(@year, value) ||
+        if !current_user.is_team_available?(@year, @week, value) ||
             !pick.update_attributes(:user_id => current_user.id, :game_id => game_id, :team_id => value, :week => week.last, :year => @year)
           return redirect_to "/fooicide?year=#{@year}&week=#{@week}", alert: 'Team already chosen'
         end

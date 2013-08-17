@@ -38,6 +38,15 @@ class Game < ActiveRecord::Base
           pick.save
         end
       end
+    else
+      User.all.map do |user|
+        pick = user.pickem_pick_by_game_id(id)
+        if !pick.nil?
+          pick.win = nil
+          pick.tie = nil
+          pick.save
+        end
+      end
     end
   end
 
@@ -49,17 +58,19 @@ class Game < ActiveRecord::Base
       elsif away_score > home_score
         team_id = away_team_id
       end
+    end
 
-      User.all.map do |user|
-        pick = user.fooicide_pick_by_game_id(id)
-        if !pick.nil?
-          if team_id != 0 && pick.try(:team_id) == team_id
-            pick.win = true
-          else
-            pick.win = false
-          end
-          pick.save
+    User.all.map do |user|
+      pick = user.fooicide_pick_by_game_id(id)
+      if !pick.nil?
+        if team_id != 0 && pick.try(:team_id) == team_id
+          pick.win = true
+        elsif team_id != 0
+          pick.win = false
+        else
+          pick.win = nil
         end
+        pick.save
       end
     end
   end

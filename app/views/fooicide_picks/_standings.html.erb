@@ -12,14 +12,21 @@
 				</thead>
 				<tbody>
 					<% @users.map do |user| %>
-						<tr>
+                        <tr>
                             <% if user.name.nil? %>
 							    <td class="td-name"><%= user.email %></td>
                             <% else %>
                                 <td class="td-name"><%= user.name %></td>
                             <% end %>
 							<td class="td-record"><%= user.fooicide_picks_record_by_year(@year) %></td>
-							<td class="td-record"><%= user.fooicide_pick_by_year_and_week(@year, @week).try(:team).try(:name) %></td>
+                            <% pick = user.fooicide_pick_by_year_and_week(@year, @week) %>
+                            <% if pick.try(:win?) %>
+                                <td class="td-record-win"><%= pick.try(:team).try(:name) %></td>
+                            <% elsif pick.try(:win) == false %>
+                                <td class="td-record-loss"><%= pick.try(:team).try(:name) %></td>
+                            <% else %>
+                                <td class="td-record"><%= pick.try(:team).try(:name) %></td>
+                            <% end %>
 						</tr>
 					<% end %>
 				</tbody>
