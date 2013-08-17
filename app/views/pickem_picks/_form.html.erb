@@ -1,4 +1,4 @@
-<%= form_for(@pickem_pick) do |f| %>
+<%= simple_form_for(@pickem_pick) do |f| %>
   <% if @pickem_pick.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pickem_pick.errors.count, "error") %> prohibited this pickem_pick from being saved:</h2>
@@ -11,27 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :week %><br />
-    <%= f.text_field :week %>
-  </div>
-  <div class="field">
-    <%= f.label :game_id %><br />
-    <%= f.text_field :game_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br />
-    <%= f.text_field :team_id %>
-  </div>
+    <%= f.input :year, :input_html => {:value => 2013} %>
+
+    <%= f.input :week, :input_html => {:value => 1} %>
+
+    <%= f.association :game, :label_method => lambda { |game| "#{game.year} | #{game.week} | #{game.away_team.try(:location)} | #{game.home_team.try(:location)}" } %>
+
+    <%= f.association :user %>
+
+    <%= f.association :team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Team" %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

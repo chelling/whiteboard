@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-    <%= f.input :year %><br />
+    <%= f.input :year, :input_html => {:value => 2013} %><br />
 	
-    <%= f.input :week %><br />
+    <%= f.input :week, :input_html => {:value => 1} %><br />
 	
     <%= f.association :away_team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Away Team" %><br />
 	
