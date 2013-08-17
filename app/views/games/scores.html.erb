@@ -13,7 +13,7 @@
             <% if !game.away_score.nil? && !game.home_score.nil? && game.away_score > game.home_score %>
 			    <div class="team-wrapper-picked">
             <% else %>
-              <div class="team-wrapper">
+              <div class="team-wrapper-scores">
             <% end %>
 				<div class="away-team">
 					<img class="team-logo" src="<%= asset_path game.away_team.image %>">
@@ -33,7 +33,7 @@
             <% if !game.away_score.nil? && !game.home_score.nil? && game.home_score > game.away_score %>
                 <div class="team-wrapper-picked">
             <% else %>
-                <div class="team-wrapper">
+                <div class="team-wrapper-scores">
             <% end %>
 				<div class="home-team">
 					<img class="team-logo" src="<%= asset_path game.home_team.image %>">

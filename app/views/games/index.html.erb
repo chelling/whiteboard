@@ -4,9 +4,10 @@
   <tr>
     <th>Year</th>
     <th>Week</th>
-    <th>Location</th>
-    <th>Home score</th>
+    <th>Away Team</th>
+    <th>Home Team</th>
     <th>Away score</th>
+    <th>Home score</th>
     <th>Date</th>
     <th></th>
     <th></th>
@@ -17,9 +18,10 @@
   <tr>
     <td><%= game.year %></td>
     <td><%= game.week %></td>
-    <td><%= game.location %></td>
-    <td><%= game.home_score %></td>
+    <td><%= game.away_team.try(:location) %></td>
+    <td><%= game.home_team.try(:location) %></td>
     <td><%= game.away_score %></td>
+    <td><%= game.home_score %></td>
     <td><%= game.date %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>

@@ -79,6 +79,7 @@ div.scorebox-header {
 	color: white;
 	line-height: 20px;
 	padding: 0 5px;
+    border-top: 1px solid #D5D5D5;
 }
 
 .team-line {
@@ -102,7 +103,11 @@ div.scorebox {
 
 div.team-wrapper {
 	border: 1px solid #BDBDBD;
-	border-bottom: none;
+    border-bottom: none;
+}
+
+div.team-wrapper-scores {
+    border: 1px solid #BDBDBD;
 }
 
 div.team-wrapper-not-available {

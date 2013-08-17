@@ -15,9 +15,9 @@
 	
     <%= f.input :week, :input_html => {:value => 1} %><br />
 	
-    <%= f.association :away_team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Away Team" %><br />
+    <%= f.association :away_team, :label_method => lambda { |away_team| "#{away_team.location} #{away_team.name}"}, collection: Team.all(order: 'location'), prompt: "Away Team" %><br />
 	
-    <%= f.association :home_team, label_method: :location, collection: Team.all(order: 'location'), prompt: "Home Team" %><br />
+    <%= f.association :home_team, :label_method => lambda { |home_team| "#{home_team.location} #{home_team.name}"}, collection: Team.all(order: 'location'), prompt: "Home Team" %><br />
 	
     <%= f.input :location %><br />
 	
