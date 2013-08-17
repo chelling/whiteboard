@@ -113,6 +113,20 @@ class FooicidePicksController < ApplicationController
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
     @users = User.all
+    # get bye teams
+    team_ids = []
+    @games.try(:map) do |game|
+      team_ids << game.away_team_id unless team_ids.include?(game.away_team_id)
+      team_ids << game.home_team_id unless team_ids.include?(game.home_team_id)
+    end
+    (Team.all.map(&:id) - team_ids).try(:map) do |team_id|
+      team = Team.find(team_id)
+      if @bye_teams.nil?
+        @bye_teams = "#{team.location}"
+      else
+        @bye_teams += ", #{team.location}"
+      end
+    end
   end
   
   def rules

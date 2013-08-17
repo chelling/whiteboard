@@ -20,7 +20,9 @@
 			</div>
 			<div class="bye-week">
 				<div class="teams">
-					
+				    <% if @bye_teams %>
+                        <%= "Bye: #{@bye_teams}" %>
+                    <% end %>
 				</div>
 			</div>
 		</div>
