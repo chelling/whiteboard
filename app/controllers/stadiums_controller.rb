@@ -3,6 +3,7 @@ class StadiumsController < ApplicationController
   # GET /stadiums.json
   def index
     @stadiums = Stadium.all
+    authorize! :manage, @stadiums
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class StadiumsController < ApplicationController
   # GET /stadiums/1.json
   def show
     @stadium = Stadium.find(params[:id])
+    authorize! :manage, @stadium
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class StadiumsController < ApplicationController
   # GET /stadiums/new.json
   def new
     @stadium = Stadium.new
+    authorize! :manage, @stadium
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class StadiumsController < ApplicationController
   # GET /stadiums/1/edit
   def edit
     @stadium = Stadium.find(params[:id])
+    authorize! :update, @stadium
   end
 
   # POST /stadiums
   # POST /stadiums.json
   def create
     @stadium = Stadium.new(params[:stadium])
+    authorize! :manage, @stadium
 
     respond_to do |format|
       if @stadium.save
@@ -57,7 +62,7 @@ class StadiumsController < ApplicationController
   # PUT /stadiums/1.json
   def update
     @stadium = Stadium.find(params[:id])
-
+    authorize! :manage, @stadium
     respond_to do |format|
       if @stadium.update_attributes(params[:stadium])
         format.html { redirect_to @stadium, notice: 'Stadium was successfully updated.' }
@@ -73,6 +78,7 @@ class StadiumsController < ApplicationController
   # DELETE /stadiums/1.json
   def destroy
     @stadium = Stadium.find(params[:id])
+    authorize! :manage, @stadium
     @stadium.destroy
 
     respond_to do |format|

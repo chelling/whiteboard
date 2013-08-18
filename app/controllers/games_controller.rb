@@ -94,6 +94,7 @@ class GamesController < ApplicationController
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
+    authorize! :read, @games
     team_ids = []
     @games.try(:map) do |game|
       team_ids << game.away_team_id unless team_ids.include?(game.away_team_id)

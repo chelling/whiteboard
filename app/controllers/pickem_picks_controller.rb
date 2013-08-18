@@ -6,6 +6,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_picks = PickemPick.all
+    authorize! :manage, @pickem_picks
 
     respond_to do |format|
       format.html # show.html.erb
@@ -20,6 +21,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.find(params[:id])
+    authorize! :manage, @pickem_pick
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,6 +36,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.new
+    authorize! :create, @pickem_pick
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +50,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.find(params[:id])
+    authorize! :update, @pickem_pick
   end
 
   # POST /pickem_picks
@@ -56,6 +60,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.new(params[:pickem_pick])
+    authorize! :create, @pickem_pick
 
     respond_to do |format|
       if @pickem_pick.save
@@ -75,6 +80,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.find(params[:id])
+    authorize! :update, @pickem_pick
 
     respond_to do |format|
       if @pickem_pick.update_attributes(params[:pickem_pick])
@@ -94,6 +100,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @pickem_pick = PickemPick.find(params[:id])
+    authorize! :destroy, @pickem_pick
     @pickem_pick.destroy
 
     respond_to do |format|
@@ -112,6 +119,7 @@ class PickemPicksController < ApplicationController
     @week = params[:week] if params[:week]
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
+    authorize! :read, @pickem_picks
     @users = User.all
     # get bye teams
     team_ids = []

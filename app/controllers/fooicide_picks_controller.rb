@@ -6,6 +6,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_picks = FooicidePick.all
+    authorize! :manage, @fooicide_picks
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,6 +21,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_pick = FooicidePick.find(params[:id])
+    authorize! :manage, @fooicide_pick
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,6 +36,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_pick = FooicidePick.new
+    authorize! :create, @fooicide_pick
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +49,7 @@ class FooicidePicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+    authorize! :update, @fooicide_pick
     @fooicide_pick = FooicidePick.find(params[:id])
   end
 
@@ -56,6 +60,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_pick = FooicidePick.new(params[:fooicide_pick])
+    authorize! :create, @fooicide_pick
 
     respond_to do |format|
       if @fooicide_pick.save
@@ -75,6 +80,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_pick = FooicidePick.find(params[:id])
+    authorize! :update, @fooicide_pick
 
     respond_to do |format|
       if @fooicide_pick.update_attributes(params[:fooicide_pick])
@@ -94,6 +100,7 @@ class FooicidePicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
     @fooicide_pick = FooicidePick.find(params[:id])
+    authorize! :destroy, @fooicide_pick
     @fooicide_pick.destroy
 
     respond_to do |format|
