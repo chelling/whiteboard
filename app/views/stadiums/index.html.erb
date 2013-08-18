@@ -1,0 +1,33 @@
+<h1>Listing stadiums</h1>
+
+<table>
+  <tr>
+    <th>Team</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Time zone</th>
+    <th>Stadium type</th>
+    <th>Grass type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @stadiums.each do |stadium| %>
+  <tr>
+    <td><%= stadium.team.try(:name) %></td>
+    <td><%= stadium.name %></td>
+    <td><%= stadium.location %></td>
+    <td><%= stadium.time_zone %></td>
+    <td><%= stadium.stadium_type %></td>
+    <td><%= stadium.grass_type %></td>
+    <td><%= link_to 'Show', stadium %></td>
+    <td><%= link_to 'Edit', edit_stadium_path(stadium) %></td>
+    <td><%= link_to 'Destroy', stadium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Stadium', new_stadium_path %>

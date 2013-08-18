@@ -1,4 +1,7 @@
 Whiteboard::Application.routes.draw do
+  resources :stadiums
+
+
   root :to => "home#index"
   
   match "/scores" => "games#scores"

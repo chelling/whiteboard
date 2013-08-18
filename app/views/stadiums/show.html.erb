@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Location:</b>
+  <%= @stadium.location %>
+</p>
+
+<p>
+  <b>Time zone:</b>
+  <%= @stadium.time_zone %>
+</p>
+
+<p>
+  <b>Stadium type:</b>
+  <%= @stadium.stadium_type %>
+</p>
+
+<p>
+  <b>Grass type:</b>
+  <%= @stadium.grass_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_stadium_path(@stadium) %> |
+<%= link_to 'Back', stadiums_path %>

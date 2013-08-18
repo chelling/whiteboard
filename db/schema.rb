@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813030939) do
+ActiveRecord::Schema.define(:version => 20130818213236) do
 
   create_table "fooicide_picks", :force => true do |t|
     t.integer  "year"
@@ -66,6 +66,28 @@ ActiveRecord::Schema.define(:version => 20130813030939) do
   end
 
   add_index "records", ["team_id", "year"], :name => "index_records_on_team_id_and_year"
+
+  create_table "shares", :force => true do |t|
+    t.integer  "year"
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shares", ["user_id", "team_id", "game_id"], :name => "index_shares_on_user_id_and_team_id_and_game_id"
+
+  create_table "stadiums", :force => true do |t|
+    t.integer  "team_id"
+    t.string   "location"
+    t.string   "time_zone"
+    t.string   "stadium_type"
+    t.string   "grass_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "name"
+  end
 
   create_table "teams", :force => true do |t|
     t.string   "name"

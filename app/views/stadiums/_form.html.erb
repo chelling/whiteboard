@@ -1,0 +1,28 @@
+<%= simple_form_for(@stadium) do |f| %>
+  <% if @stadium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stadium.errors.count, "error") %> prohibited this stadium from being saved:</h2>
+
+      <ul>
+      <% @stadium.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.association :team, :label_method => lambda { |team| "#{team.location} #{team.name}"}, collection: Team.all(order: 'location'), prompt: "Team" %><br />
+
+    <%= f.input :name %><br />
+
+    <%= f.input :location %><br />
+
+    <%= f.input :time_zone %>
+
+    <%= f.input :stadium_type %>
+
+    <%= f.input :grass_type %>
+
+    <%= f.button :submit %>
+
+<% end %>

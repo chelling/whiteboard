@@ -3,6 +3,7 @@ class Team < ActiveRecord::Base
   has_many :thirty_eights
   has_many :home_games, :foreign_key => "home_team_id", :class_name => "Game", :primary_key => "id"
   has_many :away_games, :foreign_key => "away_team_id", :class_name => "Game", :primary_key => "id"
+  has_one :stadium
   
   attr_accessible :conference, :division, :image, :location, :name
   

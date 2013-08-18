@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  location: MyString
+  time_zone: MyString
+  stadium_type: MyString
+  grass_type: MyString
+
+two:
+  location: MyString
+  time_zone: MyString
+  stadium_type: MyString
+  grass_type: MyString

@@ -17,9 +17,9 @@
     </data-source>
     <data-source source="LOCAL" name="Rails whiteboard: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="79e1b28b-0dde-4a2e-a853-9e18b022a6d6">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-221-225-251.compute-1.amazonaws.com/d8i5nr6a2rdqsk</jdbc-url>
-      <user-name>fqjexwynkuwrfv</user-name>
-      <user-password>df9adfc3dfe4dfdddfcedf9edf9adfcedf93dfc3dfcddfc4dff0dff8dfcedfd8dfc8df9edf9ddf9ddf99dfe6df98df9edfc3dfe5</user-password>
+      <jdbc-url>jdbc:postgresql://ec2-54-227-238-21.compute-1.amazonaws.com/d8idqejjlgujs4</jdbc-url>
+      <user-name>qwzahvnrnygicv</user-name>
+      <user-password>dfc8dfe6dfebdfc2df9adfc9dfdfdfcedf9bdf99dfecdff3dfd3dffadfe9df9bdf9adf9ddffcdfc1df9adfcedfc2dfc9dfeedfe3</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
