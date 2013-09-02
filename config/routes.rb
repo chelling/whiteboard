@@ -11,7 +11,7 @@ Whiteboard::Application.routes.draw do
   match "/fooicide/rules" => "fooicide_picks#rules"
   match "/fooicide/update_picks" => "fooicide_picks#update_picks"
   # match "/thirtyeight" => "thirty_eights#scores"
-  match "/thirtyeight" => "thirty_eights#rules"
+  # match "/thirtyeight" => "thirty_eights#rules"
 
   
   resources :home

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818213236) do
+ActiveRecord::Schema.define(:version => 20130902155317) do
 
   create_table "fooicide_picks", :force => true do |t|
     t.integer  "year"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20130818213236) do
     t.datetime "date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "line"
+    t.float    "line"
   end
 
   add_index "games", ["year", "week"], :name => "index_games_on_year_and_week"
