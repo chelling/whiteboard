@@ -156,8 +156,14 @@ class PickemPicksController < ApplicationController
     params.each do |key,value|
       game = key.split('_')
       if game.first == "game"
-        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last) || PickemPick.new
-        authorize! :update, pick
+        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last)
+        if !pick.nil?
+          authorize! :update, pick
+        else
+          pick = PickemPick.new
+          authorize! :create, pick
+        end
+
         if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end

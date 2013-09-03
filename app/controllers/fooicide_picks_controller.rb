@@ -153,8 +153,14 @@ class FooicidePicksController < ApplicationController
     params.each do |key,value|
       week = key.split('_')
       if week.first == "week"
-        pick = FooicidePick.find_by_year_and_week_and_user_id(@year, week.last, current_user.id) || FooicidePick.new
-        authorize! :update, pick
+        pick = FooicidePick.find_by_year_and_week_and_user_id(@year, week.last, current_user.id)
+        if !pick.nil?
+          authorize! :update, pick
+        else
+          pick = FooicidePick.new
+          authorize! :create, pick
+        end
+
         # find game id for this team
         game_id = Game.find_by_year_and_week_and_away_team_id(@year, week.last, value).try(:id)
         if game_id.nil?
