@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" afterPath="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,10 +101,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fooicide_picks_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="fooicide_picks_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="71" selection-start="4062" selection-end="4062" vertical-scroll-proportion="0.06259315">
+            <state line="169" column="40" selection-start="4876" selection-end="4876" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scores.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="108" column="16" selection-start="5253" selection-end="5253" vertical-scroll-proportion="0.57165354">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scores.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/games/scores.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="50" selection-start="763" selection-end="763" vertical-scroll-proportion="5.0">
               <folding />
             </state>
           </provider>
@@ -133,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20130818213236_add_name_to_stadium.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130818213401_add_stadium_id_to_team.rb" />
         <option value="$PROJECT_DIR$/app/models/team.rb" />
         <option value="$PROJECT_DIR$/app/models/stadium.rb" />
@@ -149,6 +164,7 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.css" />
         <option value="$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
       </list>
     </option>
   </component>
@@ -964,16 +980,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/team.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/stadium.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="84" selection-start="139" selection-end="139" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1051,7 +1057,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="71" selection-start="4062" selection-end="4062" vertical-scroll-proportion="0.06259315">
+        <state line="169" column="40" selection-start="4876" selection-end="4876" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/games/scores.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="50" selection-start="763" selection-end="763" vertical-scroll-proportion="5.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="16" selection-start="5253" selection-end="5253" vertical-scroll-proportion="0.57165354">
           <folding />
         </state>
       </provider>
