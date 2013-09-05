@@ -71,6 +71,23 @@ class User < ActiveRecord::Base
     fooicide_picks.find_by_year_and_week(year, week)
   end
 
+  def fooicide_pick_after_game_start(year, week)
+    pick = fooicide_picks.find_by_year_and_week(year, week)
+    if !pick.nil? && Time.now > pick.try(:game).try(:date)
+      return pick
+    else
+      return nil
+    end
+  end
+
+  def pick_locked?(year, week)
+    if fooicide_pick_after_game_start(year, week)
+      return true
+    else
+      return false
+    end
+  end
+
   def fooicide_picks_correct_by_year(year)
     correct = 0
     incorrect = 0
@@ -110,7 +127,11 @@ class User < ActiveRecord::Base
   def is_team_available?(year, week, team_id)
     pick = fooicide_picks.find_by_year_and_team_id(year, team_id)
     if pick.nil? || pick.week.to_i == week.to_i
-      return true
+      if pick_locked?(year, week)
+        return false
+      else
+        return true
+      end
     else
       return false
     end

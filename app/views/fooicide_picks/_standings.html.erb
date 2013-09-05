@@ -19,7 +19,7 @@
                                 <td class="td-name"><%= user.name %></td>
                             <% end %>
 							<td class="td-record"><%= user.fooicide_picks_record_by_year(@year) %></td>
-                            <% pick = user.fooicide_pick_by_year_and_week(@year, @week) %>
+                            <% pick = user.fooicide_pick_after_game_start(@year, @week) %>
                             <% if pick.try(:win?) %>
                                 <td class="td-record-win"><%= pick.try(:team).try(:name) %></td>
                             <% elsif pick.try(:win) == false %>
