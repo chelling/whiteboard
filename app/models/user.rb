@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
 
   def fooicide_pick_after_game_start(year, week)
     pick = fooicide_picks.find_by_year_and_week(year, week)
-    if !pick.nil? && Time.now > pick.try(:game).try(:date)
+    if !pick.nil? && Time.now.in_time_zone('Eastern Time (US & Canada)') > pick.try(:game).try(:date)
       return pick
     else
       return nil

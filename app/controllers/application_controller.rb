@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     week15 = Time.new(2013, 12, 16)
     week16 = Time.new(2013, 12, 23)
     week17 = Time.new(2013, 12, 29)
-    @time = Time.now
+    @time = Time.now.in_time_zone('Eastern Time (US & Canada)')
     if @time < week1
       return '1'
     elsif @time > week1 && @time < week2

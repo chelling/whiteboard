@@ -17,7 +17,7 @@
             </div>
             <div class="scorebox" id="<%= @week %>">
               <% @pick = current_user.pickem_pick_by_game(game) %>
-              <% if Time.now > game.date && @pick.try(:team_id) == game.away_team.id %>
+              <% if Time.now.in_time_zone('Eastern Time (US & Canada)') > game.date && @pick.try(:team_id) == game.away_team.id %>
                   <% if @pick.try(:win) == true %>
                       <div class="team-wrapper-win">
                         <div class="away-team-no-back">
@@ -28,7 +28,7 @@
                       <div class="team-wrapper-picked">
                         <div class="away-team">
                   <% end %>
-              <% elsif Time.now > game.date && @pick.try(:team_id) != game.away_team.id %>
+              <% elsif Time.now.in_time_zone('Eastern Time (US & Canada)') > game.date && @pick.try(:team_id) != game.away_team.id %>
                   <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
                       <div class="team-wrapper-loss">
                         <div class="away-team-no-back">
@@ -49,7 +49,7 @@
                   <p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
                   <p class="team-name"><%= game.away_team.name %></p>
                 </div>
-                <% if game.away_score.nil? && Time.now < game.date %>
+                <% if game.away_score.nil? && Time.now.in_time_zone('Eastern Time (US & Canada)') < game.date %>
                     <div class='pickem-radio-wrapper'>
                       <% if current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
                           <%= radio_button_tag("game_#{game.id}", game.away_team.id, true, class: "radio-pickem-pick") %>
@@ -63,7 +63,7 @@
               </div>
               </div>
               </div>
-              <% if Time.now > game.date && @pick.try(:team_id) == game.home_team.id %>
+              <% if Time.now.in_time_zone('Eastern Time (US & Canada)') > game.date && @pick.try(:team_id) == game.home_team.id %>
                   <% if @pick.try(:win) == true %>
                       <div class="team-wrapper-win">
                         <div class="away-team-no-back">
@@ -74,7 +74,7 @@
                       <div class="team-wrapper-picked">
                         <div class="away-team">
                   <% end %>
-              <% elsif Time.now > game.date && @pick.try(:team_id) != game.home_team.id %>
+              <% elsif Time.now.in_time_zone('Eastern Time (US & Canada)') > game.date && @pick.try(:team_id) != game.home_team.id %>
                   <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
                       <div class="team-wrapper-loss">
                         <div class="home-team-no-back">
@@ -95,7 +95,7 @@
                   <p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
                   <p class="team-name"><%= game.home_team.name %></p>
                 </div>
-                <% if game.home_score.nil? && Time.now < game.date %>
+                <% if game.home_score.nil? && Time.now.in_time_zone('Eastern Time (US & Canada)') < game.date %>
                     <div class='pickem-radio-wrapper'>
                       <% if current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
                           <%= radio_button_tag("game_#{game.id}", game.home_team.id, true) %>

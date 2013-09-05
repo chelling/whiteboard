@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fooicide_picks/_standings.html.erb" afterPath="$PROJECT_DIR$/app/views/fooicide_picks/_standings.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/games/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/games/_header.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" afterPath="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" afterPath="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +38,8 @@
     <file path="/team.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376862452991" ignored="false" />
     <file path="/record.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376365828575" ignored="false" />
     <file path="/a.html" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399469564" ignored="false" />
-    <file path="/_header.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376841224990" ignored="false" />
-    <file path="/a.dummy" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378137522521" ignored="false" />
+    <file path="/_header.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378351347506" ignored="false" />
+    <file path="/a.dummy" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378351150101" ignored="false" />
     <file path="/_weeks.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376757149503" ignored="false" />
     <file path="/_form.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376855523814" ignored="false" />
     <file path="/rules.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376841558394" ignored="false" />
@@ -48,6 +52,7 @@
     <file path="/application.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376868589083" ignored="false" />
     <file path="/ability.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376879507854" ignored="false" />
     <file path="/20130902155317_update_line_to_double.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378137317128" ignored="false" />
+    <file path="/application_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378351286284" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +75,16 @@
       <file leaf-file-name="_header.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="18" selection-start="620" selection-end="620" vertical-scroll-proportion="-7.8461537">
+            <state line="3" column="25" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.9615384">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="20" selection-start="820" selection-end="863" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -88,7 +102,7 @@
       <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="21" selection-start="2011" selection-end="2011" vertical-scroll-proportion="0.0">
+            <state line="75" column="72" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -103,10 +117,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scores.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scores.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="85" selection-start="2841" selection-end="2841" vertical-scroll-proportion="0.5607903">
+            <state line="94" column="93" selection-start="4839" selection-end="4839" vertical-scroll-proportion="-5.269231">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_header.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/games/_header.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="67" selection-start="172" selection-end="172" vertical-scroll-proportion="-1.9615384">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_header.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="67" selection-start="172" selection-end="172" vertical-scroll-proportion="-1.9615384">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scores.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="97" selection-start="5337" selection-end="5337" vertical-scroll-proportion="0.33168316">
               <folding />
             </state>
           </provider>
@@ -133,11 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/stadium.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/games_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/thirty_eights_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/stadiums_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/_ga.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/models/ability.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20130902155317_update_line_to_double.rb" />
@@ -147,8 +183,13 @@
         <option value="$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/fooicide_picks_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/fooicide_picks/_standings.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
+        <option value="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/games/_header.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" />
       </list>
     </option>
   </component>
@@ -874,14 +915,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="20" y="10" width="1411" height="842" extended-state="1" />
+    <frame x="20" y="10" width="1411" height="842" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32816902" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23128243" sideWeight="0.670904" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23128243" sideWeight="0.671831" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -890,7 +932,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32909605" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -964,28 +1005,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="43" selection-start="101" selection-end="101" vertical-scroll-proportion="0.103658535" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20130902155317_update_line_to_double.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="75" selection-start="166" selection-end="166" vertical-scroll-proportion="0.22434017" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_main_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="4" selection-start="965" selection-end="965" vertical-scroll-proportion="0.64786583" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="39" selection-start="526" selection-end="526" vertical-scroll-proportion="0.398827">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="83" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0">
@@ -1035,20 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="21" selection-start="2011" selection-end="2011" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/_standings.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="73" selection-start="783" selection-end="813" vertical-scroll-proportion="-11.576923">
@@ -1056,16 +1061,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="36" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="20" selection-start="820" selection-end="863" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="72" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="18" selection-start="620" selection-end="620" vertical-scroll-proportion="-7.8461537">
+        <state line="3" column="25" selection-start="130" selection-end="130" vertical-scroll-proportion="-1.9615384">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="85" selection-start="2841" selection-end="2841" vertical-scroll-proportion="0.5607903">
+        <state line="94" column="93" selection-start="4839" selection-end="4839" vertical-scroll-proportion="-5.269231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/games/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="67" selection-start="172" selection-end="172" vertical-scroll-proportion="-1.9615384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="67" selection-start="172" selection-end="172" vertical-scroll-proportion="-1.9615384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="97" selection-start="5337" selection-end="5337" vertical-scroll-proportion="0.33168316">
           <folding />
         </state>
       </provider>
