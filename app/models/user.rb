@@ -166,15 +166,17 @@ class User < ActiveRecord::Base
   def self.order_all_by_pickem_record(year)
     users_sorted = []
     users_hash = Hash.new
+    wins_hash = Hash.new
     # Add all the user wins to the Hash
     User.all.map do |user|
-      users_hash[user.id] = user.pickem_picks_wins_by_year(year) unless user.pickem_picks_by_year(year).try(:count) <= 0
+      wins_hash[user.id] = user.pickem_picks_wins_by_year(year) unless user.pickem_picks_by_year(year).try(:count) <= 0
+      users_hash[user.id] = user
     end
     # Start sorting
-    while !users_hash.empty? do
-      max = users_hash.max_by{|k,v| v}
-      users_sorted << User.find(max.first)
-      users_hash.delete(max.first)
+    while !wins_hash.empty? do
+      max = wins_hash.max_by{|k,v| v}
+      users_sorted << users_hash[max.first]
+      wins_hash.delete(max.first)
     end
     # Return sorted users
     return users_sorted
@@ -183,15 +185,17 @@ class User < ActiveRecord::Base
   def self.order_all_by_fooicide_record(year)
     users_sorted = []
     users_hash = Hash.new
+    wins_hash = Hash.new
     # Add all the user wins to the Hash
     User.all.map do |user|
-      users_hash[user.id] = user.fooicide_picks_correct_by_year(year) unless user.fooicide_picks_by_year(year).try(:count) <= 0
+      wins_hash[user.id] = user.fooicide_picks_correct_by_year(year) unless user.fooicide_picks_by_year(year).try(:count) <= 0
+      users_hash[user.id] = user
     end
     # Start sorting
-    while !users_hash.empty? do
-      max = users_hash.max_by{|k,v| v}
-      users_sorted << User.find(max.first)
-      users_hash.delete(max.first)
+    while !wins_hash.empty? do
+      max = wins_hash.max_by{|k,v| v}
+      users_sorted << users_hash[max.first]
+      wins_hash.delete(max.first)
     end
     # Return sorted users
     return users_sorted
