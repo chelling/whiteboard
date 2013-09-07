@@ -119,7 +119,7 @@ class FooicidePicksController < ApplicationController
     @week = params[:week] if params[:week]
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
-    @users = User.all
+    @users = User.order_all_by_fooicide_record(@year)
     # get bye teams
     team_ids = []
     @games.try(:map) do |game|

@@ -25,6 +25,20 @@ class User < ActiveRecord::Base
   def pickem_picks_by_year_and_week(year, week)
     pickem_picks.find_all_by_year_and_week(year, week)
   end
+
+  def pickem_picks_by_year(year)
+    pickem_picks.find_all_by_year(year)
+  end
+
+  def pickem_picks_wins_by_year(year)
+    wins = 0
+    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+      if !pick.win.nil?
+        pick.win == true ? wins += 1 : ""
+      end
+    end
+    return wins
+  end
   
   def pickem_picks_record_by_year(year)
     wins = 0
@@ -69,6 +83,10 @@ class User < ActiveRecord::Base
 
   def fooicide_pick_by_year_and_week(year, week)
     fooicide_picks.find_by_year_and_week(year, week)
+  end
+
+  def fooicide_picks_by_year(year)
+    fooicide_picks.find_all_by_year(year)
   end
 
   def fooicide_pick_after_game_start(year, week)
@@ -143,5 +161,61 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def self.order_all_by_pickem_record(year)
+    sorted_users = []
+    User.all.map do |user|
+      # skip users with no picks
+      if user.pickem_picks_by_year(year).try(:count) <= 0
+        next
+      end
+      # Add first user by default
+      if sorted_users.empty?
+        sorted_users << user
+      else
+        # Sort all the users by wins
+        for i in 0..sorted_users.count - 1
+          inserted = false
+          if user.pickem_picks_wins_by_year(year) > sorted_users.at(i).pickem_picks_wins_by_year(year)
+            inserted = true
+            sorted_users.insert(i, user)
+          end
+          # append to the end if it is the smallest win total
+          if !inserted
+            sorted_users << user
+          end
+        end
+      end
+    end
+    return sorted_users
+  end
+
+  def self.order_all_by_fooicide_record(year)
+    sorted_users = []
+    User.all.map do |user|
+      # skip users with no picks
+      if user.fooicide_picks_by_year(year).try(:count) <= 0
+        next
+      end
+      # Add first user by default
+      if sorted_users.empty?
+        sorted_users << user
+      else
+        # Sort all the users by wins
+        for i in 0..sorted_users.count - 1
+          inserted = false
+          if user.fooicide_picks_correct_by_year(year) > sorted_users.at(i).fooicide_picks_correct_by_year(year)
+            inserted = true
+            sorted_users.insert(i, user)
+          end
+          # append to the end if it is the smallest win total
+          if !inserted
+            sorted_users << user
+          end
+        end
+      end
+    end
+    return sorted_users
   end
 end
