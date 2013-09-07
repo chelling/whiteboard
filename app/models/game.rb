@@ -11,6 +11,15 @@ class Game < ActiveRecord::Base
   
   attr_accessible :away_score, :date, :home_score, :location, :week, :year, :away_team_id, :home_team_id , :line
   accepts_nested_attributes_for :pickem_picks, :away_team, :home_team
+
+  # methods
+  def date_eastern
+    date.try(:in_time_zone, 'Eastern Time (US & Canada)')
+  end
+
+  def in_progress_or_complete?
+      Time.now.in_time_zone('Eastern Time (US & Canada)') - 4 * 60 * 60 > date_eastern
+  end
   
   # hooks
   def update_pickem_wins
