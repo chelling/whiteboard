@@ -63,13 +63,10 @@
           <% if game.in_progress_or_complete? && @pick.try(:team_id) == game.home_team.id %>
               <% if @pick.try(:win) == true %>
                   <div class="team-wrapper-win">
-                    <div class="away-team-no-back">
-              <% elsif @pick.try(:tie) == true %>
-                  <div class="team-wrapper-picked-tie">
-                    <div class="away-team-no-back">
+                    <div class="home-team-no-back">
               <% else %>
                   <div class="team-wrapper-picked">
-                    <div class="away-team">
+                    <div class="home-team">
               <% end %>
           <% elsif game.in_progress_or_complete? && @pick.try(:team_id) != game.home_team.id %>
               <% if @pick.try(:win) == false %>
@@ -81,7 +78,7 @@
               <% end %>
           <% elsif !current_user.is_team_available?(@year, @week, game.home_team.id) %>
               <div class="team-wrapper-not-available">
-                <div class="away-team">
+                <div class="home-team">
           <% else %>
               <div class="team-wrapper">
                 <div class="home-team">
