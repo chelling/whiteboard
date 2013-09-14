@@ -7,7 +7,6 @@ class Game < ActiveRecord::Base
   after_save :update_pickem_wins
   after_save :update_fooicide_picks
   after_save :update_team_records
-  after_save :update_thirty_eights
   
   attr_accessible :away_score, :date, :home_score, :location, :week, :year, :away_team_id, :home_team_id , :line
   accepts_nested_attributes_for :pickem_picks, :away_team, :home_team
