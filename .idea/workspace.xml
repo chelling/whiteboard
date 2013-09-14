@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/game.rb" afterPath="$PROJECT_DIR$/app/models/game.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/spread2011.csv" afterPath="$PROJECT_DIR$/public/spread2011.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/spread2011_2.csv" afterPath="$PROJECT_DIR$/public/spread2011_2.csv" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="game.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="5" selection-start="2208" selection-end="2208" vertical-scroll-proportion="-0.8067633">
+            <state line="84" column="5" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,7 +98,7 @@
       <file leaf-file-name="_header.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/games/_header.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="21" selection-start="1500" selection-end="1500" vertical-scroll-proportion="-8.346154">
+            <state line="27" column="21" selection-start="1500" selection-end="1500" vertical-scroll-proportion="-8.384615">
               <folding />
             </state>
           </provider>
@@ -133,7 +134,7 @@
       <file leaf-file-name="spread2011_2.csv" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/spread2011_2.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="-1.36">
+            <state line="15" column="0" selection-start="4344" selection-end="4344" vertical-scroll-proportion="-10.2">
               <folding />
             </state>
           </provider>
@@ -142,10 +143,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spread2011.csv" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="spread2011.csv" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/spread2011.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.043701798">
               <folding />
             </state>
           </provider>
@@ -195,14 +196,14 @@
         <option value="$PROJECT_DIR$/app/views/fooicide_picks/scores.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/public/spread.rb" />
-        <option value="$PROJECT_DIR$/public/spread2011.csv" />
         <option value="$PROJECT_DIR$/public/spread2012.csv" />
         <option value="$PROJECT_DIR$/app/models/team.rb" />
         <option value="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/games/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
-        <option value="$PROJECT_DIR$/public/spread2011_2.csv" />
         <option value="$PROJECT_DIR$/app/models/game.rb" />
+        <option value="$PROJECT_DIR$/public/spread2011.csv" />
+        <option value="$PROJECT_DIR$/public/spread2011_2.csv" />
       </list>
     </option>
   </component>
@@ -1078,24 +1079,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/games/_header.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="21" selection-start="1500" selection-end="1500" vertical-scroll-proportion="-8.346154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/spread2012.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/spread2011.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -1119,9 +1103,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="84" column="5" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/games/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="21" selection-start="1500" selection-end="1500" vertical-scroll-proportion="-8.384615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/spread2011_2.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="-1.36">
+        <state line="15" column="0" selection-start="4344" selection-end="4344" vertical-scroll-proportion="-10.2">
           <folding />
         </state>
       </provider>
@@ -1129,11 +1127,14 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+    <entry file="file://$PROJECT_DIR$/public/spread2011.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="5" selection-start="2208" selection-end="2208" vertical-scroll-proportion="-0.8067633">
+        <state line="1" column="0" selection-start="7" selection-end="7" vertical-scroll-proportion="0.043701798">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
   </component>
