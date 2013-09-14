@@ -84,18 +84,6 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def update_thirty_eights
-    if !away_score.nil? && away_score == 38
-      thirty_eight = ThirtyEight.find_by_year_and_team_id(year, away_team_id)
-      Share.create(:user_id => thirty_eight.user.id, :team_id => away_team_id, :game_id => id, :year => year)
-    end
-
-    if !home_score.nil? && home_score == 38
-      thirty_eight = ThirtyEight.find_by_year_and_team_id(year, home_team_id)
-      Share.create(:user_id => thirty_eight.user.id, :team_id => home_team_id, :game_id => id, :year => year)
-    end
-  end
-
   def update_team_records
     away_team.try(:update_records_by_year, year)
     home_team.try(:update_records_by_year, year)
