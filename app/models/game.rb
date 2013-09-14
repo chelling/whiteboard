@@ -105,7 +105,7 @@ class Game < ActiveRecord::Base
     year = 0
     week = 0
     date = nil
-    File.open("#{Rails.root}/public/spread2011_2.csv").each do |line|
+    File.open("#{Rails.root}/public/spread2011.csv").each do |line|
       game = line.split(',')
       # Update the week
       if game.first == 'Week'

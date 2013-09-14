@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/games/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/games/_header.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/game.rb" afterPath="$PROJECT_DIR$/app/models/game.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/team.rb" afterPath="$PROJECT_DIR$/app/models/team.rb" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,10 +76,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="48" selection-start="2967" selection-end="2967" vertical-scroll-proportion="0.0">
+            <state line="107" column="46" selection-start="2965" selection-end="2965" vertical-scroll-proportion="-2.4082127">
               <folding />
             </state>
           </provider>
@@ -134,10 +130,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spread2011_2.csv" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="spread2011_2.csv" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/spread2011_2.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="0.087403595">
+            <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="-1.36">
               <folding />
             </state>
           </provider>
@@ -205,8 +201,8 @@
         <option value="$PROJECT_DIR$/app/views/fooicide_picks/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/games/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/game.rb" />
         <option value="$PROJECT_DIR$/public/spread2011_2.csv" />
+        <option value="$PROJECT_DIR$/app/models/game.rb" />
       </list>
     </option>
   </component>
@@ -1123,21 +1119,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="48" selection-start="2967" selection-end="2967" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/spread2011_2.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="0.087403595">
+        <state line="2" column="54" selection-start="342" selection-end="342" vertical-scroll-proportion="-1.36">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="46" selection-start="2965" selection-end="2965" vertical-scroll-proportion="-2.4082127">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
