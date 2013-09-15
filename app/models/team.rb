@@ -65,7 +65,7 @@ class Team < ActiveRecord::Base
       return Team.find_by_name("Cowboys").try(:id)
     elsif t == 'NYG'
       return Team.find_by_name("Giants").try(:id)
-    elsif t == 'PHL'
+    elsif t == 'PHL' || t == 'PHI'
       return Team.find_by_name("Eagles").try(:id)
     elsif t == 'WAS'
       return Team.find_by_name("Redskins").try(:id)

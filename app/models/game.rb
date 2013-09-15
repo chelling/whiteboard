@@ -103,9 +103,9 @@ class Game < ActiveRecord::Base
         time[0].to_i == 12 ? hour = time[0].to_i : hour = time[0].to_i + 12
         game_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,hour,time[1].to_i)
         year = date[2]
-        away_team = Team.team_id_from_string(game[2].tr('"',''))
+        away_team = Team.team_id_from_string(game[2].tr('"','')).upcase
         puts away_team
-        home_team = Team.team_id_from_string(game[3].tr('"',''))
+        home_team = Team.team_id_from_string(game[3].tr('"','')).upcase
         puts home_team
         game_line = game[4]
         david_pick = game[6]
@@ -117,16 +117,16 @@ class Game < ActiveRecord::Base
         g = Game.create(:year => year.to_i, :week => week.to_i, :home_team_id => home_team, :away_team_id => away_team, :line => game_line.to_f,
                     :date => game_date, :location => Team.find(home_team).location, :home_score => home_score.to_i, :away_score => away_score.to_i)
         if david_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(david_pick.tr('"','')), :game_id => g.id, :user_id => 2)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(david_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 2)
         end
         if clint_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(clint_pick.tr('"','')), :game_id => g.id, :user_id => 1)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(clint_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 1)
         end
         if nic_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nic_pick.tr('"','')), :game_id => g.id, :user_id => 6)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nic_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 6)
         end
         if nick_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nick_pick.tr('"','')), :game_id => g.id, :user_id => 3)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nick_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 3)
         end
         g.save
       end
@@ -148,9 +148,9 @@ class Game < ActiveRecord::Base
         time[0].to_i == 12 ? hour = time[0].to_i : hour = time[0].to_i + 12
         game_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,hour,time[1].to_i)
         year = date[2]
-        away_team = Team.team_id_from_string(game[2].tr('"',''))
+        away_team = Team.team_id_from_string(game[2].tr('"','')).upcase
         puts away_team
-        home_team = Team.team_id_from_string(game[3].tr('"',''))
+        home_team = Team.team_id_from_string(game[3].tr('"','')).upcase
         puts home_team
         game_line = game[4]
         david_pick = game[7]
@@ -163,16 +163,16 @@ class Game < ActiveRecord::Base
         g = Game.create(:year => year.to_i, :week => week.to_i, :home_team_id => home_team, :away_team_id => away_team, :line => game_line.to_f,
                         :date => game_date, :location => Team.find(home_team).location, :home_score => home_score.to_i, :away_score => away_score.to_i)
         if david_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(david_pick.tr('"','')), :game_id => g.id, :user_id => 2)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(david_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 2)
         end
         if clint_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(clint_pick.tr('"','')), :game_id => g.id, :user_id => 1)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(clint_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 1)
         end
         if nic_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nic_pick.tr('"','')), :game_id => g.id, :user_id => 6)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nic_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 6)
         end
         if nick_pick != ''
-          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nick_pick.tr('"','')), :game_id => g.id, :user_id => 3)
+          PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(nick_pick.tr('"','')).upcase, :game_id => g.id, :user_id => 3)
         end
         if gary_pick != ''
           PickemPick.create(:year => year.to_i, :week => week.to_i, :team_id => Team.team_id_from_string(gary_pick.tr('"','')), :game_id => g.id, :user_id => 10)
