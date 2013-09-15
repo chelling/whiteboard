@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/game.rb" afterPath="$PROJECT_DIR$/app/models/game.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/team.rb" afterPath="$PROJECT_DIR$/app/models/team.rb" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
     <file path="/20130813030939_add_win_to_fooicide_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376363412184" ignored="false" />
     <file path="/20130813033444_create_shares.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376364920852" ignored="false" />
     <file path="/share.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376364962301" ignored="false" />
-    <file path="/team.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379206670194" ignored="false" />
+    <file path="/team.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379208079385" ignored="false" />
     <file path="/record.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376365828575" ignored="false" />
     <file path="/a.html" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399469564" ignored="false" />
     <file path="/_header.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378351347506" ignored="false" />
@@ -85,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="game.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="116" selection-start="3714" selection-end="3714" vertical-scroll-proportion="-0.106024094">
+            <state line="141" column="34" selection-start="4551" selection-end="4551" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="team.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="team.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/team.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="44" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
+            <state line="91" column="34" selection-start="3031" selection-end="3031" vertical-scroll-proportion="0.6214953">
               <folding />
             </state>
           </provider>
@@ -198,11 +198,11 @@
         <option value="$PROJECT_DIR$/app/views/games/_header.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pickem_picks/_header.html.erb" />
         <option value="$PROJECT_DIR$/public/spread2011_2.csv" />
-        <option value="$PROJECT_DIR$/app/models/team.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/pickem_picks.css" />
         <option value="$PROJECT_DIR$/public/spread2011.csv" />
         <option value="$PROJECT_DIR$/public/spread2012.csv" />
         <option value="$PROJECT_DIR$/app/models/game.rb" />
+        <option value="$PROJECT_DIR$/app/models/team.rb" />
       </list>
     </option>
   </component>
@@ -1100,13 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/team.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="44" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/_standings.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="45" selection-start="664" selection-end="664" vertical-scroll-proportion="-13.076923">
@@ -1153,7 +1146,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="116" selection-start="3714" selection-end="3714" vertical-scroll-proportion="-0.106024094">
+        <state line="141" column="34" selection-start="4551" selection-end="4551" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/team.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="34" selection-start="3031" selection-end="3031" vertical-scroll-proportion="0.6214953">
           <folding />
         </state>
       </provider>

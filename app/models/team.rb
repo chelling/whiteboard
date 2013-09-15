@@ -57,7 +57,7 @@ class Team < ActiveRecord::Base
       return Team.find_by_name("Falcons").try(:id)
     elsif t == 'CAR'
       return Team.find_by_name("Panthers").try(:id)
-    elsif t == "NO"
+    elsif t == 'NO'
       return Team.find_by_name("Saints").try(:id)
     elsif t == 'TB'
       return Team.find_by_name("Buccaneers").try(:id)
@@ -89,7 +89,7 @@ class Team < ActiveRecord::Base
       return Team.find_by_name("Texans").try(:id)
     elsif t == 'IND'
       return Team.find_by_name("Colts").try(:id)
-    elsif t == 'JAC'
+    elsif t == 'JAC' || t == 'JAX'
       return Team.find_by_name("Jaguars").try(:id)
     elsif t == 'TEN'
       return Team.find_by_name("Titans").try(:id)
