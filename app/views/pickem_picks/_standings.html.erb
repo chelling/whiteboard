@@ -8,6 +8,7 @@
 						<th><span class="text">User</span></th>
 						<th><span class="th-record">Week</span></th>
 						<th><span class="th-record">Overall</span></th>
+                        <th><span class="th-record">Pick(s) Submitted</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -20,6 +21,11 @@
                             <% end %>
 							<td class="td-record"><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
 							<td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
+                            <% if user.pickem_picks_submitted?(@year, @week) %>
+                                <td class="td-record">&#x2713;</td>
+                            <% else %>
+                                <td class="td-record"><%= "--" %></td>
+                            <% end %>
 						</tr>
 					<% end %>
 				</tbody>

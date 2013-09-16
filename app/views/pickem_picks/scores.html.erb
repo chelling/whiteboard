@@ -24,15 +24,15 @@
                   <% elsif @pick.try(:tie) == true %>
                       <div class="team-wrapper-picked-tie">
                         <div class="away-team-no-back">
+                  <% elsif @pick.try(:win) == false %>
+                      <div class="team-wrapper-loss">
+                        <div class="away-team-no-back">
                   <% else %>
                       <div class="team-wrapper-picked">
                         <div class="away-team">
                   <% end %>
               <% elsif game.in_progress_or_complete? && @pick.try(:team_id) != game.away_team.id %>
-                  <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
-                      <div class="team-wrapper-loss">
-                        <div class="away-team-no-back">
-                  <% elsif @pick.try(:tie) == true %>
+                  <% if @pick.try(:tie) == true %>
                       <div class="team-wrapper-tie">
                         <div class="away-team-no-back">
                   <% else %>
@@ -66,19 +66,19 @@
               <% if game.in_progress_or_complete? && @pick.try(:team_id) == game.home_team.id %>
                   <% if @pick.try(:win) == true %>
                       <div class="team-wrapper-win">
-                        <div class="away-team-no-back">
-                  <% elsif @pick.try(:tie) == true %>
-                      <div class="team-wrapper-picked-tie">
-                        <div class="away-team-no-back">
-                  <% else %>
-                      <div class="team-wrapper-picked">
-                        <div class="away-team">
-                  <% end %>
-              <% elsif game.in_progress_or_complete? && @pick.try(:team_id) != game.home_team.id %>
-                  <% if @pick.try(:win) == false && @pick.try(:tie) == false %>
-                      <div class="team-wrapper-loss">
                         <div class="home-team-no-back">
                   <% elsif @pick.try(:tie) == true %>
+                      <div class="team-wrapper-picked-tie">
+                        <div class="home-team-no-back">
+                  <% elsif @pick.try(:win) == false %>
+                      <div class="team-wrapper-loss">
+                        <div class="home-team-no-back">
+                  <% else %>
+                      <div class="team-wrapper-picked">
+                        <div class="home-team">
+                  <% end %>
+              <% elsif game.in_progress_or_complete? && @pick.try(:team_id) != game.home_team.id %>
+                  <% if @pick.try(:tie) == true %>
                       <div class="team-wrapper-tie">
                         <div class="home-team-no-back">
                   <% else %>

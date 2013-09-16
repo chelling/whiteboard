@@ -149,6 +149,7 @@ div.team-wrapper-loss {
     background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #961B0E 100%);
     /* W3C Markup, IE10 Release Preview */
     background-image: linear-gradient(to bottom, #FFFFFF 0%, #961B0E 100%);
+    border: 1px solid #000;
 }
 
 div.team-wrapper-tie {

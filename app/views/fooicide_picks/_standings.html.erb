@@ -8,6 +8,7 @@
 						<th><span class="text">User</span></th>
 						<th><span class="th-record">Record</span></th>
 						<th><span class="th-record">Pick</span></th>
+                        <th><span class="th-record">Pick(s) Submitted</span></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,6 +27,11 @@
                                 <td class="td-record-loss"><%= pick.try(:team).try(:name) %></td>
                             <% else %>
                                 <td class="td-record"><%= pick.try(:team).try(:name) %></td>
+                            <% end %>
+                            <% if user.fooicide_picks_submitted?(@year, @week) %>
+                                <td class="td-record">&#x2713;</td>
+                            <% else %>
+                                <td class="td-record"><%= "--" %></td>
                             <% end %>
 						</tr>
 					<% end %>

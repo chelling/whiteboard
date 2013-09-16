@@ -163,6 +163,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def pickem_picks_submitted?(year, week)
+    if pickem_picks_by_year_and_week(year, week).try(:count) > 0
+      return true
+    else
+      return false
+    end
+  end
+
+  def fooicide_picks_submitted?(year, week)
+    if !fooicide_picks.find_by_year_and_week(year, week).nil?
+      return true
+    else
+      return false
+    end
+  end
+
   def self.order_all_by_pickem_record(year)
     users_sorted = []
     users_hash = Hash.new
