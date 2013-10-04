@@ -88,6 +88,136 @@ class Game < ActiveRecord::Base
     home_team.try(:update_records_by_year, year)
   end
 
+  def home_win?
+    home_score > away_score ? true : false
+  end
+
+  def away_win?
+    home_score < away_score ? true : false
+  end
+
+  def home_cover?
+    home_score + line > away_score ? true : false
+  end
+
+  def away_cover?
+    home_score + line < away_score ? true : false
+  end
+
+  def self.game_analysis(year)
+    home_dog_win = 0
+    away_dog_win = 0
+    home_dog_loss = 0
+    away_dog_loss = 0
+    home_fav_win = 0
+    home_fav_loss = 0
+    away_fav_win = 0
+    away_fav_loss = 0
+    Game.find_all_by_year(year).map do |game|
+      if !game.home_score.nil? && !game.away_score.nil?
+        # home favorites
+        if game.line < 0
+          if game.home_cover?
+            home_fav_win += 1
+            away_dog_loss += 1
+          elsif game.away_cover?
+            home_fav_loss += 1
+            away_dog_win += 1
+          end
+        elsif game.line > 0 # home underdogs
+          if game.home_cover?
+            home_dog_win += 1
+            away_fav_loss += 1
+          elsif game.away_cover?
+            home_dog_loss += 1
+            away_fav_win += 1
+          end
+        end
+      end
+    end
+    puts "Home Favorites: #{home_fav_win}-#{home_fav_loss}"
+    puts "Away Favorites: #{away_fav_win}-#{away_fav_loss}"
+    puts "Home Underdogs: #{home_dog_win}-#{home_dog_loss}"
+    puts "Away Underdogs: #{away_dog_win}-#{away_dog_loss}"
+  end
+
+  def self.user_home_away_stats(year, user_id)
+    user = User.find(user_id)
+    home_dog_win = 0
+    away_dog_win = 0
+    home_dog_loss = 0
+    away_dog_loss = 0
+    home_fav_win = 0
+    home_fav_loss = 0
+    away_fav_win = 0
+    away_fav_loss = 0
+    home_dog_win_picked = 0
+    away_dog_win_picked = 0
+    home_dog_loss_picked = 0
+    away_dog_loss_picked = 0
+    home_fav_win_picked = 0
+    home_fav_loss_picked = 0
+    away_fav_win_picked = 0
+    away_fav_loss_picked = 0
+    Game.find_all_by_year(year).map do |game|
+      if !game.home_score.nil? && !game.away_score.nil?
+        pick = user.pickem_pick_by_game_id(game.id)
+        # home favorites
+        if game.line < 0 && pick
+          if pick.win == true
+            home_fav_win += 1
+            away_dog_win += 1
+          elsif pick.win == false
+            home_fav_loss += 1
+            away_dog_loss += 1
+          end
+          if game.home_cover?
+            if pick.team_id == game.home_team_id
+              home_fav_win_picked += 1
+            else
+              away_dog_loss_picked += 1
+            end
+          elsif game.away_cover?
+            if pick.team_id == game.home_team_id
+              home_fav_loss_picked += 1
+            else
+              away_dog_win_picked += 1
+            end
+          end
+        elsif game.line > 0 && pick # home underdogs
+          if pick.win == true
+            home_dog_win += 1
+            away_fav_win += 1
+          elsif pick.win == false
+            home_dog_loss += 1
+            away_fav_loss += 1
+          end
+          if game.home_cover?
+            if pick.team_id == game.home_team_id
+              home_dog_win_picked += 1
+            else
+              away_fav_loss_picked += 1
+            end
+          elsif game.away_cover?
+            if pick.team_id == game.home_team_id
+              home_dog_loss_picked += 1
+            else
+              away_fav_win_picked += 1
+            end
+          end
+        end
+      end
+    end
+    puts "Home Favorites: #{home_fav_win}-#{home_fav_loss}"
+    puts "Away Favorites: #{away_fav_win}-#{away_fav_loss}"
+    puts "Home Underdogs: #{home_dog_win}-#{home_dog_loss}"
+    puts "Away Underdogs: #{away_dog_win}-#{away_dog_loss}"
+    puts "Home Favorite Picked: #{home_fav_win_picked}-#{home_fav_loss_picked}"
+    puts "Away Favorite Picked: #{away_fav_win_picked}-#{away_fav_loss_picked}"
+    puts "Home Underdog Picked: #{home_dog_win_picked}-#{home_dog_loss_picked}"
+    puts "Away Underdog Picked: #{away_dog_win_picked}-#{away_dog_loss_picked}"
+  end
+
   def self.spread2011
     year = 0
     week = 0
