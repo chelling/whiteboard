@@ -218,6 +218,50 @@ class Game < ActiveRecord::Base
     puts "Away Underdog Picked: #{away_dog_win_picked}-#{away_dog_loss_picked}"
   end
 
+  def self.user_team_picks(year, user_id)
+    user = User.find(user_id)
+    output = []
+    Team.all.map do |team|
+      wins = 0
+      losses = 0
+      wins_picked = 0
+      losses_picked = 0
+      # find home teams
+      Game.find_all_by_year_and_home_team_id(year,team.id).map do |game|
+        pick = user.pickem_pick_by_game_id(game.id)
+        if pick && pick.win == true
+          wins += 1
+          if pick.team_id == team.id
+            wins_picked += 1
+          end
+        elsif pick && pick.win == false
+          losses += 1
+          if pick.team_id == team.id
+            losses_picked += 1
+          end
+        end
+      end
+      # find away teams
+      Game.find_all_by_year_and_away_team_id(year,team.id).map do |game|
+        pick = user.pickem_pick_by_game_id(game.id)
+        if pick && pick.win == true
+          wins += 1
+          if pick.team_id == team.id
+            wins_picked += 1
+          end
+        elsif pick && pick.win == false
+          losses += 1
+          if pick.team_id == team.id
+            losses_picked += 1
+          end
+        end
+      end
+      output.push("Games with #{team.name}: #{wins}-#{losses}")
+      output.push("Games picked #{team.name}: #{wins_picked}-#{losses_picked}\n\n")
+    end
+    puts output
+  end
+
   def self.spread2011
     year = 0
     week = 0
