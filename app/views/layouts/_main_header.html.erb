@@ -6,12 +6,6 @@
 		<li class="b-nav-group"><a class="nav-list" href="/home">Home</a></li>
 	<% end %>
 	
-	<% if request.fullpath == "/scores" %>
-    	<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
-	<% else %>
-		<li class="b-nav-group"><a class="nav-list" href="/scores">Scores</a></li>
-	<% end %>
-	
 	<% if request.fullpath == "/pigskinpickem" %>
     	<li class="b-nav-group"><a class="nav-list" href="/pickem">Pigskin Pick'em</a></li>
 	<% else %>
@@ -23,6 +17,12 @@
 	<% else %>
 		<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
 	<% end %>
+
+    <% if request.fullpath == "/stats" %>
+        <li class="b-nav-group"><a class="nav-list" href="/stats">Research</a></li>
+    <% else %>
+        <li class="b-nav-group"><a class="nav-list" href="/stats">Research</a></li>
+    <% end %>
 
     <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in" %></li>
     <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>

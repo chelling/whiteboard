@@ -1,0 +1,36 @@
+<div>
+  <h2>General Stats</h2>
+  <div>
+    <% Game.conference_stats(@year).each do |str| %>
+        <p><%= str %></p>
+    <% end %>
+  </div>
+  <hr>
+  <div>
+    <% Game.game_stats(@year).each do |str| %>
+        <p><%= str %></p>
+    <% end %>
+  </div>
+  <hr>
+</div>
+
+<div>
+  <h2>User Stats</h2>
+  <div>
+    <% Game.user_conference_stats(@year, current_user.id).each do |str| %>
+        <p><%= str %></p>
+    <% end %>
+  </div>
+  <hr>
+  <div>
+    <% Game.user_home_away_stats(@year, current_user.id).each do |str| %>
+        <p><%= str %></p>
+    <% end %>
+  </div>
+  <hr>
+  <div>
+    <% Game.user_team_stats(@year, current_user.id).sort.each do |str| %>
+        <p><%= str %></p>
+    <% end %>
+  </div>
+</div>

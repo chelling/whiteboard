@@ -104,7 +104,81 @@ class Game < ActiveRecord::Base
     home_score + line < away_score ? true : false
   end
 
-  def self.game_analysis(year)
+  def self.conference_stats(year)
+    nfc_v_nfc_win = 0
+    nfc_v_nfc_loss = 0
+    afc_v_afc_win = 0
+    afc_v_afc_loss = 0
+    nfc_v_afc_win = 0
+    nfc_v_afc_loss = 0
+    afc_v_nfc_win = 0
+    afc_v_nfc_loss = 0
+    output = []
+    Game.find_all_by_year(year).map do |game|
+      if !game.home_score.nil? && !game.away_score.nil?
+        if game.away_team.conference == 'NFC' && game.home_team.conference == 'NFC'
+          game.home_cover? ? nfc_v_nfc_win += 1 : ""
+          game.away_cover? ? nfc_v_nfc_loss += 1 : ""
+        elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'AFC'
+          game.home_cover? ? afc_v_afc_win += 1 : ""
+          game.away_cover? ? afc_v_afc_loss += 1 : ""
+        elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'NFC'
+          game.home_cover? ? afc_v_nfc_win += 1 : ""
+          game.away_cover? ? afc_v_nfc_loss += 1 : ""
+        elsif game.away_team.conference == 'NFC' && game.home_team.conference == 'AFC'
+          game.home_cover? ? nfc_v_afc_win += 1 : ""
+          game.away_cover? ? nfc_v_afc_loss += 1 : ""
+        end
+      end
+    end
+
+    output.push("NFC vs. NFC (away cover-home cover): (#{nfc_v_nfc_loss}-#{nfc_v_nfc_win})")
+    output.push("AFC vs. AFC (away cover-home cover): (#{afc_v_afc_loss}-#{afc_v_afc_win})")
+    output.push("AFC vs. NFC (away cover-home cover): (#{afc_v_nfc_loss}-#{afc_v_nfc_win})")
+    output.push("NFC vs. AFC (away cover-home cover): (#{nfc_v_afc_loss}-#{nfc_v_afc_win})")
+    return output
+  end
+
+  def self.user_conference_stats(year,user_id)
+    user = User.find(user_id)
+    nfc_v_nfc_win = 0
+    nfc_v_nfc_loss = 0
+    afc_v_afc_win = 0
+    afc_v_afc_loss = 0
+    nfc_v_afc_win = 0
+    nfc_v_afc_loss = 0
+    afc_v_nfc_win = 0
+    afc_v_nfc_loss = 0
+    output = []
+    Game.find_all_by_year(year).map do |game|
+      pick = user.pickem_pick_by_game_id(game.id)
+      pick.nil? ? next : ""
+      if !game.home_score.nil? && !game.away_score.nil?
+        if game.away_team.conference == 'NFC' && game.home_team.conference == 'NFC'
+          pick.win == true ? nfc_v_nfc_win += 1 : nfc_v_nfc_loss += 1
+          pick.tie == true ? nfc_v_nfc_loss -= 1 : ""
+        elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'AFC'
+          pick.win == true ? afc_v_nfc_win += 1 : afc_v_nfc_loss += 1
+          pick.tie == true ? afc_v_nfc_loss -= 1 : ""
+        elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'NFC'
+          pick.win == true ? afc_v_nfc_win += 1 : afc_v_nfc_loss += 1
+          pick.tie == true ? afc_v_nfc_loss -= 1 : ""
+        elsif game.away_team.conference == 'NFC' && game.home_team.conference == 'AFC'
+          pick.win == true ? nfc_v_afc_win += 1 : nfc_v_afc_loss += 1
+          pick.tie == true ? nfc_v_afc_loss -= 1 : ""
+        end
+      end
+    end
+
+    output.push("NFC vs. NFC: (#{nfc_v_nfc_win}-#{nfc_v_nfc_loss}) #{((nfc_v_nfc_win.to_f / (nfc_v_nfc_win + nfc_v_nfc_loss)) * 100).to_i}%") unless (nfc_v_nfc_win + nfc_v_nfc_loss) <= 0
+    output.push("AFC vs. AFC: (#{afc_v_afc_win}-#{afc_v_afc_loss}) #{((afc_v_nfc_win.to_f / (afc_v_afc_win + afc_v_afc_loss)) * 100).to_i}%") unless (afc_v_afc_win + afc_v_afc_loss) <= 0
+    output.push("AFC vs. NFC: (#{afc_v_nfc_win}-#{afc_v_nfc_loss}) #{((afc_v_nfc_win.to_f / (afc_v_nfc_win + afc_v_nfc_loss)) * 100).to_i}%") unless (afc_v_nfc_win + afc_v_nfc_loss) <= 0
+    output.push("NFC vs. AFC: (#{nfc_v_afc_win}-#{nfc_v_afc_loss}) #{((nfc_v_afc_win.to_f / (nfc_v_afc_win + nfc_v_afc_loss)) * 100).to_i}%") unless (nfc_v_afc_win + nfc_v_afc_loss) <= 0
+
+    return output
+  end
+
+  def self.game_stats(year)
     home_dog_win = 0
     away_dog_win = 0
     home_dog_loss = 0
@@ -113,6 +187,7 @@ class Game < ActiveRecord::Base
     home_fav_loss = 0
     away_fav_win = 0
     away_fav_loss = 0
+    output = []
     Game.find_all_by_year(year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         # home favorites
@@ -135,10 +210,9 @@ class Game < ActiveRecord::Base
         end
       end
     end
-    puts "Home Favorites: #{home_fav_win}-#{home_fav_loss}"
-    puts "Away Favorites: #{away_fav_win}-#{away_fav_loss}"
-    puts "Home Underdogs: #{home_dog_win}-#{home_dog_loss}"
-    puts "Away Underdogs: #{away_dog_win}-#{away_dog_loss}"
+    output.push("Home Favorites: (#{home_fav_win}-#{home_fav_loss}) #{((home_fav_win.to_f / (home_fav_win + home_fav_loss)) * 100).to_i}%") unless (home_fav_win + home_fav_loss) <= 0
+    output.push("Away Favorites: (#{away_fav_win}-#{away_fav_loss}) #{((away_fav_win.to_f / (away_fav_win + away_fav_loss)) * 100).to_i}%") unless (away_fav_win + away_fav_loss) <= 0
+    return output
   end
 
   def self.user_home_away_stats(year, user_id)
@@ -159,6 +233,7 @@ class Game < ActiveRecord::Base
     home_fav_loss_picked = 0
     away_fav_win_picked = 0
     away_fav_loss_picked = 0
+    output = []
     Game.find_all_by_year(year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         pick = user.pickem_pick_by_game_id(game.id)
@@ -208,17 +283,16 @@ class Game < ActiveRecord::Base
         end
       end
     end
-    puts "Home Favorites: #{home_fav_win}-#{home_fav_loss}"
-    puts "Away Favorites: #{away_fav_win}-#{away_fav_loss}"
-    puts "Home Underdogs: #{home_dog_win}-#{home_dog_loss}"
-    puts "Away Underdogs: #{away_dog_win}-#{away_dog_loss}"
-    puts "Home Favorite Picked: #{home_fav_win_picked}-#{home_fav_loss_picked}"
-    puts "Away Favorite Picked: #{away_fav_win_picked}-#{away_fav_loss_picked}"
-    puts "Home Underdog Picked: #{home_dog_win_picked}-#{home_dog_loss_picked}"
-    puts "Away Underdog Picked: #{away_dog_win_picked}-#{away_dog_loss_picked}"
+    output.push("Home Favorites: (#{home_fav_win}-#{home_fav_loss}) #{((home_fav_win.to_f / (home_fav_win + home_fav_loss)) * 100).to_i}%") unless (home_fav_win + home_fav_loss) <= 0
+    output.push("Away Favorites: (#{away_fav_win}-#{away_fav_loss}) #{((away_fav_win.to_f / (away_fav_win + away_fav_loss)) * 100).to_i}%") unless (away_fav_win + away_fav_loss) <= 0
+    output.push("Home Favorite Picked: (#{home_fav_win_picked}-#{home_fav_loss_picked}) #{((home_fav_win_picked.to_f / (home_fav_win_picked + home_fav_loss_picked)) * 100).to_i}%") unless (home_fav_win_picked + home_fav_loss_picked) <= 0
+    output.push("Away Favorite Picked: (#{away_fav_win_picked}-#{away_fav_loss_picked}) #{((away_fav_win_picked.to_f / (away_fav_win_picked + away_fav_loss_picked)) * 100).to_i}%") unless (away_fav_win_picked + away_fav_loss_picked) <= 0
+    output.push("Home Underdog Picked: (#{home_dog_win_picked}-#{home_dog_loss_picked}) #{((home_dog_win_picked.to_f / (home_dog_win_picked + home_dog_loss_picked)) * 100).to_i}%") unless (home_dog_win_picked + home_dog_loss_picked) <= 0
+    output.push("Away Underdog Picked: (#{away_dog_win_picked}-#{away_dog_loss_picked}) #{((away_dog_win_picked.to_f / (away_dog_win_picked + away_dog_loss_picked)) * 100).to_i}%") unless (away_dog_win_picked + away_dog_loss_picked) <= 0
+    return output
   end
 
-  def self.user_team_picks(year, user_id)
+  def self.user_team_stats(year, user_id)
     user = User.find(user_id)
     output = []
     Team.all.map do |team|
@@ -256,10 +330,10 @@ class Game < ActiveRecord::Base
           end
         end
       end
-      output.push("Games with #{team.name}: #{wins}-#{losses}")
-      output.push("Games picked #{team.name}: #{wins_picked}-#{losses_picked}\n\n")
+      output.push("Games with #{team.name}: (#{wins}-#{losses}) #{((wins.to_f / (wins + losses)) * 100).to_i}%") unless (wins + losses) <= 0
+      output.push("Picking #{team.name}: (#{wins_picked}-#{losses_picked}) #{((wins_picked.to_f / (wins_picked + losses_picked)) * 100).to_i}%\n\n") unless (wins_picked + losses_picked) <= 0
     end
-    puts output
+    return output
   end
 
   def self.spread2011

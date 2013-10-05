@@ -7,6 +7,7 @@ Whiteboard::Application.routes.draw do
   match "/scores" => "games#scores"
   match "/pickem" => "pickem_picks#scores"
   match "/pickem_pick/update_picks" => "pickem_picks#update_picks"
+  match "/stats" => "pickem_picks#stats"
   match "/fooicide" => "fooicide_picks#scores"
   match "/fooicide/rules" => "fooicide_picks#rules"
   match "/fooicide/update_picks" => "fooicide_picks#update_picks"

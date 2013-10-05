@@ -172,4 +172,14 @@ class PickemPicksController < ApplicationController
     
     redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
   end
+
+  # User stats
+  def stats
+    if !user_signed_in?
+      return redirect_to "/users/sign_in"
+    end
+    @year = '2013'
+    @year = params[:year] if params[:year]
+
+  end
 end
