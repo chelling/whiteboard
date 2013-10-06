@@ -13,19 +13,19 @@
 
     <%= f.input :year, :input_html => {:value => 2013} %><br />
 	
-    <%= f.input :week, :input_html => {:value => 1} %><br />
+    <%= f.input :week, :input_html => {:value => @week} %><br />
 	
     <%= f.association :away_team, :label_method => lambda { |away_team| "#{away_team.location} #{away_team.name}"}, collection: Team.all(order: 'location'), prompt: "Away Team" %><br />
-	
+
     <%= f.association :home_team, :label_method => lambda { |home_team| "#{home_team.location} #{home_team.name}"}, collection: Team.all(order: 'location'), prompt: "Home Team" %><br />
 	
     <%= f.input :location %><br />
 	
     <%= f.input :line %><br />
 	
-    <%= f.input :home_score %><br />
-	
     <%= f.input :away_score %><br />
+
+    <%= f.input :home_score %><br />
 	
     <%= f.input :date %><br />
 

@@ -57,6 +57,8 @@
                           <%= radio_button_tag("game_#{game.id}", game.away_team.id, false, class: "radio-pickem-pick") %>
                       <% end %>
                     </div>
+                <% elsif game.away_score.nil? && game.in_progress_or_complete? %>
+                    <p class="team-score">&#x2713;</p>
                 <% else %>
                     <p class="team-score"><%= game.away_score %></p>
                 <% end %>

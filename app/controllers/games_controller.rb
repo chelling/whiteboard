@@ -38,6 +38,7 @@ class GamesController < ApplicationController
   # GET /games/1/edit
   def edit
     @game = Game.find(params[:id])
+    @week = find_week
     authorize! :manage, @game
   end
 

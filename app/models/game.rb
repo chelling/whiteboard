@@ -158,8 +158,8 @@ class Game < ActiveRecord::Base
           pick.win == true ? nfc_v_nfc_win += 1 : nfc_v_nfc_loss += 1
           pick.tie == true ? nfc_v_nfc_loss -= 1 : ""
         elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'AFC'
-          pick.win == true ? afc_v_nfc_win += 1 : afc_v_nfc_loss += 1
-          pick.tie == true ? afc_v_nfc_loss -= 1 : ""
+          pick.win == true ? afc_v_afc_win += 1 : afc_v_afc_loss += 1
+          pick.tie == true ? afc_v_afc_loss -= 1 : ""
         elsif game.away_team.conference == 'AFC' && game.home_team.conference == 'NFC'
           pick.win == true ? afc_v_nfc_win += 1 : afc_v_nfc_loss += 1
           pick.tie == true ? afc_v_nfc_loss -= 1 : ""
