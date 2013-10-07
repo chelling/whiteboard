@@ -72,7 +72,7 @@
       <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="324" column="10" selection-start="14166" selection-end="14166" vertical-scroll-proportion="0.5097451">
+            <state line="536" column="77" selection-start="22463" selection-end="22463" vertical-scroll-proportion="9.38081">
               <folding />
             </state>
           </provider>
@@ -1048,7 +1048,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="324" column="10" selection-start="14166" selection-end="14166" vertical-scroll-proportion="0.5097451">
+        <state line="536" column="77" selection-start="22463" selection-end="22463" vertical-scroll-proportion="9.38081">
           <folding />
         </state>
       </provider>

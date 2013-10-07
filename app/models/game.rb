@@ -202,9 +202,6 @@ class Game < ActiveRecord::Base
       away = 0b100000000
     end
 
-    puts home
-    puts away
-    puts home + away
     return home + away
   end
 
@@ -288,7 +285,6 @@ class Game < ActiveRecord::Base
 
     Game.find_all_by_year(year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
-        puts game.division_matchup
         if game.home_cover? == true
           if division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"]
             division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"] += 1
