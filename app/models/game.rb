@@ -11,6 +11,65 @@ class Game < ActiveRecord::Base
   attr_accessible :away_score, :date, :home_score, :location, :week, :year, :away_team_id, :home_team_id , :line
   accepts_nested_attributes_for :pickem_picks, :away_team, :home_team
 
+  # global variables
+  def self.divisional_binary
+    divisional_matchup_binary = {
+        "ne_v_ne" => 0b10001, "ne_v_nn" => 0b10010, "ne_v_ns" => 0b10011, "ne_v_nw" => 0b10100,
+        "ne_v_ae" => 0b10101, "ne_v_an" => 0b10110, "ne_v_as" => 0b10111, "ne_v_aw" => 0b11000,
+        "nn_v_ne" => 0b100001, "nn_v_nn" => 0b100010, "nn_v_ns" => 0b100011, "nn_v_nw" => 0b100100,
+        "nn_v_ae" => 0b100101, "nn_v_an" => 0b100110, "nn_v_as" => 0b100111, "nn_v_aw" => 0b101000,
+        "ns_v_ne" => 0b110001, "ns_v_nn" => 0b110010, "ns_v_ns" => 0b110011, "ns_v_nw" => 0b110100,
+        "ns_v_ae" => 0b110101, "ns_v_an" => 0b110110, "ns_v_as" => 0b110111, "ns_v_aw" => 0b111000,
+        "nw_v_ne" => 0b1000001, "nw_v_nn" => 0b1000010, "nw_v_ns" => 0b1000011, "nw_v_nw" => 0b1000100,
+        "nw_v_ae" => 0b1000101, "nw_v_an" => 0b1000110, "nw_v_as" => 0b1000111, "nw_v_aw" => 0b1001000,
+        "ae_v_ne" => 0b1100001, "ae_v_nn" => 0b1100010, "ae_v_ns" => 0b1100011, "ae_v_nw" => 0b1100100,
+        "ae_v_ae" => 0b1100101, "ae_v_an" => 0b1100110, "ae_v_as" => 0b1100111, "ae_v_aw" => 0b1101000,
+        "an_v_ne" => 0b10000001, "an_v_nn" => 0b10000010, "an_v_ns" => 0b10000011, "an_v_nw" => 0b10000100,
+        "an_v_ae" => 0b10000101, "an_v_an" => 0b10000110, "an_v_as" => 0b10000111, "an_v_aw" => 0b10001000,
+        "as_v_ne" => 0b11000001, "as_v_nn" => 0b11000010, "as_v_ns" => 0b11000011, "as_v_nw" => 0b11000100,
+        "as_v_ae" => 0b11000101, "as_v_an" => 0b11000110, "as_v_as" => 0b11000111, "as_v_aw" => 0b11001000,
+        "aw_v_ne" => 0b100000001, "aw_v_nn" => 0b100000010, "aw_v_ns" => 0b100000011, "aw_v_nw" => 0b100000100,
+        "aw_v_ae" => 0b100000101, "aw_v_an" => 0b100000110, "aw_v_as" => 0b100000111, "aw_v_aw" => 0b100001000
+    }
+  end
+
+  def self.divisional_names
+    divisional_matchup_names = {
+        "ne_v_ne" => "NFC East vs. NFC East", "ne_v_nn" => "NFC East vs. NFC North",
+        "ne_v_ns" => "NFC East vs. NFC South", "ne_v_nw" => "NFC East vs. NFC West",
+        "ne_v_ae" => "NFC East vs. AFC East", "ne_v_an" => "NFC East vs. AFC North",
+        "ne_v_as" => "NFC East vs. AFC South", "ne_v_aw" => "NFC East vs. AFC West",
+        "nn_v_ne" => "NFC North vs. NFC East", "nn_v_nn" => "NFC North vs. NFC North",
+        "nn_v_ns" => "NFC North vs. NFC South", "nn_v_nw" => "NFC North vs. NFC West",
+        "nn_v_ae" => "NFC North vs. AFC East", "nn_v_an" => "NFC North vs. AFC North",
+        "nn_v_as" => "NFC North vs. AFC South", "nn_v_aw" => "NFC North vs. AFC West",
+        "ns_v_ne" => "NFC South vs. NFC East", "ns_v_nn" => "NFC South vs. NFC North",
+        "ns_v_ns" => "NFC South vs. NFC South", "ns_v_nw" => "NFC South vs. NFC West",
+        "ns_v_ae" => "NFC South vs. AFC East", "ns_v_an" => "NFC South vs. AFC North",
+        "ns_v_as" => "NFC South vs. AFC South", "ns_v_aw" => "NFC South vs. AFC West",
+        "nw_v_ne" => "NFC West vs. NFC East", "nw_v_nn" => "NFC West vs. NFC North",
+        "nw_v_ns" => "NFC West vs. NFC South", "nw_v_nw" => "NFC West vs. NFC West",
+        "nw_v_ae" => "NFC West vs. AFC East", "nw_v_an" => "NFC West vs. AFC North",
+        "nw_v_as" => "NFC West vs. AFC South", "nw_v_aw" => "NFC West vs. AFC West",
+        "ae_v_ne" => "AFC East vs. NFC East", "ae_v_nn" => "AFC East vs. NFC North",
+        "ae_v_ns" => "AFC East vs. NFC South", "ae_v_nw" => "AFC East vs. NFC West",
+        "ae_v_ae" => "AFC East vs. AFC East", "ae_v_an" => "AFC East vs. AFC North",
+        "ae_v_as" => "AFC East vs. AFC South", "ae_v_aw" => "AFC East vs. AFC West",
+        "an_v_ne" => "AFC North vs. NFC East", "an_v_nn" => "AFC North vs. NFC North",
+        "an_v_ns" => "AFC North vs. NFC South", "an_v_nw" => "AFC North vs. NFC West",
+        "an_v_ae" => "AFC North vs. AFC East", "an_v_an" => "AFC North vs. AFC North",
+        "an_v_as" => "AFC North vs. AFC South", "an_v_aw" => "AFC North vs. AFC West",
+        "as_v_ne" => "AFC South vs. NFC East", "as_v_nn" => "AFC South vs. NFC North",
+        "as_v_ns" => "AFC South vs. NFC South", "as_v_nw" => "AFC South vs. NFC East",
+        "as_v_ae" => "AFC South vs. NFC East", "as_v_an" => "AFC South vs. NFC North",
+        "as_v_as" => "AFC South vs. NFC South", "as_v_aw" => "AFC South vs. NFC East",
+        "aw_v_ne" => "AFC West vs. NFC East", "aw_v_nn" => "AFC West vs. NFC North",
+        "aw_v_ns" => "AFC West vs. NFC South", "aw_v_nw" => "AFC West vs. NFC East",
+        "aw_v_ae" => "AFC West vs. NFC East", "aw_v_an" => "AFC West vs. NFC North",
+        "aw_v_as" => "AFC West vs. NFC South", "aw_v_aw" => "AFC West vs. NFC East"
+    }
+  end
+
   # methods
   def date_eastern
     date.try(:in_time_zone, 'Eastern Time (US & Canada)')
@@ -104,6 +163,48 @@ class Game < ActiveRecord::Base
     home_score + line < away_score ? true : false
   end
 
+  def division_matchup
+    home = 0
+    away = 0
+    if home_team.conference == 'NFC' && home_team.division == 'EAST'
+      home = 0b1
+    elsif home_team.conference == 'NFC' && home_team.division == 'NORTH'
+      home = 0b10
+    elsif home_team.conference == 'NFC' && home_team.division == 'SOUTH'
+      home = 0b11
+    elsif home_team.conference == 'NFC' && home_team.division == 'WEST'
+      home = 0b100
+    elsif home_team.conference == 'AFC' && home_team.division == 'EAST'
+      home = 0b101
+    elsif home_team.conference == 'AFC' && home_team.division == 'NORTH'
+      home = 0b110
+    elsif home_team.conference == 'AFC' && home_team.division == 'SOUTH'
+      home = 0x111
+    elsif home_team.conference == 'AFC' && home_team.division == 'WEST'
+      home = 0b1000
+    end
+
+    if away_team.conference == 'NFC' && away_team.division == 'EAST'
+      away = 0b10000
+    elsif away_team.conference == 'NFC' && away_team.division == 'NORTH'
+      away = 0b100000
+    elsif away_team.conference == 'NFC' && away_team.division == 'SOUTH'
+      away = 0b110000
+    elsif away_team.conference == 'NFC' && away_team.division == 'WEST'
+      away = 0b1000000
+    elsif away_team.conference == 'AFC' && away_team.division == 'EAST'
+      away = 0b1100000
+    elsif away_team.conference == 'AFC' && away_team.division == 'NORTH'
+      away = 0b10000000
+    elsif away_team.conference == 'AFC' && away_team.division == 'SOUTH'
+      away = 0x11000000
+    elsif away_team.conference == 'AFC' && away_team.division == 'WEST'
+      away = 0b100000000
+    end
+
+    return home + away
+  end
+
   def self.conference_stats(year)
     nfc_v_nfc_win = 0
     nfc_v_nfc_loss = 0
@@ -176,6 +277,48 @@ class Game < ActiveRecord::Base
     output.push("NFC vs. AFC: (#{nfc_v_afc_win}-#{nfc_v_afc_loss}) #{((nfc_v_afc_win.to_f / (nfc_v_afc_win + nfc_v_afc_loss)) * 100).to_i}%") unless (nfc_v_afc_win + nfc_v_afc_loss) <= 0
 
     return output
+  end
+
+  def self.division_stats(year)
+    division = Hash.new
+    output = []
+
+    Game.find_all_by_year(year).map do |game|
+      if !game.home_score.nil? && !game.away_score.nil?
+        if game.home_cover? == true
+          if division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"]
+            division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"] += 1
+          else
+            division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"] = 1
+          end
+        elsif game.away_cover? == true
+          if division[Game.divisional_binary.rassoc(game.division_matchup).first + "__a"]
+            division[Game.divisional_binary.rassoc(game.division_matchup).first + "__a"] += 1
+          else
+            division[Game.divisional_binary.rassoc(game.division_matchup).first + "__a"] = 1
+          end
+        end
+      end
+    end
+
+    division.each do |key, value|
+      wins = 0
+      losses = 0
+      matchup = key.split("__")
+      if matchup[1] == "h"
+        losses = value
+        wins = division[matchup[0] + "__a"] unless division[matchup[0] + "__a"].nil?
+        division.delete(matchup[0] + "__a")
+        output.push("#{Game.divisional_names[matchup[0]]}: (#{wins}-#{losses}) #{((wins.to_f / (wins + losses)) * 100).to_i}%") unless (wins + losses) <= 0
+      elsif matchup[1] == "a"
+        wins = value
+        losses = division[matchup[0] + "__h"] unless division[matchup[0] + "__h"].nil?
+        division.delete(matchup[0] + "__h")
+        output.push("#{Game.divisional_names[matchup[0]]}: (#{wins}-#{losses}) #{((wins.to_f / (wins + losses)) * 100).to_i}%") unless (wins + losses) <= 0
+      end
+    end
+
+    puts output
   end
 
   def self.game_stats(year)

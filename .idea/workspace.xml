@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b03df26f-190f-4613-8664-ee8159b2bdee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/games/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/games/_form.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/game.rb" afterPath="$PROJECT_DIR$/app/models/game.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/games_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/games_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" afterPath="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="whiteboard.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381071462647" ignored="false" />
+    <file path="/Dummy.txt" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381103279046" ignored="false" />
     <file path="/_standings.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379294091817" ignored="false" />
     <file path="/pickem_picks.css" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376749923400" ignored="false" />
     <file path="/_main_header.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1380992049969" ignored="false" />
     <file path="/routes.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1380991977762" ignored="false" />
     <file path="/index.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376855509334" ignored="false" />
-    <file path="/scores.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381071877902" ignored="false" />
+    <file path="/scores.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381103401457" ignored="false" />
     <file path="/teams_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376262974784" ignored="false" />
     <file path="/games_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381072166620" ignored="false" />
     <file path="/pickem_picks_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1380992130483" ignored="false" />
@@ -23,7 +22,7 @@
     <file path="/a.rxml" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399453185" ignored="false" />
     <file path="/a.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399462298" ignored="false" />
     <file path="/games.css" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376762022258" ignored="false" />
-    <file path="/game.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381072550983" ignored="false" />
+    <file path="/game.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381106924946" ignored="false" />
     <file path="/20130812035950_add_tie_to_pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376280039309" ignored="false" />
     <file path="/user.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379294419845" ignored="false" />
     <file path="/fooicide_picks_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378519289170" ignored="false" />
@@ -75,7 +74,16 @@
       <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="35" selection-start="5239" selection-end="5239" vertical-scroll-proportion="0.7706147">
+            <state line="305" column="21" selection-start="13347" selection-end="13347" vertical-scroll-proportion="0.30584708">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scores.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="107" column="0" selection-start="5750" selection-end="5750" vertical-scroll-proportion="-69.96154">
               <folding />
             </state>
           </provider>
@@ -123,9 +131,9 @@
         <option value="$PROJECT_DIR$/app/views/layouts/_main_header.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/pickem_picks/stats.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/games_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/games/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb" />
         <option value="$PROJECT_DIR$/app/models/game.rb" />
       </list>
     </option>
@@ -178,6 +186,71 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PickemPick" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActiveRecordModelClassNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="whiteboard" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Models" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FooicidePick" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActiveRecordModelClassNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -484,71 +557,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="RailsProjectView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PickemPick" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActiveRecordModelClassNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="whiteboard" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FooicidePick" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActiveRecordModelClassNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -566,16 +574,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="167" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="839" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="846" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="839" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="159" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="153" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -872,10 +880,9 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243626" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2702904" sideWeight="0.67563736" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.274758" sideWeight="0.67563736" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909605" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -884,6 +891,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243626" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -959,9 +967,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/models/pickem_pick.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="29" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="7" column="29" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
@@ -973,23 +979,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_main_header.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="43" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="17" column="43" selection-start="688" selection-end="688" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="57" selection-start="3871" selection-end="3871" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="163" column="57" selection-start="3871" selection-end="3871" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/record.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/team.rb">
@@ -1001,58 +1001,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/stats.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="50" selection-start="433" selection-end="433" vertical-scroll-proportion="0.5412844">
-          <folding />
-        </state>
+        <state line="23" column="50" selection-start="433" selection-end="433" vertical-scroll-proportion="0.5412844" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/games.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="27" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="119" column="27" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/_standings.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="62" selection-start="1034" selection-end="1042" vertical-scroll-proportion="0.5978593">
-          <folding />
-        </state>
+        <state line="24" column="62" selection-start="1034" selection-end="1042" vertical-scroll-proportion="0.5978593" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="15" selection-start="205" selection-end="205" vertical-scroll-proportion="0.175">
-          <folding />
-        </state>
+        <state line="7" column="15" selection-start="205" selection-end="205" vertical-scroll-proportion="0.175" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/games_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="84" selection-start="787" selection-end="787" vertical-scroll-proportion="0.375">
-          <folding />
-        </state>
+        <state line="39" column="84" selection-start="787" selection-end="787" vertical-scroll-proportion="0.375" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/games/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="64" selection-start="996" selection-end="996" vertical-scroll-proportion="0.7403226">
-          <folding />
-        </state>
+        <state line="27" column="64" selection-start="996" selection-end="996" vertical-scroll-proportion="0.7403226" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/games/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="7" selection-start="2972" selection-end="2972" vertical-scroll-proportion="0.41590214">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pickem_picks_controller.rb">
@@ -1062,9 +1041,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pickem_picks/scores.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="0" selection-start="5750" selection-end="5750" vertical-scroll-proportion="-69.96154">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="35" selection-start="5239" selection-end="5239" vertical-scroll-proportion="0.7706147">
+        <state line="305" column="21" selection-start="13347" selection-end="13347" vertical-scroll-proportion="0.30584708">
           <folding />
         </state>
       </provider>

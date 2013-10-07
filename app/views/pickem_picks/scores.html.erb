@@ -57,7 +57,7 @@
                           <%= radio_button_tag("game_#{game.id}", game.away_team.id, false, class: "radio-pickem-pick") %>
                       <% end %>
                     </div>
-                <% elsif game.away_score.nil? && game.in_progress_or_complete? %>
+                <% elsif game.away_score.nil? && game.in_progress_or_complete? && current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id %>
                     <p class="team-score">&#x2713;</p>
                 <% else %>
                     <p class="team-score"><%= game.away_score %></p>
@@ -105,6 +105,8 @@
                           <%= radio_button_tag("game_#{game.id}", game.home_team.id, false) %>
                       <% end %>
                     </div>
+                <% elsif game.home_score.nil? && game.in_progress_or_complete? && current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id %>
+                    <p class="team-score">&#x2713;</p>
                 <% else %>
                     <p class="team-score"><%= game.home_score %></p>
                 <% end %>
