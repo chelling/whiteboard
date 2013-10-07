@@ -179,7 +179,7 @@ class Game < ActiveRecord::Base
     elsif home_team.conference == 'AFC' && home_team.division == 'NORTH'
       home = 0b110
     elsif home_team.conference == 'AFC' && home_team.division == 'SOUTH'
-      home = 0x111
+      home = 0b111
     elsif home_team.conference == 'AFC' && home_team.division == 'WEST'
       home = 0b1000
     end
@@ -197,11 +197,14 @@ class Game < ActiveRecord::Base
     elsif away_team.conference == 'AFC' && away_team.division == 'NORTH'
       away = 0b10000000
     elsif away_team.conference == 'AFC' && away_team.division == 'SOUTH'
-      away = 0x11000000
+      away = 0b11000000
     elsif away_team.conference == 'AFC' && away_team.division == 'WEST'
       away = 0b100000000
     end
 
+    puts home
+    puts away
+    puts home + away
     return home + away
   end
 
@@ -319,7 +322,7 @@ class Game < ActiveRecord::Base
       end
     end
 
-    puts output
+    return output
   end
 
   def self.game_stats(year)

@@ -20,7 +20,7 @@
     <file path="/a.rxml" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399453185" ignored="false" />
     <file path="/a.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376399462298" ignored="false" />
     <file path="/games.css" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376762022258" ignored="false" />
-    <file path="/game.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381107291024" ignored="false" />
+    <file path="/game.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1381109585861" ignored="false" />
     <file path="/20130812035950_add_tie_to_pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1376280039309" ignored="false" />
     <file path="/user.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379294419845" ignored="false" />
     <file path="/fooicide_picks_controller.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1378519289170" ignored="false" />
@@ -72,7 +72,7 @@
       <file leaf-file-name="game.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/game.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="287" column="34" selection-start="12598" selection-end="12598" vertical-scroll-proportion="0.28035983">
+            <state line="324" column="10" selection-start="14166" selection-end="14166" vertical-scroll-proportion="0.5097451">
               <folding />
             </state>
           </provider>
@@ -1048,7 +1048,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/game.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="287" column="34" selection-start="12598" selection-end="12598" vertical-scroll-proportion="0.28035983">
+        <state line="324" column="10" selection-start="14166" selection-end="14166" vertical-scroll-proportion="0.5097451">
           <folding />
         </state>
       </provider>
