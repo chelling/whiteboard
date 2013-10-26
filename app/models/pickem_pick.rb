@@ -3,12 +3,13 @@ class PickemPick < ActiveRecord::Base
   belongs_to :game
   belongs_to :team
   
-  attr_accessible :game_id, :team_id, :user_id, :week, :year, :win, :recommended
+  attr_accessible :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points
 
   def update_recommended(year, start_week, end_week)
     if week >= 5
       points = recommendation_points(year, start_week, end_week)
-      if points >= 7
+      self.recommended_points = points
+      if points >= 5
         self.recommended = true
       else
         self.recommended = false
