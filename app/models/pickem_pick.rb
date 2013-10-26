@@ -39,7 +39,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_teams(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -50,7 +50,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_team_home(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -61,7 +61,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_team_away(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -72,7 +72,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_team_picked(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -83,7 +83,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_team_not_picked(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -94,7 +94,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_favorites(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -105,7 +105,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_favorites_picked(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -116,7 +116,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_conference(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -127,7 +127,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_division(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
@@ -138,7 +138,7 @@ class PickemPick < ActiveRecord::Base
     record = get_user_record_on_time(year, start_week, end_week)
     wins = record.split('(').last.split('-').first.to_i
     losses = record.split('(').last.split('-').last.split(')').first.to_i
-    if (wins.to_f / (wins + losses)) > 0.75
+    if (wins.to_f / (wins + losses)) > 0.6
       return 1
     else
       return 0
