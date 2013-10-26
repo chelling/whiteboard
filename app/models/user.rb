@@ -72,6 +72,24 @@ class User < ActiveRecord::Base
     return "(#{wins}-#{losses}-#{ties})"
   end
 
+  def pickem_picks_recommended_record_by_year(year)
+    wins = 0
+    losses = 0
+    ties = 0
+    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+      if pick.try(:recommended)
+        if !pick.win.nil?
+          pick.win == true ? wins += 1 : losses += 1
+          if pick.tie
+            losses -= 1
+            ties += 1
+          end
+        end
+      end
+    end
+    return "(#{wins}-#{losses}-#{ties})"
+  end
+
   # fooicide_picks
   def fooicide_pick_by_game(game)
     fooicide_picks.find_by_game_id(game.id)

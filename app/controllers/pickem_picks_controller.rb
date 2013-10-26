@@ -167,6 +167,10 @@ class PickemPicksController < ApplicationController
         if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end
+
+        if !pick.update_recommended(2013, 1, @week.to_i - 1)
+          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        end
       end
     end
     

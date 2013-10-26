@@ -118,6 +118,9 @@
                 <div class="team-line">
                   <% if !game.line.nil? && game.line != 0 %>
                       <%= "Line: #{game.line}" %>
+                      <% if @pick.try(:recommended) %>
+                        <img style="float:right" width="20" height="20" src="<%= asset_path "star.png" %>">
+                      <% end %>
                   <% else %>
                       <%= "Line: Even" %>
                   <% end %>

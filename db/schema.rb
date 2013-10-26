@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902155317) do
+ActiveRecord::Schema.define(:version => 20131026182205) do
 
   create_table "fooicide_picks", :force => true do |t|
     t.integer  "year"
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(:version => 20130902155317) do
     t.integer  "game_id"
     t.integer  "user_id"
     t.integer  "team_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "win"
     t.boolean  "tie"
+    t.boolean  "recommended"
   end
 
   add_index "pickem_picks", ["year", "week", "user_id"], :name => "index_pickem_picks_on_year_and_week_and_user_id"
