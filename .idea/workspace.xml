@@ -50,7 +50,7 @@
     <file path="/spread2011_2.csv" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379188771791" ignored="false" />
     <file path="/spread2012.csv" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1379209111675" ignored="false" />
     <file path="/stats.html.erb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1380993413877" ignored="false" />
-    <file path="/pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1382816608950" ignored="false" />
+    <file path="/pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1382818625793" ignored="false" />
     <file path="/20131026182205_add_recommended_to_pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1382811769236" ignored="false" />
     <file path="/20131026194216_add_recommended_points_to_pickem_pick.rb" changelist="b03df26f-190f-4613-8664-ee8159b2bdee" time="1382816569925" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,7 +93,7 @@
       <file leaf-file-name="pickem_pick.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/pickem_pick.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="29" selection-start="584" selection-end="584" vertical-scroll-proportion="0.56925416">
+            <state line="406" column="8" selection-start="12652" selection-end="12652" vertical-scroll-proportion="4.544901">
               <folding />
             </state>
           </provider>
@@ -1176,7 +1176,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/pickem_pick.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="29" selection-start="584" selection-end="584" vertical-scroll-proportion="0.56925416">
+        <state line="406" column="8" selection-start="12652" selection-end="12652" vertical-scroll-proportion="4.544901">
           <folding />
         </state>
       </provider>

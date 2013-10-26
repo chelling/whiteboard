@@ -154,7 +154,7 @@ class PickemPick < ActiveRecord::Base
                       game.home_team_id, game.home_team_id, year, start_week, end_week)
     games.map do |g|
       pick = user.pickem_pick_by_game(g)
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -166,7 +166,7 @@ class PickemPick < ActiveRecord::Base
                        game.away_team_id, game.away_team_id, year, start_week, end_week)
     games.map do |g|
       pick = user.pickem_pick_by_game(g)
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -185,7 +185,7 @@ class PickemPick < ActiveRecord::Base
                        game.home_team_id, year, start_week, end_week)
     games.map do |g|
       pick = user.pickem_pick_by_game(g)
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -205,7 +205,7 @@ class PickemPick < ActiveRecord::Base
                        game.away_team_id, year, start_week, end_week)
     games.map do |g|
       pick = user.pickem_pick_by_game(g)
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -224,7 +224,7 @@ class PickemPick < ActiveRecord::Base
     picks = user.pickem_picks.where("year = ? and week >= ? and week <= ? and team_id = ?",
                                     year, start_week, end_week, team_id)
     picks.map do |pick|
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -244,7 +244,7 @@ class PickemPick < ActiveRecord::Base
     picks = user.pickem_picks.where("year = ? and week >= ? and week <= ? and team_id = ?",
                                     year, start_week, end_week, t_id)
     picks.map do |pick|
-      if !pick.win.nil?
+      if !pick.try(:win).nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
           losses -= 1
@@ -274,7 +274,7 @@ class PickemPick < ActiveRecord::Base
         # home favorites
         if game.line < 0 && home_fav
           pick = user.pickem_pick_by_game(game)
-          if !pick.win.nil?
+          if !pick.try(:win).nil?
             pick.win == true ? wins += 1 : losses += 1
             if pick.tie
               losses -= 1
@@ -282,7 +282,7 @@ class PickemPick < ActiveRecord::Base
           end
         elsif game.line > 0 && away_fav
           pick = user.pickem_pick_by_game(game)
-          if !pick.win.nil?
+          if !pick.try(:win).nil?
             pick.win == true ? wins += 1 : losses += 1
             if pick.tie
               losses -= 1
@@ -318,7 +318,7 @@ class PickemPick < ActiveRecord::Base
     Game.where("year = ? and week >= ? and week <= ?", year, start_week, end_week).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         pick = user.pickem_pick_by_game(game)
-        if !pick.win.nil?
+        if !pick.try(:win).nil?
           # home favorites
           if game.line < 0 && home_fav && pick.team_id == game.home_team_id
               pick.win == true ? wins += 1 : losses += 1
@@ -358,7 +358,7 @@ class PickemPick < ActiveRecord::Base
       # compare the divisions to the pick
       if game.away_team.conference == g.away_team.conference && game.home_team.conference == g.home_team.conference
         pick = user.pickem_pick_by_game(game)
-        if !pick.win.nil?
+        if !pick.try(:win).nil?
           pick.win == true ? wins += 1 : losses += 1
           if pick.tie
             losses -= 1
@@ -382,7 +382,7 @@ class PickemPick < ActiveRecord::Base
          game.home_team.conference == g.home_team.conference && game.home_team.division == g.home_team.division
 
         pick = user.pickem_pick_by_game(game)
-        if !pick.win.nil?
+        if !pick.try(:win).nil?
           pick.win == true ? wins += 1 : losses += 1
           if pick.tie
             losses -= 1
@@ -405,7 +405,7 @@ class PickemPick < ActiveRecord::Base
       # compare the divisions to the pick
       if game.date.strftime("%A") == g.date.strftime("%A") && game.date.strftime("%H") == g.date.strftime("%H")
         pick = user.pickem_pick_by_game(game)
-        if !pick.win.nil?
+        if !pick.try(:win).nil?
           pick.win == true ? wins += 1 : losses += 1
           if pick.tie
             losses -= 1
