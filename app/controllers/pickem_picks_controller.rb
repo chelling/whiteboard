@@ -168,9 +168,9 @@ class PickemPicksController < ApplicationController
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end
 
-        if !pick.update_recommended(2013, 1, @week.to_i - 1)
-          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
-        end
+        #if !pick.update_recommended(2013, 1, @week.to_i - 1)
+        #  return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        #end
       end
     end
     
