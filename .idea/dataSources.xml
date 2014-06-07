@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="3063912375">
-    <data-source source="LOCAL" name="Rails whiteboard: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="e7ac2722-e333-464e-b0c7-a61255ce1493">
+    <data-source source="LOCAL" name="Rails whiteboard: test" uuid="e7ac2722-e333-464e-b0c7-a61255ce1493">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/whiteboard_test</jdbc-url>
       <user-name>postgres</user-name>
@@ -15,11 +16,12 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails whiteboard: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="79e1b28b-0dde-4a2e-a853-9e18b022a6d6">
+    <data-source source="LOCAL" name="Rails whiteboard: production" uuid="79e1b28b-0dde-4a2e-a853-9e18b022a6d6">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-227-238-21.compute-1.amazonaws.com/d8idqejjlgujs4</jdbc-url>
-      <user-name>qwzahvnrnygicv</user-name>
-      <user-password>dfc8dfe6dfebdfc2df9adfc9dfdfdfcedf9bdf99dfecdff3dfd3dffadfe9df9bdf9adf9ddffcdfc1df9adfcedfc2dfc9dfeedfe3</user-password>
+      <jdbc-url>jdbc:postgresql:whiteboard_production</jdbc-url>
+      <user-name>&lt;%= ENV['DATABASE_USER'] %&gt;</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -29,7 +31,8 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails whiteboard: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="98c3ff9e-6c45-4b6a-97e7-616153c9a148">
+    <data-source source="LOCAL" name="Rails whiteboard: development" uuid="98c3ff9e-6c45-4b6a-97e7-616153c9a148">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/whiteboard_development</jdbc-url>
       <user-name>postgres</user-name>
