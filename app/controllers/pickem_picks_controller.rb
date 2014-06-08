@@ -5,6 +5,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_picks = PickemPick.all
     authorize! :manage, @pickem_picks
 
@@ -20,6 +21,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.find(params[:id])
     authorize! :manage, @pickem_pick
 
@@ -35,6 +37,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.new
     authorize! :create, @pickem_pick
 
@@ -49,6 +52,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.find(params[:id])
     authorize! :update, @pickem_pick
   end
@@ -59,6 +63,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.new(params[:pickem_pick])
     authorize! :create, @pickem_pick
 
@@ -79,6 +84,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.find(params[:id])
     authorize! :update, @pickem_pick
 
@@ -99,6 +105,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @pickem_pick = PickemPick.find(params[:id])
     authorize! :destroy, @pickem_pick
     @pickem_pick.destroy
@@ -113,6 +120,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @year = '2013'
     @week = find_week
     @year = params[:year] if params[:year]
@@ -147,6 +155,7 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @year = '2013'
     @week = find_week
     @year = params[:year] if params[:year]
@@ -167,10 +176,6 @@ class PickemPicksController < ApplicationController
         if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
         end
-
-        #if !pick.update_recommended(2013, 1, @week.to_i - 1)
-        #  return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
-        #end
       end
     end
     
@@ -182,8 +187,8 @@ class PickemPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+
     @year = '2013'
     @year = params[:year] if params[:year]
-
   end
 end
