@@ -1,12 +1,19 @@
+body {
+   background: url("feb-3-background.jpg") no-repeat top center;
+}
+
 div.main-nav {
 	position: relative;
 	z-index: 3;
 	background: url("nav-bg.png") top left repeat-x;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:20px;
 }
 
 div.main-nav .top-nav-items {
-	margin-left: 100px;
-	width: 905px;
+	width: 95%;
 	display: table;
 }
 
@@ -20,10 +27,10 @@ div.main-nav .top-nav-items {
 .nav-list {
 	display: block;
 	width: 100%;
-	height: 40px;
+	height: 30px;
 	text-decoration: none;
 	padding: 10px 0px 0px 0px;
-	font: 26px NFLEndzoneSansCondMedium, "sans-serif", serif;
+	font: 20px NFLEndzoneSansCondMedium, "sans-serif", serif;
 	color: #262626;
 	text-transform: uppercase;
 	text-align: center;
@@ -41,10 +48,14 @@ div.doc {
 }
 
 div.doc-wrapper {
-	background: transparent;
+	background: white;
 	position: relative;
 	width: 999px;
 	padding: 10px 0 20px;
+}
+
+div.picks-wrapper {
+    height: 200px;
 }
 
 div.scorebox-wrapper {
@@ -55,6 +66,7 @@ div.scorebox-wrapper {
 	background: url('shadow.png') no-repeat	bottom;
 	font: normal normal 11px/13px arial, sans-serif;
 	text-align: left;
+    margin-left:10px;
 }
 
 div.scorebox-header {
@@ -118,6 +130,7 @@ div.team-wrapper-not-available {
 
 div.team-wrapper-picked {
     border: 1px solid #000;
+    border-color:#ff0000;
 }
 
 div.team-wrapper-win {
@@ -374,6 +387,7 @@ p.team-score {
 	display: block;
 	clear: both;
 	padding: 10px;
+    background-color: white;
 }
 
 .button {
@@ -413,4 +427,8 @@ p.team-score {
 .button:hover {
 	background-color: #000;
 	color: #fff;
+}
+
+.standings-wrapper {
+    background-color: white
 }

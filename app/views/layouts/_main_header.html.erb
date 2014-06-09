@@ -24,7 +24,7 @@
         <li class="b-nav-group"><a class="nav-list" href="/stats">Research</a></li>
     <% end %>
 
-    <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in" %></li>
-    <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+    <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in", class: "nav-list" %></li>
+    <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: "nav-list" %></li>
   </ul>
 </div>
