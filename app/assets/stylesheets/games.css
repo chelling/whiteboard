@@ -45,17 +45,19 @@ div.doc {
 	text-align: left;
 	min-height: 1px;
 	width: 999px;
+    color:white;
 }
 
 div.doc-wrapper {
 	background: white;
 	position: relative;
-	width: 999px;
+	width: 1005px;
 	padding: 10px 0 20px;
 }
 
 div.picks-wrapper {
     height: 200px;
+    color:black;
 }
 
 div.scorebox-wrapper {
@@ -401,6 +403,7 @@ a.selected:hover {
 	clear: both;
 	padding: 10px;
     background-color: white;
+    width: 985px;
 }
 
 .button {
@@ -443,7 +446,12 @@ a.selected:hover {
 }
 
 .standings-wrapper {
-    background-color: white
+    background-color: white;
+    color:black;
+}
+
+.standings-table-wrapper {
+    color:black;
 }
 
 .nav-list:hover {
