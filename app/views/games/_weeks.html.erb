@@ -1,85 +1,17 @@
-<% if @week == "1" %>
-	<%= link_to 1, "/scores?year=#{@year}&week=1", {:class => "selected"} %>
-<% else %>
-	<%= link_to 1, "/scores?year=#{@year}&week=1" %>
-<% end %>
-<% if @week == "2" %>
-	<%= link_to 2, "/scores?year=#{@year}&week=2", {:class => "selected"} %>
-<% else %>
-	<%= link_to 2, "/scores?year=#{@year}&week=2" %>
-<% end %>
-<% if @week == "3" %>
-	<%= link_to 3, "/scores?year=#{@year}&week=3", {:class => "selected"} %>
-<% else %>
-	<%= link_to 3, "/scores?year=#{@year}&week=3" %>
-<% end %>
-<% if @week == "4" %>
-	<%= link_to 4, "/scores?year=#{@year}&week=4", {:class => "selected"} %>
-<% else %>
-	<%= link_to 4, "/scores?year=#{@year}&week=4" %>
-<% end %>
-<% if @week == "5" %>
-	<%= link_to 5, "/scores?year=#{@year}&week=5", {:class => "selected"} %>
-<% else %>
-	<%= link_to 5, "/scores?year=#{@year}&week=5" %>
-<% end %>
-<% if @week == "6" %>
-	<%= link_to 6, "/scores?year=#{@year}&week=6", {:class => "selected"} %>
-<% else %>
-	<%= link_to 6, "/scores?year=#{@year}&week=6" %>
-<% end %>
-<% if @week == "7" %>
-	<%= link_to 7, "/scores?year=#{@year}&week=7", {:class => "selected"} %>
-<% else %>
-	<%= link_to 7, "/scores?year=#{@year}&week=7" %>
-<% end %>
-<% if @week == "8" %>
-	<%= link_to 8, "/scores?year=#{@year}&week=8", {:class => "selected"} %>
-<% else %>
-	<%= link_to 8, "/scores?year=#{@year}&week=8" %>
-<% end %>
-<% if @week == "9" %>
-	<%= link_to 9, "/scores?year=#{@year}&week=9", {:class => "selected"} %>
-<% else %>
-	<%= link_to 9, "/scores?year=#{@year}&week=9" %>
-<% end %>
-<% if @week == "10" %>
-	<%= link_to 10, "/scores?year=#{@year}&week=10", {:class => "selected"} %>
-<% else %>
-	<%= link_to 10, "/scores?year=#{@year}&week=10" %>
-<% end %>
-<% if @week == "11" %>
-	<%= link_to 11, "/scores?year=#{@year}&week=11", {:class => "selected"} %>
-<% else %>
-	<%= link_to 11, "/scores?year=#{@year}&week=11" %>
-<% end %>
-<% if @week == "12" %>
-	<%= link_to 12, "/scores?year=#{@year}&week=12", {:class => "selected"} %>
-<% else %>
-	<%= link_to 12, "/scores?year=#{@year}&week=12" %>
-<% end %>
-<% if @week == "13" %>
-	<%= link_to 13, "/scores?year=#{@year}&week=13", {:class => "selected"} %>
-<% else %>
-	<%= link_to 13, "/scores?year=#{@year}&week=13" %>
-<% end %>
-<% if @week == "14" %>
-	<%= link_to 14, "/scores?year=#{@year}&week=14", {:class => "selected"} %>
-<% else %>
-	<%= link_to 14, "/scores?year=#{@year}&week=14" %>
-<% end %>
-<% if @week == "15" %>
-	<%= link_to 15, "/scores?year=#{@year}&week=15", {:class => "selected"} %>
-<% else %>
-	<%= link_to 15, "/scores?year=#{@year}&week=15" %>
-<% end %>
-<% if @week == "16" %>
-	<%= link_to 16, "/scores?year=#{@year}&week=16", {:class => "selected"} %>
-<% else %>
-	<%= link_to 16, "/scores?year=#{@year}&week=16" %>
-<% end %>
-<% if @week == "17" %>
-	<%= link_to 17, "/scores?year=#{@year}&week=17", {:class => "selected"} %>
-<% else %>
-	<%= link_to 17, "/scores?year=#{@year}&week=17" %>
-<% end %>
+<%= link_to 1, "/scores?year=#{@year}&week=1", {:class => "#{@week == "1" ? 'selected' : 'unselected'}"} %>
+<%= link_to 2, "/scores?year=#{@year}&week=2", {:class => "#{@week == "2" ? 'selected' : 'unselected'}"} %>
+<%= link_to 3, "/scores?year=#{@year}&week=3", {:class => "#{@week == "3" ? 'selected' : 'unselected'}"} %>
+<%= link_to 4, "/scores?year=#{@year}&week=4", {:class => "#{@week == "4" ? 'selected' : 'unselected'}"} %>
+<%= link_to 5, "/scores?year=#{@year}&week=5", {:class => "#{@week == "5" ? 'selected' : 'unselected'}"} %>
+<%= link_to 6, "/scores?year=#{@year}&week=6", {:class => "#{@week == "6" ? 'selected' : 'unselected'}"} %>
+<%= link_to 7, "/scores?year=#{@year}&week=7", {:class => "#{@week == "7" ? 'selected' : 'unselected'}"} %>
+<%= link_to 8, "/scores?year=#{@year}&week=8", {:class => "#{@week == "8" ? 'selected' : 'unselected'}"} %>
+<%= link_to 9, "/scores?year=#{@year}&week=9", {:class => "#{@week == "9" ? 'selected' : 'unselected'}"} %>
+<%= link_to 10, "/scores?year=#{@year}&week=10", {:class => "#{@week == "10" ? 'selected' : 'unselected'}"} %>
+<%= link_to 11, "/scores?year=#{@year}&week=11", {:class => "#{@week == "11" ? 'selected' : 'unselected'}"} %>
+<%= link_to 12, "/scores?year=#{@year}&week=12", {:class => "#{@week == "12" ? 'selected' : 'unselected'}"} %>
+<%= link_to 13, "/scores?year=#{@year}&week=13", {:class => "#{@week == "13" ? 'selected' : 'unselected'}"} %>
+<%= link_to 14, "/scores?year=#{@year}&week=14", {:class => "#{@week == "14" ? 'selected' : 'unselected'}"} %>
+<%= link_to 15, "/scores?year=#{@year}&week=15", {:class => "#{@week == "15" ? 'selected' : 'unselected'}"} %>
+<%= link_to 16, "/scores?year=#{@year}&week=16", {:class => "#{@week == "16" ? 'selected' : 'unselected'}"} %>
+<%= link_to 17, "/scores?year=#{@year}&week=17", {:class => "#{@week == "17" ? 'selected' : 'unselected'}"} %>

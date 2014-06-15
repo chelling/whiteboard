@@ -371,15 +371,28 @@ p.team-score {
 	font-weight: bold;
 	cursor: pointer;
 	text-decoration: none;
-	color: #3e3e3e!important;
+	color: #3e3e3e;
 	width: 25px;
 	vertical-align: baseline;
 	margin: 0;
 }
 
+.week a:hover {
+    background: rgb(34,54,90);
+    color:white;
+}
+
 .week a.selected {
-	background: #000;
+	background: rgb(34,54,90);
 	color: #fff!important;
+}
+
+.week a.unselected:hover {
+    background-color:rgb(34,54,90);
+}
+
+a.selected:hover {
+    background-color:rgb(34,54,90);
 }
 
 .pickem-submit-button {
@@ -431,4 +444,16 @@ p.team-score {
 
 .standings-wrapper {
     background-color: white
+}
+
+.nav-list:hover {
+    background-color:rgb(34,54,90);
+}
+
+.string {
+    margin-left: 28px;
+}
+
+.pickem-rules {
+    color:white;
 }
