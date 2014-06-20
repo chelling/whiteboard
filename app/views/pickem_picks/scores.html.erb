@@ -1,3 +1,9 @@
+<script text="javascript">
+    window.onload = function() {
+        document.getElementById('picks-wrapper').style.height = "<%= (190 + (@games.size / 3 * 162)).to_s + "px"  %>";
+    }
+</script>
+
 <%= flash[:notice] %>
 <%= flash[:alert] %>
 <%= form_tag({controller: :pickem_picks, action: :update_picks}, method: "get", class: "nifty_form") do %>
@@ -7,7 +13,7 @@
         <%= render :partial => "pickem_picks/standings" %>
       </div>
 
-      <div class="picks-wrapper">
+      <div class="picks-wrapper" id="picks-wrapper">
           <hr />
           <h2 style="margin-left: 10px">Pigskin Pick'em</h2>
           <% @games.try(:map) do |game| %>
