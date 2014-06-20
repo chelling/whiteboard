@@ -1,5 +1,5 @@
 body {
-   background: url("feb-3-background.jpg") no-repeat top center;
+    background: #011226 url("feb-3-background.jpg") no-repeat top center;
 }
 
 div.main-nav {
@@ -31,12 +31,17 @@ div.main-nav .top-nav-items {
 	text-decoration: none;
 	padding: 10px 0px 0px 0px;
 	font: 20px NFLEndzoneSansCondMedium, "sans-serif", serif;
+    font-weight: bold;
 	color: #262626;
 	text-transform: uppercase;
 	text-align: center;
 	overflow: hidden;
 	position: relative;
 	text-shadow: 0px 1px 1px white;
+}
+
+a.visited {
+    color: inherit;
 }
 
 div.doc {
