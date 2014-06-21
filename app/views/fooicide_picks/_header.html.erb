@@ -6,15 +6,7 @@
 		<div class="select-dates">
             <div>
 				<div class="select-year">Year:</div>
-                <% if @year == "2013" %>
-                  <%= select_tag("year", "<option selected=\"selected\">2013</option><option>2012</option><option>2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
-                <% elsif @year == "2012" %>
-                  <%= select_tag("year", "<option>2013</option><option selected=\"selected\">2012</option><option>2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
-                <% elsif @year == "2011" %>
-                  <%= select_tag("year", "<option>2013</option><option>2012</option><option selected=\"selected\">2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
-                <% else %>
-                  <%= select_tag("year", "<option selected=\"selected\">2013</option><option>2012</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
-                <% end %>
+                <%= select_tag("year", "<option>2014</option><option>2013</option><option>2012</option><option>2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
 			</div>
 			<div class="week">
 				<div class="week-caption">Week:</div>

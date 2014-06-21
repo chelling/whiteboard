@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-    <%= f.input :year, :input_html => {:value => 2013} %>
+    <%= f.input :year, :input_html => {:value => Time.now.year} %>
 
     <%= f.input :week, :input_html => {:value => 1} %>
 

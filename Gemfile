@@ -23,3 +23,4 @@ end
 gem 'simple_form'
 gem 'cancan'
 gem 'nested_form'
+gem 'nokogiri'

@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 class Game < ActiveRecord::Base
   belongs_to :away_team, :class_name => "Team"
   belongs_to :home_team, :class_name => "Team"
@@ -570,6 +573,37 @@ class Game < ActiveRecord::Base
         end
         g.save
       end
+    end
+  end
+
+  def self.create_or_update_games(year, week)
+    doc = Nokogiri::HTML(open("http://www.nfl.com/scores/#{year}/REG#{week}"))
+
+    doc.css(".new-score-box-wrapper").each do |item|
+      date =  item.css(".date").text
+      time =  item.css(".time-left").text
+      away_team =  item.css(".away-team").css(".team-name").text
+      home_team = item.css(".home-team").css(".team-name").text
+      away_score = item.css(".away-team").css(".total-score").text unless item.css(".away-team").css(".total-score").text == "--"
+      home_score = item.css(".home-team").css(".total-score").text unless item.css(".home-team").css(".total-score").text == "--"
+
+      # Create game if it doesn't exist
+      game = Game.find_by_year_and_week_and_home_team_id(year, week, Team.find_by_name(home_team).try(:id))
+      if game.nil? && !Team.find_by_name(away_team).nil?  && !Team.find_by_name(home_team).nil?
+        Game.create(:away_team_id => Team.find_by_name(away_team).try(:id), \
+                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+                    :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :away_score => away_score, :home_score => home_score)
+      elsif !game.nil?
+        game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
+                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+                    :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :away_score => away_score, :home_score => home_score)
+        game.save
+      end
+
     end
   end
 end

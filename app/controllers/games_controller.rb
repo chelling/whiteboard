@@ -91,7 +91,7 @@ class GamesController < ApplicationController
   
   def scores
     @week = find_week
-    @year = '2013'
+    @year = Time.now.year
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)

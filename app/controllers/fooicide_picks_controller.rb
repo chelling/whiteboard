@@ -113,7 +113,7 @@ class FooicidePicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
-    @year = '2013'
+    @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
@@ -144,7 +144,7 @@ class FooicidePicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
-    @year = '2013'
+    @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]

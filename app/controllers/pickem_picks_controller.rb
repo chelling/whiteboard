@@ -121,7 +121,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
 
-    @year = '2013'
+    @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
@@ -156,7 +156,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
 
-    @year = '2013'
+    @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
@@ -188,7 +188,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
 
-    @year = '2013'
+    @year = Time.now.year
     @year = params[:year] if params[:year]
   end
 end
