@@ -1,6 +1,6 @@
 <script text="javascript">
     window.onload = function() {
-        document.getElementById('picks-wrapper').style.height = "<%= (190 + (@games.size / 3 * 163)).to_s + "px"  %>";
+        document.getElementById('picks-wrapper').style.height = "<%= (190 + ((@games.size - 1) / 3 * 163)).to_s + "px"  %>";
         $('#year').val(<%= @year %>)
     }
 </script>
