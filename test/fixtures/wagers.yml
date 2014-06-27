@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account_id: 1
+  amount: 9.99
+  potential_payout: 9.99
+  payout: 9.99
+  win: 1
+
+two:
+  account_id: 1
+  amount: 9.99
+  potential_payout: 9.99
+  payout: 9.99
+  win: 1

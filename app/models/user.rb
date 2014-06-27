@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :fooicide_picks
   has_many :thirty_eights
   has_many :shares
+  has_many :accounts
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

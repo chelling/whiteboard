@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131026194216) do
+ActiveRecord::Schema.define(:version => 20140627203814) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "year"
+    t.decimal  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"
 
   create_table "fooicide_picks", :force => true do |t|
     t.integer  "year"
@@ -57,6 +67,13 @@ ActiveRecord::Schema.define(:version => 20131026194216) do
   end
 
   add_index "pickem_picks", ["year", "week", "user_id"], :name => "index_pickem_picks_on_year_and_week_and_user_id"
+
+  create_table "pickem_picks_wagers", :id => false, :force => true do |t|
+    t.integer "pickem_pick_id"
+    t.integer "wager_id"
+  end
+
+  add_index "pickem_picks_wagers", ["pickem_pick_id", "wager_id"], :name => "index_pickem_picks_wagers_on_pickem_pick_id_and_wager_id"
 
   create_table "records", :force => true do |t|
     t.integer  "team_id"
@@ -134,5 +151,17 @@ ActiveRecord::Schema.define(:version => 20131026194216) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wagers", :force => true do |t|
+    t.integer  "account_id"
+    t.decimal  "amount"
+    t.decimal  "potential_payout"
+    t.decimal  "payout"
+    t.integer  "win"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "wagers", ["account_id"], :name => "index_wagers_on_account_id"
 
 end

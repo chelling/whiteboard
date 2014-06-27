@@ -2,6 +2,7 @@ class PickemPick < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
   belongs_to :team
+  has_and_belongs_to_many :wagers
   
   attr_accessible :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points
 
