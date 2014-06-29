@@ -121,6 +121,7 @@ class PickemPicksController < ApplicationController
       return redirect_to "/users/sign_in"
     end
 
+    @mobile_header = "Pigskin Pickem"
     @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
@@ -175,6 +176,29 @@ class PickemPicksController < ApplicationController
 
         if !pick.update_attributes(:user_id => current_user.id, :game_id => game.last, :team_id => value, :week => @week, :year => @year)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your picks.'
+        end
+      end
+
+      # set wagers as well for single picks
+      if game.first == "wager" && !value.empty?
+        puts "\n#{game}"
+        puts "\n#{value}"
+        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last)
+        if pick.nil?
+          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Cannot bet without making a pick'
+        end
+        authorize! :update, pick
+
+        wager = current_user.wagers.where("pickem_pick_id = ?", pick.id).try(:first)
+        if !wager.nil?
+          authorize! :update, wager
+        else
+          wager = Wager.new
+          authorize! :create, wager
+        end
+
+        if !wager.update_attributes(:account_id => current_user.accounts.find_by_year(@year).try(:id), :pickem_pick_id => pick.id, :amount => value)
+          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your wagers.'
         end
       end
     end

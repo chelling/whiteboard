@@ -11,6 +11,13 @@
 </head>
 <body style="background-color: #011226">
 <div class="global">
+  <p>
+    <% if mobile_device? %>
+        <%= link_to "Full Site", :mobile => 0 %>
+    <% else %>
+        <%= link_to "Mobile Site", :mobile => 1 %>
+    <% end %>
+  </p>
 	<%= render :partial => "layouts/main_header" %>
 </div>
 <div class="doc">

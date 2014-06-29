@@ -2,9 +2,29 @@ class PickemPick < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
   belongs_to :team
-  has_and_belongs_to_many :wagers
+  has_one :wager
+
+  before_save :update_wager
   
-  attr_accessible :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points
+  attr_accessible :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points, :tie
+
+  # before_save
+  def update_wager
+    if self.win.nil?
+      return
+    end
+
+    if self.win && !self.tie
+      self.wager.win = 1
+      self.wager.save
+    elsif !self.win && self.tie
+      self.wager.win = 0
+      self.wager.save
+    elsif !self.win && !self.tie
+      self.wager.win = -1
+      self.wager.save
+    end
+  end
 
   def get_user_record_on_teams(year, start_week, end_week)
     wins = 0

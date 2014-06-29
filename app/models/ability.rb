@@ -17,10 +17,15 @@ class Ability
        can [:update, :destroy], FooicidePick do |pick|
          pick.try(:user) == user
        end
-       # pickem
+       # thirtyeight
        can :create, ThirtyEight
        can [:update, :destroy], ThirtyEight do |te|
          te.try(:user) == user
+       end
+       # wager
+       can :create, Wager
+       can [:update, :destroy], Wager do |wager|
+         wager.try(:user) == user
        end
     end
   end

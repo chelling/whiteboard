@@ -1,7 +1,36 @@
 <script text="javascript">
     window.onload = function() {
-        document.getElementById('picks-wrapper').style.height = "<%= (190 + ((@games.size - 1) / 3 * 163)).to_s + "px"  %>";
-        $('#year').val(<%= @year %>)
+        document.getElementById('picks-wrapper').style.height = "<%= (220 + ((@games.size - 1) / 3 * 194)).to_s + "px"  %>";
+        $('#year').val(<%= @year %>);
+    }
+
+    function updateAccountAmount(textbox) {
+        var amount = 0.0;
+        var previousAmount = 0.0;
+        var currentAmount = 0.0
+
+        if(parseFloat(textbox.value) < 0) {
+            alert("Value must be positive.");
+            textbox.value = Math.abs(textbox.value);
+        }
+
+        if(textbox.oldvalue != "") {
+            previousAmount = parseFloat(textbox.oldvalue)
+        }
+        if(textbox.value != "") {
+            currentAmount = parseFloat(textbox.value)
+        }
+
+        amount = currentAmount - previousAmount;
+        if(!$.isNumeric(textbox.value)){
+            alert("Value must be a number.");
+            textbox.value = textbox.oldvalue;
+        }else if((parseFloat($('#account-amount').text()) - amount < 0)) {
+            alert("Current Holdings cannot go below $0.");
+            textbox.value = textbox.oldvalue;
+        } else {
+            $('#account-amount').text((parseFloat($('#account-amount').text()) - amount).toFixed(2));
+        }
     }
 </script>
 
@@ -18,7 +47,7 @@
           <hr />
           <h2 style="margin-left: 10px">Pigskin Pick'em</h2>
           <% @games.try(:map) do |game| %>
-                  <div class="scorebox-wrapper">
+                  <div class="pickem-scorebox-wrapper">
                 <div class="scorebox-header">
                   <p class="score-date"><%= game.date.strftime("%a, %b %d") %>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -124,16 +153,23 @@
                   </div>
                   </div>
                   </div>
-                  <div class="scoreboard-footer">
+                  <div class="pickem-scoreboard-footer">
                     <div class="team-line">
-                      <% if !game.line.nil? && game.line != 0 %>
-                          <%= "Line: #{game.line}" %>
-                          <% if @pick.try(:recommended) %>
-                            <img style="float:right" width="20" height="20" src="<%= asset_path "star.png" %>">
+                      <div class="line-wrapper">
+                        <span class="line-box">
+                          <% if !game.line.nil? && game.line != 0 %>
+                              <%= "Line: #{game.line}" %>
+                              <% if @pick.try(:recommended) %>
+                                <img style="float:right" width="20" height="20" src="<%= asset_path "star.png" %>">
+                              <% end %>
+                          <% else %>
+                              <%= "Line: Even" %>
                           <% end %>
-                      <% else %>
-                          <%= "Line: Even" %>
-                      <% end %>
+                        </span>
+                        $<%= text_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
+                                            onfocus: "this.oldvalue = this.value;", onchange: "updateAccountAmount(this);this.oldvalue = this.value", \
+                                            maxlength: 5, class: 'wager-input' %>
+                      </div>
                     </div>
                   </div>
                   </div>

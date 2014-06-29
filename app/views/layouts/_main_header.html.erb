@@ -1,3 +1,10 @@
+<% if user_signed_in? %>
+    <div class="account-info">
+      Current Holdings = $
+      <span id="account-amount"><%= current_user.accounts.find_by_year(@year).try(:amount).try(:to_f).try(:round,2) %></span>
+    </div>
+<% end %>
+
 <div class="main-nav">
   <ul class="top-nav-items">
   	<% if request.fullpath == "/home" %>

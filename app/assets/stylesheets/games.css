@@ -76,6 +76,17 @@ div.scorebox-wrapper {
     margin-left:10px;
 }
 
+div.pickem-scorebox-wrapper {
+    width: 307px;
+    height: 185px;
+    margin: 0 18px 10px 0;
+    float: left;
+    background: url('shadow.png') no-repeat	bottom;
+    font: normal normal 11px/13px arial, sans-serif;
+    text-align: left;
+    margin-left:10px;
+}
+
 div.scorebox-header {
 	background: url('scorebox-bg.png') repeat-x 0 0;
 	height: 20px;
@@ -101,15 +112,34 @@ div.scorebox-header {
     border-top: 1px solid #D5D5D5;
 }
 
+.pickem-scoreboard-footer {
+    background: url('scorebox-bg.png') repeat-x 0 -260px;
+    height: 50px;
+    color: black;
+    line-height: 40px;
+    padding: 0 5px;
+    border-top: 1px solid #D5D5D5;
+    border-bottom: 1px solid #D5D5D5;
+    border-left: 1px solid #D5D5D5;
+    border-right: 1px solid #D5D5D5;
+}
+
 .team-line {
-	background: url('scorebox-bg.png') repeat-x 0 0;
+	//background: url('scorebox-bg.png') repeat-x 0 0;
 	height: 20px;
-	color: white;
 	line-height: 20px;
 	padding: 0 5px;
 	font-family: verdana, arial, helvetica, sans-serif;
 	font-size: 13px;
 	line-height: 18px;
+}
+
+.line-box{
+
+}
+
+.wager-input {
+    float:right;
 }
 
 div.scorebox {
@@ -469,4 +499,12 @@ a.selected:hover {
 
 .pickem-rules {
     color:white;
+}
+
+.account-info {
+    color:#ffffff;
+    text-align: right;
+    margin-right: 135px;
+    font-size: 15px;
+    text-weight:bold;
 }

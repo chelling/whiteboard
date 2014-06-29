@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :thirty_eights
   has_many :shares
   has_many :accounts
+  has_many :wagers, :through => :accounts
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
