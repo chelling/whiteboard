@@ -1,0 +1,33 @@
+<div data-role="collapsible" data-theme="b" data-content-theme="b">
+  <h4>Standings</h4>
+  <table data-role="table" class="ui-responsive table-stroke">
+    <thead>
+        <tr>
+          <th data-priority="1">User</th>
+          <th data-priority="2">Week</th>
+          <th data-priority="3">Overall</th>
+          <th data-priority="4">Balance</th>
+          <th data-priority="5">Pick(s) Submitted</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.map do |user| %>
+            <tr>
+              <% if user.name.nil? %>
+                  <td class="td-name"><%= user.email %></td>
+              <% else %>
+                  <td class="td-name"><%= user.name %></td>
+              <% end %>
+              <td class="td-record"><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
+              <td class="td-record"><%= user.pickem_picks_record_by_year(@year) %></td>
+              <td class="td-record"><%= user.pickem_picks_recommended_record_by_year(@year) %></td>
+              <% if user.pickem_picks_submitted?(@year, @week) %>
+                  <td class="td-record">&#x2713;</td>
+              <% else %>
+                  <td class="td-record"><%= "--" %></td>
+              <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+<div data-role="header" data-theme="b">
+  <h1><%= @mobile_header %></h1>
+  <div data-role="navbar" data-grid="c" data-theme="b">
+    <ul>
+      <li><%= link_to 'Home', "/home", :class => "#{request.fullpath.include?("/home") ? "ui-btn-active" : ""}" %></li>
+      <li><%= link_to 'Pigskin Pickem', "/pickem", :class => "#{request.fullpath.include?("/pickem") ? "ui-btn-active" : ""}" %></a></li>
+      <li><%= link_to 'Fooicide', "/fooicide", :class => "#{request.fullpath.include?("/fooicide") ? "ui-btn-active" : ""}" %></a></li>
+      <% if user_signed_in? %>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+          <li><%= link_to 'Sign In', "/users/sign_in" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

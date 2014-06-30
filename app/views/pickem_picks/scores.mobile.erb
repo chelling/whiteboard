@@ -1,0 +1,123 @@
+<script text="javascript">
+    window.onload = function() {
+        $("#select-native-1-button span").text("Year: <%= @year %>");
+        $('#select-native-1').val("<%= @year %>");
+    }
+
+    function change_pickem_url(value) {
+        window.location.href = "pickem?year=" + value;
+    }
+
+    function updateAccountAmount(textbox) {
+        var amount = 0.0;
+        var previousAmount = 0.0;
+        var currentAmount = 0.0
+
+        if(parseFloat(textbox.value) < 0) {
+            alert("Value must be positive.");
+            textbox.value = Math.abs(textbox.value);
+        }
+
+        if(textbox.oldvalue != "") {
+            previousAmount = parseFloat(textbox.oldvalue)
+        }
+        if(textbox.value != "") {
+            currentAmount = parseFloat(textbox.value)
+        }
+
+        amount = currentAmount - previousAmount;
+        if(!$.isNumeric(textbox.value)){
+            alert("Value must be a number.");
+            textbox.value = textbox.oldvalue;
+        }else if((parseFloat($('#account-amount').text()) - amount < 0)) {
+            alert("Current Holdings cannot go below $0.");
+            textbox.value = textbox.oldvalue;
+        } else {
+            $('#account-amount').text((parseFloat($('#account-amount').text()) - amount).toFixed(2));
+        }
+    }
+</script>
+
+<%= flash[:notice] %>
+<%= flash[:alert] %>
+
+<%= form_tag({controller: :pickem_picks, action: :update_picks}, method: "get", class: "nifty_form") do %>
+    <div class="doc-wrapper">
+      <%= render :partial => "pickem_picks/header" %>
+      <div class="pickem-standings">
+        <%= render :partial => "pickem_picks/standings" %>
+      </div>
+
+      <div class="ui-corner-all custom-corners">
+        <div class="ui-bar ui-bar-b">
+          <h3>Games this week</h3>
+        </div>
+        <div class="ui-body ui-body-b">
+          <% @games.try(:map) do |game| %>
+            <div class="ui-corner-all custom-corners">
+              <div class="ui-bar ui-bar-b">
+                <h4><%= game.date.strftime("%a, %b %d") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= game.date.strftime("%I:%M %p") %></h4>
+              </div>
+              <% @pick = current_user.pickem_pick_by_game(game) %>
+              <div class="ui-body ui-body-b">
+                <div class="ui-grid-solo">
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a">
+                            <img class="team-logo" src="<%= asset_path game.away_team.image %>">
+                        </div>
+                        <div class="ui-block-b">
+                            <h4><%= "#{game.away_team.name} #{game.away_team.record_formatted(@year)}" %></h4>
+                        </div>
+                        <div class="ui-block-c">
+                            <%= radio_button_tag("game_#{game.id}", game.away_team.id, \
+                                current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id, \
+                                {disabled: game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-solo">
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a">
+                            <img class="team-logo" src="<%= asset_path game.home_team.image %>">
+                        </div>
+                        <div class="ui-block-b">
+                            <h4><%= "#{game.home_team.name} #{game.home_team.record_formatted(@year)}" %></h4>
+                        </div>
+                        <div class="ui-block-c">
+                            <%= radio_button_tag("game_#{game.id}", game.home_team.id, \
+                                current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id, \
+                                {disabled: game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui-grid-solo">
+                  <div class="ui-corner-all custom-corners">
+                    <div class="ui-bar ui-bar-a">
+                        <h5 >Line: <%= game.line.nil? ? "Even" : game.line %></h5>
+                    </div>
+                    <div class="ui body ui-body-b">
+                      <div class="ui-grid-a">
+                          <div class="ui-block-a">
+                            <h5>Wager Amount: </h5>
+                          </div>
+                          <div class="ui-block-b">
+                              <%= text_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
+                                                onfocus: "this.oldvalue = this.value;", onchange: "updateAccountAmount(this);this.oldvalue = this.value", \
+                                                maxlength: 5, class: 'wager-input' %>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class='pickem-submit-button'>
+        <% if !@games.empty? %>
+            <%= submit_tag('Submit', :class => 'button btn btn-primary') %>
+        <% end %>
+    </div>
+<% end %>
