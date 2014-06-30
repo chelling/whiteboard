@@ -54,11 +54,11 @@
         </div>
         <div class="ui-body ui-body-b">
           <% @games.try(:map) do |game| %>
+            <% @pick = current_user.pickem_pick_by_game(game) %>
             <div class="ui-corner-all custom-corners">
               <div class="ui-bar ui-bar-b">
                 <h4><%= game.date.strftime("%a, %b %d") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= game.date.strftime("%I:%M %p") %></h4>
               </div>
-              <% @pick = current_user.pickem_pick_by_game(game) %>
               <div class="ui-body ui-body-b">
                 <div class="ui-grid-solo">
                     <div class="ui-grid-b">
@@ -68,10 +68,19 @@
                         <div class="ui-block-b">
                             <h4><%= "#{game.away_team.name} #{game.away_team.record_formatted(@year)}" %></h4>
                         </div>
+                        <% @game_picked = @pick.try(:team_id) == game.away_team.id %>
                         <div class="ui-block-c">
+                            <%= puts "\n\n#{@game_picked}\n#{game.in_progress_or_complete?}" %>
                             <%= radio_button_tag("game_#{game.id}", game.away_team.id, \
-                                current_user.pickem_pick_by_game(game).try(:team_id) == game.away_team.id, \
+                                @game_picked, \
                                 {disabled: game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                            <% if !game.home_score.nil? && @game_picked && @pick.win %>
+                                <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-notext"></a>
+                            <% elsif !game.home_score.nil? && @game_picked && !@pick.win %>
+                              <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"></a>
+                            <% elsif game.in_progress_or_complete? && @game_picked %>
+                                <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
+                            <% end %>
                         </div>
                     </div>
                 </div>
@@ -83,10 +92,19 @@
                         <div class="ui-block-b">
                             <h4><%= "#{game.home_team.name} #{game.home_team.record_formatted(@year)}" %></h4>
                         </div>
+                      <% @game_picked = @pick.try(:team_id) == game.home_team.id %>
                         <div class="ui-block-c">
+                            <%= puts "\n\n#{@game_picked}\n#{game.in_progress_or_complete?}" %>
                             <%= radio_button_tag("game_#{game.id}", game.home_team.id, \
-                                current_user.pickem_pick_by_game(game).try(:team_id) == game.home_team.id, \
+                                @game_picked, \
                                 {disabled: game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                            <% if !game.home_score.nil? && @game_picked && @pick.win %>
+                              <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-check ui-btn-icon-notext"></a>
+                            <% elsif !game.home_score.nil? && @game_picked && !@pick.win %>
+                              <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"></a>
+                            <% elsif game.in_progress_or_complete? && @game_picked %>
+                              <a href="#" style="margin: 16px 0 0 7px" class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
+                            <% end %>
                         </div>
                     </div>
                 </div>
