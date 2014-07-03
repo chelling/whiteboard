@@ -1,0 +1,25 @@
+<div class="">
+    <div class="">
+        <div class="ui-corner-all custom-corner">
+          <div class="ui-bar ui-bar-b">
+            Week
+          </div>
+            <div class="ui-body ui-body-b">
+                <div class="ui-field-contain">
+                    <select name="select-native-1" id="select-native-1" data-theme="b" onchange="change_pickem_url(this.value)">
+                        <option value="2014">Year: 2014</option>
+                        <option value="2013">Year: 2013</option>
+                        <option value="2012">Year: 2012</option>
+                        <option value="2011">Year: 2011</option>
+                    </select>
+                </div>
+                <%= render :partial => "fooicide_picks/weeks" %>
+                <div class="teams">
+                  <% if @bye_teams %>
+                      <h4 data-theme="b"><%= "Bye: #{@bye_teams}" %></h4>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -126,6 +126,13 @@ class PickemPicksController < ApplicationController
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
+
+    # create account if it doesn't exist
+    if current_user.accounts.find_by_year(@year).nil?
+      authorize! :create, Account
+      Account.create(:user_id => current_user.id, :year => @year, :amount => 200)
+    end
+
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
     authorize! :read, @pickem_picks

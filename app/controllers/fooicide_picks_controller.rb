@@ -113,6 +113,7 @@ class FooicidePicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
+    @mobile_header = "Fooicide"
     @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]

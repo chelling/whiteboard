@@ -22,10 +22,15 @@ class Ability
        can [:update, :destroy], ThirtyEight do |te|
          te.try(:user) == user
        end
+       # account
+       can :create, Account
+       can [:update, :destroy], Account do |account|
+         account.try(:user) == user
+       end
        # wager
        can :create, Wager
        can [:update, :destroy], Wager do |wager|
-         wager.try(:user) == user
+         wager.try(:account).try(:user) == user
        end
     end
   end

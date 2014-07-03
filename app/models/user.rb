@@ -164,12 +164,10 @@ class User < ActiveRecord::Base
 
   def is_team_available?(year, week, team_id)
     pick = fooicide_picks.find_by_year_and_team_id(year, team_id)
-    if pick.nil? || pick.week.to_i == week.to_i
-      if pick_locked?(year, week)
-        return false
-      else
+    current_pick = fooicide_picks.find_by_year_and_week(year, week)
+
+    if (pick.nil? || pick.week.to_i == week.to_i) && (current_pick.nil? || !current_pick.pick_locked?)
         return true
-      end
     else
       return false
     end

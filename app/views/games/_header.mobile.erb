@@ -1,0 +1,32 @@
+<div class="mod-container mod-no-header-footer mod-page-header">
+	<div class="mod-content">
+		<div class="dates">
+			<%= Time.now.in_time_zone('Eastern Time (US & Canada)').strftime("%B %d, %Y") %>
+		</div>
+		<div class="select-dates">
+			<div>
+				<div class="select-year">Year:</div>
+                <% if @year == "2013" %>
+                  <%= select_tag("year", "<option selected=\"selected\">2013</option><option>2012</option><option>2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
+                <% elsif @year == "2012" %>
+                  <%= select_tag("year", "<option>2013</option><option selected=\"selected\">2012</option><option>2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
+                <% elsif @year == "2011" %>
+                  <%= select_tag("year", "<option>2013</option><option>2012</option><option selected=\"selected\">2011</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
+                <% else %>
+                  <%= select_tag("year", "<option selected=\"selected\">2013</option><option>2012</option>".html_safe, :onchange => "change_pickem_url(this.value)") %>
+                <% end %>
+			</div>
+			<div class="week">
+				<div class="week-caption">Week:</div>
+				<%= render :partial => "games/weeks" %>
+			</div>
+			<div class="bye-week">
+				<div class="teams">
+				    <% if @bye_teams %>
+                        <%= "Bye: #{@bye_teams}" %>
+                    <% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -168,7 +168,7 @@
                         </span>
                         $<%= text_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
                                             onfocus: "this.oldvalue = this.value;", onchange: "updateAccountAmount(this);this.oldvalue = this.value", \
-                                            maxlength: 5, class: 'wager-input' %>
+                                            maxlength: 5, class: 'wager-input', disabled: game.in_progress_or_complete? %>
                       </div>
                     </div>
                   </div>

@@ -4,24 +4,23 @@
     <thead>
         <tr>
           <th data-priority="1">User</th>
-          <th style="width:40%">Week</th>
-          <th data-priority="2">Overall</th>
-          <th data-priority="3">Balance</th>
-          <th data-priority="4">Pick(s) Submitted</th>
+          <th style="width:40%">Record</th>
+          <th data-priority="2">Pick</th>
+          <th data-priority="3">Pick(s) Submitted</th>
         </tr>
     </thead>
     <tbody>
         <% @users.map do |user| %>
+            <% pick = user.fooicide_pick_after_game_start(@year, @week) %>
             <tr class="<%= user.id == current_user.id ? "highlighted" : "" %>">
               <% if user.name.nil? %>
                   <td  class="<%= user.id == current_user.id ? "title highlighted" : "title" %>"><%= user.email %></td>
               <% else %>
                   <td  class="<%= user.id == current_user.id ? "title highlighted" : "title" %>"><%= user.name %></td>
               <% end %>
-              <td><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
-              <td><%= user.pickem_picks_record_by_year(@year) %></td>
-              <td><%= user.pickem_picks_recommended_record_by_year(@year) %></td>
-              <% if user.pickem_picks_submitted?(@year, @week) %>
+              <td><%= user.fooicide_picks_record_by_year(@year) %></td>
+              <td><%= pick.try(:team).try(:name) %></td>
+              <% if user.fooicide_picks_submitted?(@year, @week) %>
                   <td>&#x2713;</td>
               <% else %>
                   <td><%= "--" %></td>
