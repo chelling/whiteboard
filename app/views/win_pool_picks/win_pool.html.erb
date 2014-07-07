@@ -1,0 +1,43 @@
+<div class="win-pool-wrapper">
+    <div class="win-pool-columns">
+      <div class="win-pool-standings-container">
+          <div class="win-pool-standings-wrapper">
+            <% standings = WinPoolLeague.first.standings(2014) %>
+            <h2 class="win-pool-standings-h2">Standings</h2>
+            <table>
+              <tr>
+                <th class="standings-user-header">User</th>
+                <th class="standings-wins-header">Wins</th>
+              </tr>
+              <% standings.each_with_index do |(key, value), index| %>
+                  <tr>
+                    <td class="name"><%= "#{index+1}) #{value.user.name}" %></td>
+                    <td class="name"><%= key %></td>
+                  </tr>
+                  <tr>
+                    <td class="team">&#8594;<%= value.team_one.name %></td>
+                    <td class="team"><%= value.team_one.wins_by_year(2014) %></td>
+                  </tr>
+                  <tr>
+                    <td class="team">&#8594;<%= value.team_two.name %></td>
+                    <td class="team"><%= value.team_two.wins_by_year(2014) %></td>
+                  </tr>
+                  <tr>
+                    <td class="team">&#8594;<%= value.team_three.name %></td>
+                    <td class="team"><%= value.team_three.wins_by_year(2014) %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+      </div>
+      <div class="win-pool-draft">
+        <% draft_picks = WinPoolLeague.first.draft_recap(2014) %>
+        <h2 class="win-pool-draft-h2">Draft Recap</h2>
+        <ul class="win-pool-draft-ul">
+          <% draft_picks.each do |pick| %>
+            <li class="win-pool-draft-li"><%= pick %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+</div>

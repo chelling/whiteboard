@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  win_pool_league_id: 1
+  starting_position: 1
+  year: 1
+  team_one_id: 1
+  team_two_id: 1
+  team_three_id: 1
+
+two:
+  user_id: 1
+  win_pool_league_id: 1
+  starting_position: 1
+  year: 1
+  team_one_id: 1
+  team_two_id: 1
+  team_three_id: 1

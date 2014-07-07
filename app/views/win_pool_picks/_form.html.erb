@@ -1,0 +1,45 @@
+<%= form_for(@win_pool_pick) do |f| %>
+  <% if @win_pool_pick.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@win_pool_pick.errors.count, "error") %> prohibited this win_pool_pick from being saved:</h2>
+
+      <ul>
+      <% @win_pool_pick.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :win_pool_league_id %><br />
+    <%= f.number_field :win_pool_league_id %>
+  </div>
+  <div class="field">
+    <%= f.label :starting_position %><br />
+    <%= f.number_field :starting_position %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :team_one_id %><br />
+    <%= f.number_field :team_one_id %>
+  </div>
+  <div class="field">
+    <%= f.label :team_two_id %><br />
+    <%= f.number_field :team_two_id %>
+  </div>
+  <div class="field">
+    <%= f.label :team_three_id %><br />
+    <%= f.number_field :team_three_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

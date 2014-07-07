@@ -20,7 +20,7 @@
               <% end %>
               <td><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
               <td><%= user.pickem_picks_record_by_year(@year) %></td>
-              <td><%= user.pickem_picks_recommended_record_by_year(@year) %></td>
+              <td><%= user.find_balance_by_year(@year) %></td>
               <% if user.pickem_picks_submitted?(@year, @week) %>
                   <td>&#x2713;</td>
               <% else %>

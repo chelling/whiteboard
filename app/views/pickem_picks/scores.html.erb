@@ -1,6 +1,6 @@
 <script text="javascript">
     window.onload = function() {
-        document.getElementById('picks-wrapper').style.height = "<%= (220 + ((@games.size - 1) / 3 * 194)).to_s + "px"  %>";
+        document.getElementById('picks-wrapper').style.height = "<%= (220 + ((@games.size - 1) / 3 * 196)).to_s + "px"  %>";
         $('#year').val(<%= @year %>);
     }
 
@@ -166,7 +166,7 @@
                               <%= "Line: Even" %>
                           <% end %>
                         </span>
-                        $<%= text_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
+                        $<%= number_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
                                             onfocus: "this.oldvalue = this.value;", onchange: "updateAccountAmount(this);this.oldvalue = this.value", \
                                             maxlength: 5, class: 'wager-input', disabled: game.in_progress_or_complete? %>
                       </div>

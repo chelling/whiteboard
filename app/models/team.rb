@@ -4,10 +4,17 @@ class Team < ActiveRecord::Base
   has_many :home_games, :foreign_key => "home_team_id", :class_name => "Game", :primary_key => "id"
   has_many :away_games, :foreign_key => "away_team_id", :class_name => "Game", :primary_key => "id"
   has_one :stadium
+  has_many :win_pool_first_teams, :foreign_key => "team_one_id", :class_name => "WinPoolPick"
+  has_many :win_pool_second_teams, :foreign_key => "team_two_id", :class_name => "WinPoolPick"
+  has_many :win_pool_third_teams, :foreign_key => "team_three_id", :class_name => "WinPoolPick"
   
   attr_accessible :conference, :division, :image, :location, :name
   
   # methods
+  def win_pools
+    win_pool_first_teams + win_pool_second_teams + win_pool_third_teams
+  end
+
   def update_records_by_year(year)
     wins = 0
     losses = 0
@@ -42,6 +49,11 @@ class Team < ActiveRecord::Base
   def record_formatted(year)
     record = records.find_by_year(year)
     return "(#{record.wins}-#{record.losses})" unless record.nil?
+  end
+
+  def wins_by_year(year)
+    wins = records.find_by_year(year).try(:wins)
+    wins.nil? ? 0 : wins
   end
 
   def self.team_id_from_string(t)

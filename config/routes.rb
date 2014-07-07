@@ -1,7 +1,4 @@
 Whiteboard::Application.routes.draw do
-  resources :stadiums
-
-
   root :to => "home#index"
   
   match "/scores" => "games#scores"
@@ -11,6 +8,8 @@ Whiteboard::Application.routes.draw do
   match "/fooicide" => "fooicide_picks#scores"
   match "/fooicide/rules" => "fooicide_picks#rules"
   match "/fooicide/update_picks" => "fooicide_picks#update_picks"
+  match "/winpool" => "win_pool_picks#win_pool"
+  match "/winpool/:id" => "win_pool_picks#pick_team"
   # match "/thirtyeight" => "thirty_eights#scores"
   # match "/thirtyeight" => "thirty_eights#rules"
 
@@ -21,6 +20,8 @@ Whiteboard::Application.routes.draw do
   resources :pickem_picks
   resources :teams
   resources :games
+  resources :win_pool_picks
+  resources :stadiums
 
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
 

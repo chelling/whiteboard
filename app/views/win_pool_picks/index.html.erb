@@ -1,0 +1,35 @@
+<h1>Listing win_pool_picks</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Win pool league</th>
+    <th>Starting position</th>
+    <th>Year</th>
+    <th>Team one</th>
+    <th>Team two</th>
+    <th>Team three</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @win_pool_picks.each do |win_pool_pick| %>
+  <tr>
+    <td><%= win_pool_pick.user_id %></td>
+    <td><%= win_pool_pick.win_pool_league_id %></td>
+    <td><%= win_pool_pick.starting_position %></td>
+    <td><%= win_pool_pick.year %></td>
+    <td><%= win_pool_pick.team_one_id %></td>
+    <td><%= win_pool_pick.team_two_id %></td>
+    <td><%= win_pool_pick.team_three_id %></td>
+    <td><%= link_to 'Show', win_pool_pick %></td>
+    <td><%= link_to 'Edit', edit_win_pool_pick_path(win_pool_pick) %></td>
+    <td><%= link_to 'Destroy', win_pool_pick, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Win pool pick', new_win_pool_pick_path %>

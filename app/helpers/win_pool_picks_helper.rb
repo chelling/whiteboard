@@ -1,0 +1,2 @@
+module WinPoolPicksHelper
+end

@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
     <div class="account-info">
-      Current Holdings = $
-      <span id="account-amount"><%= current_user.accounts.find_by_year(@year).try(:amount).try(:to_f).try(:round,2) %></span>
+      Current Holdings =
+      <span id="account-amount"><%= current_user.find_balance_by_year(@year)%></span>
     </div>
 <% end %>
 
@@ -25,13 +25,16 @@
 		<li class="b-nav-group"><a class="nav-list" href="/fooicide">Fooicide</a></li>
 	<% end %>
 
-    <% if request.fullpath == "/stats" %>
-        <li class="b-nav-group"><a class="nav-list" href="/stats">Research</a></li>
+    <% if request.fullpath == "/winpool" %>
+        <li class="b-nav-group"><a class="nav-list" href="/winpool">Win Pool</a></li>
     <% else %>
-        <li class="b-nav-group"><a class="nav-list" href="/stats">Research</a></li>
+        <li class="b-nav-group"><a class="nav-list" href="/winpool">Win Pool</a></li>
     <% end %>
 
-    <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in", class: "nav-list" %></li>
-    <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: "nav-list" %></li>
+    <% if user_signed_in? %>
+        <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: "nav-list" %></li>
+    <% else %>
+        <li class="b-nav-group"><%= link_to 'Sign In', "/users/sign_in", class: "nav-list" %></li>
+    <% end %>
   </ul>
 </div>

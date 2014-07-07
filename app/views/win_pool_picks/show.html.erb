@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @win_pool_pick.user_id %>
+</p>
+
+<p>
+  <b>Win pool league:</b>
+  <%= @win_pool_pick.win_pool_league_id %>
+</p>
+
+<p>
+  <b>Starting position:</b>
+  <%= @win_pool_pick.starting_position %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @win_pool_pick.year %>
+</p>
+
+<p>
+  <b>Team one:</b>
+  <%= @win_pool_pick.team_one_id %>
+</p>
+
+<p>
+  <b>Team two:</b>
+  <%= @win_pool_pick.team_two_id %>
+</p>
+
+<p>
+  <b>Team three:</b>
+  <%= @win_pool_pick.team_three_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_win_pool_pick_path(@win_pool_pick) %> |
+<%= link_to 'Back', win_pool_picks_path %>

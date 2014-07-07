@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :shares
   has_many :accounts
   has_many :wagers, :through => :accounts
+  has_many :win_pool_picks
+  has_many :win_pool_leagues, :through => :win_pool_picks
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -160,6 +162,13 @@ class User < ActiveRecord::Base
     end
 
     return "(#{correct}-#{incorrect})"
+  end
+
+  # other methods
+
+  def find_balance_by_year(year)
+    amount = accounts.find_by_year(year).try(:amount)
+    amount.nil? ? "$0" : "$#{amount.round(2)}"
   end
 
   def is_team_available?(year, week, team_id)

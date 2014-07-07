@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140628235939) do
+ActiveRecord::Schema.define(:version => 20140706191709) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -158,5 +158,28 @@ ActiveRecord::Schema.define(:version => 20140628235939) do
   end
 
   add_index "wagers", ["account_id", "pickem_pick_id"], :name => "index_wagers_on_account_id_and_pickem_pick_id"
+
+  create_table "win_pool_leagues", :force => true do |t|
+    t.string   "name"
+    t.integer  "year"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "win_pool_leagues", ["year"], :name => "index_win_pool_leagues_on_year"
+
+  create_table "win_pool_picks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "win_pool_league_id"
+    t.integer  "starting_position"
+    t.integer  "year"
+    t.integer  "team_one_id"
+    t.integer  "team_two_id"
+    t.integer  "team_three_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "win_pool_picks", ["win_pool_league_id", "user_id", "year"], :name => "index_win_pool_picks_on_win_pool_league_id_and_user_id_and_year"
 
 end
