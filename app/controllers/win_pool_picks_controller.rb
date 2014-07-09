@@ -110,8 +110,18 @@ class WinPoolPicksController < ApplicationController
   end
 
   def win_pool
+    @mobile_header = "Win Pool"
     if !user_signed_in?
       return redirect_to "/users/sign_in"
+    end
+
+    @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(current_user.id, Date.today.year, params[:id])
+    @league = WinPoolLeague.find(params[:id])
+    if !@win_pool_pick.nil?
+      authorize! :update, @win_pool_pick
+      @teams = @league.teams_remaining
+      @current_pick = @league.get_current_pick(Date.today.year)
+      @is_my_pick = @win_pool_pick.is_current_user_turn?
     end
   end
 
@@ -119,7 +129,27 @@ class WinPoolPicksController < ApplicationController
     if !user_signed_in?
       return redirect_to "/users/sign_in"
     end
-    @win_pool_pick = WinPoolLeague.find(params[:id]).win_pool_picks.find_by_user_id(current_user.id)
-    authorize! :update, @win_pool_pick
+
+    @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(current_user.id, Date.today.year, params[:id])
+    @league = WinPoolLeague.find(params[:id])
+    if !@win_pool_pick.nil?
+      authorize! :update, @win_pool_pick
+      team = Team.find(params[:teams])
+      @is_my_pick = @win_pool_pick.is_current_user_turn?
+
+      if @is_my_pick
+        if @win_pool_pick.team_one.nil?
+          @win_pool_pick.team_one = team
+        elsif @win_pool_pick.team_two.nil?
+          @win_pool_pick.team_two = team
+        elsif @win_pool_pick.team_three.nil?
+          @win_pool_pick.team_three = team
+        end
+
+        @win_pool_pick.save
+      end
+    end
+
+    redirect_to "/winpool/#{params[:id]}"
   end
 end

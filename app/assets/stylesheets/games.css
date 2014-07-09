@@ -511,11 +511,12 @@ a.selected:hover {
 
 .win-pool-wrapper {
     width: 1000px;
-    height: 700px;
+    height: 1000px;
     background-color:white;
     color: black;
 }
 
+.win-pool-pick-team-container,
 .win-pool-standings-container {
     width:50%;
     float:left;
@@ -526,6 +527,7 @@ a.selected:hover {
     float:right;
 }
 
+.win-pool-pick-team-h2,
 .win-pool-standings-h2,
 .win-pool-draft-h2 {
     text-align: center;
@@ -586,4 +588,23 @@ td.name {
 
 td.team {
    background-color: rgb(227, 227, 227);
+}
+
+.win-pool-pick-team-pick {
+    text-align:center;
+}
+
+.win-pool-pick-team-pick select {
+    width: 240px;
+    height: 34px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.win-pool-select {
+    margin: 0 0 10px 0;
+}
+.win-pool-button {
+    display:block;
+    margin: 0 auto;
 }

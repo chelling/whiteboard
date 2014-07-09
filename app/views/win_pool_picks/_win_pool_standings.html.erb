@@ -1,0 +1,30 @@
+<div class="win-pool-standings-container">
+  <div class="win-pool-standings-wrapper">
+    <% standings = WinPoolLeague.first.standings(2014) %>
+    <h2 class="win-pool-standings-h2">Standings</h2>
+    <table>
+      <tr>
+        <th class="standings-user-header">User</th>
+        <th class="standings-wins-header">Wins</th>
+      </tr>
+      <% standings.each_with_index do |(key, value), index| %>
+          <tr>
+            <td class="name"><%= "#{index+1}) #{key.user.name}" %></td>
+            <td class="name"><%= value %></td>
+          </tr>
+          <tr>
+            <td class="team">&#8594;<%= key.team_one.name %></td>
+            <td class="team"><%= key.team_one.wins_by_year(Date.today.year) %></td>
+          </tr>
+          <tr>
+            <td class="team">&#8594;<%= key.team_two.name %></td>
+            <td class="team"><%= key.team_two.wins_by_year(Date.today.year) %></td>
+          </tr>
+          <tr>
+            <td class="team">&#8594;<%= key.team_three.name %></td>
+            <td class="team"><%= key.team_three.wins_by_year(Date.today.year) %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

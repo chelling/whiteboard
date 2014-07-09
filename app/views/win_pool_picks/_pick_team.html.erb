@@ -1,0 +1,14 @@
+<div class="win-pool-pick-team-container">
+  <h2 class="win-pool-pick-team-h2">Pick</h2>
+  <div class="win-pool-pick-team-pick">
+      <% if @is_my_pick %>
+        <h3>It is your turn to pick!</h3>
+      <% else %>
+        <h3>It is not your turn to pick.</h3>
+      <% end %>
+      <%= form_tag({controller: :win_pool_picks, action: :pick_team}, method: "get", class: "nifty_form") do %>
+        <%= select_tag "teams", options_from_collection_for_select(@teams, "id", "name"), :class => "win-pool-select" %>
+        <%= submit_tag "Submit", data: { confirm: "Are you sure?" }, :disabled => !@is_my_pick, :class => "win-pool-button" %>
+      <% end %>
+  </div>
+</div>

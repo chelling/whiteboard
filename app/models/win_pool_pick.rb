@@ -18,13 +18,27 @@ class WinPoolPick < ActiveRecord::Base
     !team_one.nil? && !team_two.nil? && !team_three.nil? ? true : false
   end
 
+  def is_current_user_turn?
+    if self.teams_full?
+      return false
+    end
+
+    current_pick = WinPoolLeague.find(self.win_pool_league_id).get_current_pick(self.year)
+
+    if current_pick == self.next_pick
+      return true
+    else
+      return false
+    end
+  end
+
   def next_pick
     if team_one.nil?
       return starting_position
     elsif team_two.nil?
-      return TEAM_TWO_PICKS[starting_position]
+      return TEAM_TWO_PICKS[starting_position-1]
     elsif team_three.nil?
-      return TEAM_THREE_PICKS[starting_position]
+      return TEAM_THREE_PICKS[starting_position-1]
     end
   end
 end

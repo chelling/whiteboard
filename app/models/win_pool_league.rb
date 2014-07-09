@@ -10,15 +10,15 @@ class WinPoolLeague < ActiveRecord::Base
 
     self.win_pool_picks.order('starting_position DESC').each do |pick|
       draft_recap_string(draft_picks, pick.starting_position, pick.team_one, pick.user.name, year)
-      draft_recap_string(draft_picks, TEAM_TWO_PICKS[pick.starting_position], pick.team_two, pick.user.name, year)
-      draft_recap_string(draft_picks, TEAM_THREE_PICKS[pick.starting_position], pick.team_three, pick.user.name, year)
+      draft_recap_string(draft_picks, TEAM_TWO_PICKS[pick.starting_position-1], pick.team_two, pick.user.name, year)
+      draft_recap_string(draft_picks, TEAM_THREE_PICKS[pick.starting_position-1], pick.team_three, pick.user.name, year)
     end
 
     return draft_picks
   end
 
   def draft_recap_string(draft_picks, pick_number, team, user_name, year)
-    draft_picks[pick_number - 1] = "#{pick_number}) #{team.name} #{team.record_formatted(year)} (#{user_name})"
+    draft_picks[pick_number - 1] = "#{pick_number}) #{team.try(:name)} #{team.try(:record_formatted, year)} (#{user_name})"
   end
 
   def standings(year)
@@ -26,39 +26,43 @@ class WinPoolLeague < ActiveRecord::Base
     standings_list = Hash.new
     self.win_pool_picks.each do |pick|
       wins = pick.team_one.wins_by_year(year) + pick.team_two.wins_by_year(year) + pick.team_three.wins_by_year(year)
-      record_list[pick.starting_position] = wins
+      record_list[pick.id] = wins
     end
 
     sorted_records = record_list.sort_by &:last
+
     sorted_records.each do |key, value|
-      pick = self.win_pool_picks.find_by_year_and_starting_position(year, key)
-      standings_list[value] = pick
+      pick = self.win_pool_picks.find(key)
+      standings_list[pick] = value
     end
 
     return standings_list
   end
 
   def get_current_pick(year)
-    current_pick = -1
-    draft_recap(year).each_with_index do |pick, index|
-      pick.nil? ? current_pick = index : ""
+    current_pick = 33
+    self.win_pool_picks.order('starting_position DESC').each do |pick|
+      if pick.team_one.nil? && current_pick > pick.starting_position
+        current_pick = pick.starting_position
+      elsif pick.team_two.nil? && current_pick > TEAM_TWO_PICKS[pick.starting_position-1]
+        current_pick = TEAM_TWO_PICKS[pick.starting_position-1]
+      elsif pick.team_three.nil? && current_pick > TEAM_THREE_PICKS[pick.starting_position-1]
+        current_pick = TEAM_THREE_PICKS[pick.starting_position-1]
+      end
     end
 
     return current_pick
   end
 
-  def is_current_user_turn?(year)
-    pick = self.win_pool_picks.find_by_user_id(current_user.id)
-    if pick.teams_full?
-      return false
+  def teams_remaining
+    teams = Team.all
+
+    self.win_pool_picks.each do |pick|
+      teams.delete(pick.team_one) unless pick.team_one.nil?
+      teams.delete(pick.team_two) unless pick.team_two.nil?
+      teams.delete(pick.team_three) unless pick.team_three.nil?
     end
 
-    current_pick = get_current_pick(year)
-
-    if current_pick == pick.next_pick
-      return true
-    else
-      return false
-    end
+    return teams
   end
 end
