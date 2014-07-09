@@ -117,9 +117,9 @@ class WinPoolPicksController < ApplicationController
 
     @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(current_user.id, Date.today.year, params[:id])
     @league = WinPoolLeague.find(params[:id])
+    @teams = @league.teams_remaining
     if !@win_pool_pick.nil?
       authorize! :update, @win_pool_pick
-      @teams = @league.teams_remaining
       @current_pick = @league.get_current_pick(Date.today.year)
       @is_my_pick = @win_pool_pick.is_current_user_turn?
     end
