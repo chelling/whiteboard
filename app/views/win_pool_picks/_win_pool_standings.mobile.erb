@@ -1,0 +1,32 @@
+<div class="ui-corner-all custom-corners">
+  <div class="ui bar ui-bar-b">
+    <% standings = WinPoolLeague.first.standings(2014) %>
+    <h2>Standings</h2>
+  </div>
+  <div class="ui-body ui-body-b">
+    <table data-role="table" id="standings-table-custom" data-mode="reflow" class="ui-responsive standings-table">
+      <thead>
+        <tr>
+          <th data-priority="1">Rank</th>
+          <th data-priority="persist">User</th>
+          <th data-priority="2">Total Wins</th>
+          <th data-priority="3">First Team</th>
+          <th data-priority="4">Second Team</th>
+          <th data-priority="5">Third Team</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% standings.each_with_index do |(key, value), index| %>
+          <tr class="<%= key.user.id == current_user.id ? "highlighted" : "" %>">
+            <td class="<%= key.user.id == current_user.id ? "title highlighted" : "title" %>"><%= index + 1 %></td>
+            <td><%= key.user.name %></td>
+            <td><%= value %></th>
+            <td><%= "#{key.team_one.name} - #{key.team_one.wins_by_year(Date.today.year)}" %></td>
+            <td><%= "#{key.team_two.name} - #{key.team_two.wins_by_year(Date.today.year)}" %></td>
+            <td><%= "#{key.team_three.name} - #{key.team_three.wins_by_year(Date.today.year)}" %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

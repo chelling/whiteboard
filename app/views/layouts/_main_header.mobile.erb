@@ -1,15 +1,16 @@
 <div data-role="header" data-theme="b">
   <h1><%= @mobile_header %></h1>
+  <% if user_signed_in? %>
+      <%= link_to 'Sign Out', destroy_user_session_path, {:method => :delete, :"data-ajax" => "false", :class => "ui-btn-right", :'data-icon' => "gear"} %>
+  <% else %>
+      <%= link_to 'Sign In', "/users/sign_in", {:class => "ui-btn-right", :data[icon] => "gear"} %>
+  <% end %>
   <div data-role="navbar" data-grid="c" data-theme="b">
     <ul>
       <li><%= link_to 'Home', "/home", :class => "#{request.fullpath.include?("/home") ? "ui-btn-active" : ""}" %></li>
       <li><%= link_to 'Pickem', "/pickem", :class => "#{request.fullpath.include?("/pickem") ? "ui-btn-active" : ""}" %></a></li>
       <li><%= link_to 'Fooicide', "/fooicide", :class => "#{request.fullpath.include?("/fooicide") ? "ui-btn-active" : ""}" %></a></li>
-      <% if user_signed_in? %>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, {:method => :delete, :"data-ajax" => "false"} %></li>
-      <% else %>
-          <li><%= link_to 'Sign In', "/users/sign_in" %></li>
-      <% end %>
+      <li><%= link_to 'Win Pool', "/winpool/1", :class => "#{request.fullpath.include?("/winpool") ? "ui-btn-active" : ""}" %></a></li>
     </ul>
   </div>
 </div>

@@ -1,0 +1,10 @@
+<div>
+    <div>
+      <% if @teams.size > 0 %>
+          <%= render :partial => "win_pool_picks/pick_team" %>
+      <% else %>
+          <%= render :partial => "win_pool_picks/win_pool_standings" %>
+      <% end %>
+      <%= render :partial => "win_pool_picks/win_pool_draft" %>
+    </div>
+</div>
