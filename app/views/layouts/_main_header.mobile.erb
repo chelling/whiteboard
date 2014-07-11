@@ -1,9 +1,16 @@
 <div data-role="header" data-theme="b">
   <h1><%= @mobile_header %></h1>
   <% if user_signed_in? %>
-      <%= link_to 'Sign Out', destroy_user_session_path, {:method => :delete, :"data-ajax" => "false", :class => "ui-btn-right", :'data-icon' => "gear"} %>
+      <a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-right ui-btn-icon-right ui-btn-b">Actions...</a>
+      <div data-role="popup" id="popupMenu" data-theme="b">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;">
+          <li data-role="list-divider">Choose an action</li>
+          <li><a href="/users/edit">Edit User</a></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, {:method => :delete, :"data-ajax" => "false", :'data-icon' => "gear"} %></li>
+        </ul>
+      </div>
   <% else %>
-      <%= link_to 'Sign In', "/users/sign_in", {:class => "ui-btn-right", :data[icon] => "gear"} %>
+      <%= link_to 'Sign In', "/users/sign_in", {:class => "ui-btn-right", :'data-icon' => "gear"} %>
   <% end %>
   <div data-role="navbar" data-grid="c" data-theme="b">
     <ul>
