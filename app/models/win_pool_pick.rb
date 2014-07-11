@@ -6,9 +6,9 @@ class WinPoolPick < ActiveRecord::Base
   belongs_to :team_three, :class_name => "Team", :foreign_key => "team_three_id"
 
   validates :user_id, :uniqueness => {:scope => :win_pool_league_id}
-  validates :team_one_id, :uniqueness => {:scope => :win_pool_league_id, unless: lambda { |asset| !asset.team_one_id.nil? }}
-  validates :team_two_id, :uniqueness => {:scope => :win_pool_league_id, unless: lambda { |asset| !asset.team_one_id.nil? }}
-  validates :team_three_id, :uniqueness => {:scope => :win_pool_league_id, unless: lambda { |asset| !asset.team_one_id.nil? }}
+  validates :team_one_id, :uniqueness => {scope: :win_pool_league_id, unless: lambda { |asset| !asset.team_one_id.nil? }}
+  validates :team_two_id, :uniqueness => {scope: :win_pool_league_id, unless: lambda { |asset| !asset.team_two_id.nil? }}
+  validates :team_three_id, :uniqueness => {scope: :win_pool_league_id, unless: lambda { |asset| !asset.team_three_id.nil? }}
   validates :starting_position, :uniqueness => {:scope => :win_pool_league_id}
 
   attr_accessible :starting_position, :team_one_id, :team_three_id, :team_two_id, :user_id, :win_pool_league_id, :year
