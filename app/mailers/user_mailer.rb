@@ -11,12 +11,8 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def welcome_back
-    #User.all.map do |user|
-    #  mail(:to => user.email, :subject => 'FooNation is back!')
-    #end
-      user = User.find(1)
-      mail(:to => user.email, :subject => 'FooNation is back!')
+  def welcome_back(user)
+    mail(:to => user.email, :subject => 'FooNation is back!')
   end
 
   def weekly_reminder
