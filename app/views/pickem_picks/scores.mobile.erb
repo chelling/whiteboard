@@ -2,6 +2,9 @@
     window.onload = function() {
         $("#select-native-1-button span").text("Year: <%= @year %>");
         $('#select-native-1').val("<%= @year %>");
+
+        var divs = $("div");
+        $('.pickem-submit-button').find('div').addClass("ui-btn-b");
     }
 
     function change_pickem_url(value) {
@@ -29,11 +32,11 @@
         if(!$.isNumeric(textbox.value)){
             alert("Value must be a number.");
             textbox.value = textbox.oldvalue;
-        }else if((parseFloat($('#account-amount').text()) - amount < 0)) {
+        }else if((parseFloat($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount < 0)) {
             alert("Current Holdings cannot go below $0.");
             textbox.value = textbox.oldvalue;
         } else {
-            $('#account-amount').text((parseFloat($('#account-amount').text()) - amount).toFixed(2));
+            $('#account-amount').text('$' + (parseFloat($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount).toFixed(2));
         }
     }
 </script>
@@ -47,7 +50,7 @@
       <div class="pickem-standings">
         <%= render :partial => "pickem_picks/standings" %>
       </div>
-
+      <span id="account-amount" style="display:none"><%= current_user.find_balance_by_year(@year)%></span>
       <div class="ui-corner-all custom-corners">
         <div class="ui-bar ui-bar-b">
           <h3>Games this week</h3>
@@ -106,7 +109,7 @@
                 </div>
                 <div class="ui-grid-solo">
                   <div class="ui-corner-all custom-corners">
-                    <div class="ui-bar ui-bar-a">
+                    <div class="ui-bar ui-bar-b">
                         <h5 >Line: <%= game.line.nil? ? "Even" : game.line %></h5>
                     </div>
                     <div class="ui body ui-body-b">
@@ -117,7 +120,8 @@
                           <div class="ui-block-b">
                               <%= number_field_tag "wager_#{game.id}", Wager.find_amount_by_user_id_and_game_id(current_user.id, game.id), \
                                                 onfocus: "this.oldvalue = this.value;", onchange: "updateAccountAmount(this);this.oldvalue = this.value", \
-                                                maxlength: 5, class: 'wager-input', disabled: game.in_progress_or_complete? %>
+                                                maxlength: 5, class: 'wager-input', disabled: game.in_progress_or_complete?, \
+                                                style: "border: 2px solid #dadada; border-radius: 7px;" %>
                           </div>
                       </div>
                     </div>
@@ -131,7 +135,7 @@
     </div>
     <div class='pickem-submit-button'>
         <% if !@games.empty? %>
-            <%= submit_tag('Submit', :class => 'button btn btn-primary') %>
+            <%= submit_tag('Submit', :class => 'button btn btn-primary btn-b') %>
         <% end %>
     </div>
 <% end %>

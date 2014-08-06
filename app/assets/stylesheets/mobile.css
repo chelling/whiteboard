@@ -132,3 +132,8 @@
 .game-tie {
     background-color: #fff93e;
 }
+
+.wager-input {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
