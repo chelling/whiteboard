@@ -148,6 +148,9 @@ class WinPoolPicksController < ApplicationController
 
         @win_pool_pick.save
       end
+
+      # Email current user
+      UserMailer.win_pool_pick.deliver
     end
 
     redirect_to "/winpool/#{params[:id]}"

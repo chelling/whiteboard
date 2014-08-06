@@ -54,6 +54,21 @@ class WinPoolLeague < ActiveRecord::Base
     return current_pick
   end
 
+  def get_current_user(year)
+    user = nil
+    self.win_pool_picks.order('starting_position DESC').each do |pick|
+      if pick.team_one.nil? && current_pick > pick.starting_position
+        user = pick.user
+      elsif pick.team_two.nil? && current_pick > TEAM_TWO_PICKS[pick.starting_position-1]
+        user = pick.user
+      elsif pick.team_three.nil? && current_pick > TEAM_THREE_PICKS[pick.starting_position-1]
+        user = pick.user
+      end
+    end
+
+    return user
+  end
+
   def teams_remaining
     teams = Team.all
 
