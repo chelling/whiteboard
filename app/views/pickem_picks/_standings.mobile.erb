@@ -7,7 +7,7 @@
           <th style="width:40%">Week</th>
           <th data-priority="2">Overall</th>
           <th data-priority="3">Balance</th>
-          <th data-priority="4">Pick(s) Submitted</th>
+          <th data-priority="4">Submitted Amount</th>
         </tr>
     </thead>
     <tbody>
@@ -20,12 +20,8 @@
               <% end %>
               <td><%= user.pickem_picks_record_by_year_and_week(@year, @week) %></td>
               <td><%= user.pickem_picks_record_by_year(@year) %></td>
-              <td><%= user.find_balance_by_year(@year) %></td>
-              <% if user.pickem_picks_submitted?(@year, @week) %>
-                  <td>&#x2713;</td>
-              <% else %>
-                  <td><%= "--" %></td>
-              <% end %>
+              <td><a href="<%= "/user_wagers/#{@year}/#{user.id}" %>"><%= user.find_balance_by_year(@year) %></a></td>
+              <td><%= user.find_submitted_balance_by_year_and_week(@year, @week) %></td>
             </tr>
         <% end %>
     </tbody>

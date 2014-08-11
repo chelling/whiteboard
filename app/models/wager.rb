@@ -12,7 +12,8 @@ class Wager < ActiveRecord::Base
 
   # before_save
   def update_payouts
-    self.potential_payout = amount * (10.0/11) + amount
+    # self.potential_payout = amount * (10.0/11) + amount
+    self.potential_payout = 2 * amount
 
     # first time
     if self.previous_amount.nil?

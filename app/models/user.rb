@@ -171,6 +171,39 @@ class User < ActiveRecord::Base
     amount.nil? ? "$0" : "$#{amount.round(2)}"
   end
 
+  def find_balance_prior_to_week(year, week)
+    current_amount = accounts.find_by_year(year).try(:amount)
+    amount = 0
+    wagers = self.wagers.joins(:pickem_picks).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
+    wagers.each do |wager|
+      amount += wager.amount
+    end
+
+    return "$#{current_amount + amount}"
+  end
+
+  def find_submitted_balance_by_year_and_week(year, week)
+    amount = 0
+    wagers = self.wagers.joins(:pickem_pick).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
+    wagers.each do |wager|
+      amount += wager.amount
+    end
+    return "$#{amount}"
+  end
+
+  def find_wager_picks_by_year(year)
+    wagers = self.wagers.includes(:pickem_pick => :game).where("pickem_picks.year = ?", year)
+  end
+
+  def find_wager_picks_by_year_and_week(year, week)
+    wagers = self.wagers.includes(:pickem_pick => :game).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
+  end
+
+  def name_or_email
+    return name unless name.nil?
+    return email
+  end
+
   def is_team_available?(year, week, team_id)
     pick = fooicide_picks.find_by_year_and_team_id(year, team_id)
     current_pick = fooicide_picks.find_by_year_and_week(year, week)

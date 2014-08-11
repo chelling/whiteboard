@@ -1,0 +1,76 @@
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-b">
+    <h3><%= "#{@user.name_or_email}'s Wagers" %></h3>
+  </div>
+  <div class="ui-body ui-body-b">
+    <% @wagers.try(:map) do |wager| %>
+        <% @pick = wager.pickem_pick %>
+        <% @game = wager.pickem_pick.game %>
+        <div class="ui-corner-all custom-corners">
+          <div class="ui-bar ui-bar-b">
+            <h4><%= @game.date.strftime("%a, %b %d") %>&nbsp;&nbsp;&nbsp;&nbsp;<%= @game.date.strftime("%I:%M %p") %></h4>
+          </div>
+          <div class="ui-body ui-body-b">
+            <div class="ui-grid-solo">
+              <div class="<%= @pick.nil? ? "ui-grid-b" : @pick.team_id == @game.away_team_id && @pick.win == true ? "ui-grid-b game-win" : \
+                                    @pick.team_id == @game.away_team_id && @pick.tie == true ? "ui-grid-b game-tie" : \
+                                    @pick.team_id == @game.away_team_id && @pick.win == false ? "ui-grid-b game-loss" : "ui-grid-b" %>">
+                <div class="ui-block-a">
+                  <img class="team-logo" src="<%= asset_path @game.away_team.image %>">
+                </div>
+                <div class="ui-block-b">
+                  <div class="team-info"><%= @game.away_team.name %></div>
+                  <div class="team-info"><%= @game.away_team.record_formatted(@year) %></div>
+                </div>
+                <% @game_picked = @pick.try(:team_id) == @game.away_team.id %>
+                <div class="ui-block-c">
+                  <%= radio_button_tag("game_#{@game.id}", @game.away_team.id, \
+                                @game_picked, \
+                                {disabled: @game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                  <h3 class="game-score"><%= @game.away_score %></h3>
+                  <a href="#" style="margin: 0 auto; display:<%= @game.in_progress_or_complete? && @game_picked && @game.away_score.nil? ? "" : "none" %>" \
+                  class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
+                </div>
+              </div>
+            </div>
+            <div class="ui-grid-solo">
+              <div class="<%= @pick.nil? ? "ui-grid-b" : @pick.team_id == @game.home_team_id && @pick.win == true ? "ui-grid-b game-win" : \
+                                    @pick.team_id == @game.home_team_id && @pick.tie == true ? "ui-grid-b game-tie" : \
+                                    @pick.team_id == @game.home_team_id && @pick.win == false ? "ui-grid-b game-loss" : "ui-grid-b" %>">
+                <div class="ui-block-a">
+                  <img class="team-logo" src="<%= asset_path @game.home_team.image %>">
+                </div>
+                <div class="ui-block-b">
+                  <div class="team-info"><%= @game.home_team.name %></div>
+                  <div class="team-info"><%= @game.home_team.record_formatted(@year) %></div>
+                </div>
+                <% @game_picked = @pick.try(:team_id) == @game.home_team.id %>
+                <div class="ui-block-c">
+                  <%= radio_button_tag("game_#{@game.id}", @game.home_team.id, \
+                                @game_picked, \
+                                {disabled: @game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
+                  <h3 class="game-score"><%= @game.home_score %></h3>
+                  <a href="#" style="margin: 0 auto; display:<%= @game.in_progress_or_complete? && @game_picked && @game.home_score.nil? ? "" : "none" %>" \
+                  class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
+                </div>
+              </div>
+            </div>
+            <div class="ui-grid-solo">
+              <div class="ui-corner-all custom-corners">
+                <div class="ui-bar ui-bar-b">
+                  <h5 >Line: <%= @game.line.nil? ? "Even" : @game.line %></h5>
+                </div>
+                <div class="ui body ui-body-b">
+                  <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                      <h5>Wager Amount: $<%= wager.amount %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <% end %>
+    </div>
+  </div>
+</div>
