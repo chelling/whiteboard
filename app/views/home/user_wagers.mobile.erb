@@ -4,6 +4,7 @@
   </div>
   <div class="ui-body ui-body-b">
     <% @wagers.try(:map) do |wager| %>
+        <% next unless wager.amount > 0 %>
         <% @pick = wager.pickem_pick %>
         <% @game = wager.pickem_pick.game %>
         <div class="ui-corner-all custom-corners">
@@ -24,9 +25,6 @@
                 </div>
                 <% @game_picked = @pick.try(:team_id) == @game.away_team.id %>
                 <div class="ui-block-c">
-                  <%= radio_button_tag("game_#{@game.id}", @game.away_team.id, \
-                                @game_picked, \
-                                {disabled: @game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
                   <h3 class="game-score"><%= @game.away_score %></h3>
                   <a href="#" style="margin: 0 auto; display:<%= @game.in_progress_or_complete? && @game_picked && @game.away_score.nil? ? "" : "none" %>" \
                   class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
@@ -46,9 +44,6 @@
                 </div>
                 <% @game_picked = @pick.try(:team_id) == @game.home_team.id %>
                 <div class="ui-block-c">
-                  <%= radio_button_tag("game_#{@game.id}", @game.home_team.id, \
-                                @game_picked, \
-                                {disabled: @game.in_progress_or_complete?, style: "margin: 12px 0 0 0"}) %>
                   <h3 class="game-score"><%= @game.home_score %></h3>
                   <a href="#" style="margin: 0 auto; display:<%= @game.in_progress_or_complete? && @game_picked && @game.home_score.nil? ? "" : "none" %>" \
                   class="ui-btn ui-shadow ui-corner-all ui-icon-lock ui-btn-icon-notext"></a>
@@ -63,7 +58,7 @@
                 <div class="ui body ui-body-b">
                   <div class="ui-grid-a">
                     <div class="ui-block-a">
-                      <h5>Wager Amount: $<%= wager.amount %></h5>
+                      <h5>Wager Amount: <%= @game.away_score.nil? ? "--" : "$#{wager.amount}" %></h5>
                     </div>
                   </div>
                 </div>
@@ -71,6 +66,5 @@
             </div>
           </div>
     <% end %>
-    </div>
   </div>
 </div>

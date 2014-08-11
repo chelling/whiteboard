@@ -2,6 +2,7 @@
   <hr />
   <h2 style="margin-left: 10px; color: white"><%= "#{@user.name_or_email}'s Wagers" %></h2>
   <% @wagers.try(:map) do |wager| %>
+      <% next unless wager.amount > 0 %>
       <% @pick = wager.pickem_pick %>
       <% @game = wager.pickem_pick.game %>
       <div class="pickem-scorebox-wrapper">
@@ -122,7 +123,7 @@
                               <%= "Line: Even" %>
                           <% end %>
                         </span><br/>
-                $<%= wager.amount %>
+                <%= @game.away_score.nil? ? "--" : "$#{wager.amount}" %>
               </div>
             </div>
           </div>

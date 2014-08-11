@@ -10,7 +10,9 @@ Whiteboard::Application.routes.draw do
   match "/fooicide/update_picks" => "fooicide_picks#update_picks"
   match "/winpool/:id" => "win_pool_picks#win_pool"
   match "/winpool/:id/pick_team" => "win_pool_picks#pick_team"
-  match "/user_wagers/:years/:user_id" => "home#user_wagers"
+  match "/user_wagers/:year/:week/:user_id" => "home#user_wagers"
+  match "/user_wagers/:year/:user_id" => "home#user_wagers"
+
   # match "/thirtyeight" => "thirty_eights#scores"
   # match "/thirtyeight" => "thirty_eights#rules"
 

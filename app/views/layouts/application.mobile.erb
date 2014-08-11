@@ -7,6 +7,10 @@
         <%= stylesheet_link_tag "/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min", "mobile" %>
         <%= javascript_include_tag "application" %>
         <%= javascript_include_tag "/jquery.mobile-1.4.2/jquery-1.9.1.min.js", "/jquery.mobile-1.4.2/jquery.mobile-1.4.2.min" %>
+        <% if Rails.env.production? %>
+          <%= render :partial => "layouts/ga" %>
+        <% end %>
+        <%= csrf_meta_tag %>
     </head>
     <body>
         <div class="mobile-header">

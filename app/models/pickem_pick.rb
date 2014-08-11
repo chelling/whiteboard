@@ -10,7 +10,7 @@ class PickemPick < ActiveRecord::Base
 
   # before_save
   def update_wager
-    if self.win.nil?
+    if self.win.nil? || self.wager.nil?
       return
     end
 
