@@ -29,4 +29,8 @@ class UserMailer < ActionMailer::Base
   def test
     mail(:to => 'clint.helling@gmail.com', :subject => 'hihi')
   end
+
+  def rules_email(user)
+    mail(:to => user.email, :subject => 'Foo-nation Games')
+  end
 end
