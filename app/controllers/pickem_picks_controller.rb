@@ -130,7 +130,7 @@ class PickemPicksController < ApplicationController
     # create account if it doesn't exist
     if current_user.accounts.find_by_year(@year).nil?
       authorize! :create, Account
-      Account.create(:user_id => current_user.id, :year => @year, :amount => 200)
+      Account.create(:user_id => current_user.id, :year => @year, :amount => 0)
     end
 
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
