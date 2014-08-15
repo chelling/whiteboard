@@ -85,7 +85,7 @@ class Game < ActiveRecord::Base
   # hooks
   def update_pickem_wins
     team_id = 0
-    if !away_score.nil? && !home_score.nil?
+    if !away_score.nil? && !home_score.nil? && !line.nil?
       if away_score - home_score > line
         team_id = away_team_id
       elsif away_score - home_score < line
@@ -598,9 +598,47 @@ class Game < ActiveRecord::Base
       elsif !game.nil?
         game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
                     :home_team_id => Team.find_by_name(home_team).try(:id), \
-                    :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
                     :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
                     :away_score => away_score, :home_score => home_score)
+        game.save
+      end
+
+    end
+  end
+
+  def self.create_or_update_games_preseason(year, week)
+    doc = Nokogiri::HTML(open("http://www.nfl.com/scores/#{year}/PRE#{week}"))
+
+    doc.css(".new-score-box-wrapper").each do |item|
+      date =  item.css(".date").text
+      time =  item.css(".time-left").text
+      away_team =  item.css(".away-team").css(".team-name").text
+      home_team = item.css(".home-team").css(".team-name").text
+      away_score = item.css(".away-team").css(".total-score").text unless item.css(".away-team").css(".total-score").text == "--"
+      home_score = item.css(".home-team").css(".total-score").text unless item.css(".home-team").css(".total-score").text == "--"
+
+      puts "\n\n\ndate: #{date}\n\n\n"
+      puts "\n\n\ntime: #{time}\n\n\n"
+      puts "\n\n\naway_team: #{away_team}\n\n\n"
+      puts "\n\n\nhome_team: #{home_team}\n\n\n"
+      puts "\n\n\naway_score: #{away_score}\n\n\n"
+      puts "\n\n\nhome_score: #{home_score}\n\n\n"
+
+      # Create game if it doesn't exist
+      game = Game.find_by_year_and_week_and_home_team_id(year, week, Team.find_by_name(home_team).try(:id))
+      if game.nil? && !Team.find_by_name(away_team).nil?  && !Team.find_by_name(home_team).nil?
+        Game.create(:away_team_id => Team.find_by_name(away_team).try(:id), \
+                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+                    # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :away_score => away_score, :home_score => home_score)
+      elsif !game.nil?
+        game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
+                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+                    # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                               :away_score => away_score, :home_score => home_score)
         game.save
       end
 
