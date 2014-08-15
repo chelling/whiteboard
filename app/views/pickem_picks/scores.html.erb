@@ -9,27 +9,29 @@
         var previousAmount = 0.0;
         var currentAmount = 0.0;
 
-        if(parseFloat(textbox.value) < 0) {
+        textbox.value = parseInt(textbox.value);
+
+        if(parseInt(textbox.value) < 0) {
             alert("Value must be positive.");
             textbox.value = Math.abs(textbox.value);
         }
 
         if(textbox.oldvalue != "") {
-            previousAmount = parseFloat(textbox.oldvalue)
+            previousAmount = parseInt(textbox.oldvalue)
         }
         if(textbox.value != "") {
-            currentAmount = parseFloat(textbox.value)
+            currentAmount = parseInt(textbox.value)
         }
 
         amount = currentAmount - previousAmount;
         if(!$.isNumeric(textbox.value)){
             alert("Value must be a number.");
             textbox.value = textbox.oldvalue;
-        }else if((parseFloat($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount < 0)) {
+        }else if((parseInt($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount < 0)) {
             alert("Current Holdings cannot go below $0.");
             textbox.value = textbox.oldvalue;
         } else {
-            $('#account-amount').text('$' + (parseFloat($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount).toFixed(2));
+            $('#account-amount').text('$' + (parseInt($('#account-amount').text().replace(/[^0-9.]*/gi, '')) - amount).toFixed(2));
         }
     }
 </script>
