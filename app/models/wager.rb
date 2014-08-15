@@ -12,7 +12,6 @@ class Wager < ActiveRecord::Base
 
   # before_save
   def update_payouts
-    # self.potential_payout = amount * (10.0/11) + amount
     self.potential_payout = 2 * amount
 
     # first time
@@ -24,20 +23,27 @@ class Wager < ActiveRecord::Base
       self.account.save
     end
 
+    # save previous
+    self.previous_amount = self.amount
+
+    # undo previous payout
+    if !self.payout.nil?
+      self.account.amount -= self.payout
+      self.account.save
+    end
+
     # change account amount
     if win == 1
       self.payout = self.potential_payout
       self.account.amount += self.payout
       self.account.save
     elsif win == 0
-      self.payout = self.potential_payout - self.amount
+      self.payout = self.amount
       self.account.amount += self.payout
-    else
+      self.account.save
+    elsif win == -1
       self.payout = 0
     end
-
-    # save previous
-    self.previous_amount = self.amount
   end
 
   # methods
