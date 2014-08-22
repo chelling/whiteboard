@@ -136,7 +136,7 @@ class PickemPicksController < ApplicationController
     @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
     authorize! :read, @pickem_picks
-    @users = User.order_all_by_pickem_record(@year)
+    @users = User.order_all_by_account_amount(@year)
     # get bye teams
     team_ids = []
     @games.try(:map) do |game|

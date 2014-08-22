@@ -239,6 +239,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.order_all_by_account_amount(year)
+    return User.includes(:accounts).where("accounts.year = ? and accounts.amount > 0", year).order("accounts.amount DESC")
+  end
+
   def self.order_all_by_pickem_record(year)
     users_sorted = []
     users_hash = Hash.new
