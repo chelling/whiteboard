@@ -6,7 +6,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "info.foonation@gmail.com"
 
-  config.secret_key = '155794a2d09d77d87031ae3fe97c0ca8b8d43c7db49fe704f1237a005aedeacd4c60c8fd36ce037b8d8ddaee100abd3795bac2b8d45b2613cefae8f7902adb1f'
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
@@ -123,7 +123,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.weeks
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
