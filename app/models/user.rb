@@ -244,8 +244,9 @@ class User < ActiveRecord::Base
     users_hash = Hash.new
     amounts_hash = Hash.new
     User.includes(:accounts).where("accounts.year = ?", year).order("accounts.amount DESC").map do |user|
-      amounts_hash[user.id] = user.find_balance_prior_to_week(year, week)
-      if(amounts_hash[user.id] > 0)
+      a = user.find_balance_prior_to_week(year, week)
+      if(a > 0)
+        amounts_hash[user.id] = user.find_balance_prior_to_week(year, week)
         users_hash[user.id] = user
       end
     end
