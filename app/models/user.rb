@@ -174,7 +174,7 @@ class User < ActiveRecord::Base
   def find_balance_prior_to_week(year, week)
     current_amount = accounts.find_by_year(year).try(:amount)
     amount = 0
-    wagers = self.wagers.joins(:pickem_picks).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
+    wagers = self.wagers.joins(:pickem_pick).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
     wagers.each do |wager|
       amount += wager.amount
     end
@@ -239,8 +239,22 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.order_all_by_account_amount(year)
-    return User.includes(:accounts).where("accounts.year = ? and accounts.amount > 0", year).order("accounts.amount DESC")
+  def self.order_all_by_account_amount(year, week)
+    users_sorted = []
+    users_hash = Hash.new
+    amounts_hash = Hash.new
+    User.includes(:accounts).where("accounts.year = ?", year).order("accounts.amount DESC").map do |user|
+      amounts_hash[user.id] = user.find_balance_prior_to_week(year, week)
+      users_hash[user.id] = user
+    end
+    # Start sorting
+    while !amounts_hash.empty? do
+      max = amounts_hash.max_by{|k,v| v}
+      users_sorted << users_hash[max.first]
+      amounts_hash.delete(max.first)
+    end
+    # Return sorted users
+    return users_sorted
   end
 
   def self.order_all_by_pickem_record(year)
