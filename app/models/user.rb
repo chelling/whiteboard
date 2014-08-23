@@ -179,7 +179,7 @@ class User < ActiveRecord::Base
       amount += wager.amount
     end
 
-    return "$#{current_amount + amount}"
+    return current_amount + amount
   end
 
   def find_submitted_balance_by_year_and_week(year, week)
@@ -244,7 +244,7 @@ class User < ActiveRecord::Base
     users_hash = Hash.new
     amounts_hash = Hash.new
     User.includes(:accounts).where("accounts.year = ?", year).order("accounts.amount DESC").map do |user|
-      amounts_hash[user.id] = user.accounts.first.try(:amount).to_i + user.find_balance_prior_to_week(year, week).to_i
+      amounts_hash[user.id] = user.find_balance_prior_to_week(year, week)
       if(amounts_hash[user.id] > 0)
         users_hash[user.id] = user
       end
