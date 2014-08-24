@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "info.foonation@gmail.com"
+  default from: "Foo-nation <info.foonation@gmail.com>"
 
   def win_pool_pick
     User.all.map do |user|
@@ -9,6 +9,10 @@ class UserMailer < ActionMailer::Base
         mail(:to => user.email, :subject => 'It\'s your turn to pick!')
       end
     end
+  end
+
+  def win_pool_draft(user)
+    mail(:to => user.email, :subject => 'Win Pool Draft')
   end
 
   def welcome_back(user)

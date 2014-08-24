@@ -70,12 +70,18 @@ class WinPoolLeague < ActiveRecord::Base
   end
 
   def teams_remaining
-    teams = Team.all
+    teams = []
+    picked_teams = []
+    current_teams = Team.order("Name ASC")
 
     self.win_pool_picks.each do |pick|
-      teams.delete(pick.team_one) unless pick.team_one.nil?
-      teams.delete(pick.team_two) unless pick.team_two.nil?
-      teams.delete(pick.team_three) unless pick.team_three.nil?
+      picked_teams << pick.team_one unless pick.team_one.nil?
+      picked_teams << pick.team_two unless pick.team_two.nil?
+      picked_teams << pick.team_three unless pick.team_three.nil?
+    end
+
+    current_teams.map do |t|
+      teams << t unless picked_teams.include?(t)
     end
 
     return teams

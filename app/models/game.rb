@@ -630,13 +630,13 @@ class Game < ActiveRecord::Base
       if game.nil? && !Team.find_by_name(away_team).nil?  && !Team.find_by_name(home_team).nil?
         Game.create(:away_team_id => Team.find_by_name(away_team).try(:id), \
                     :home_team_id => Team.find_by_name(home_team).try(:id), \
-                    # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
                     :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
                     :away_score => away_score, :home_score => home_score)
       elsif !game.nil?
         game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
                     :home_team_id => Team.find_by_name(home_team).try(:id), \
-                    # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
+                    :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
                     :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
                                :away_score => away_score, :home_score => home_score)
         game.save
