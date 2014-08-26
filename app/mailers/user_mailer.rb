@@ -11,6 +11,10 @@ class UserMailer < ActionMailer::Base
     end
   end
 
+  def pick_submitted
+    mail(:to => 'clint.helling@gmail.com', :subject => 'A pick was submitted')
+  end
+
   def win_pool_draft(user)
     mail(:to => user.email, :subject => 'Win Pool Draft')
   end
