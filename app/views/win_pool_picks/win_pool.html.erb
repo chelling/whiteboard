@@ -1,6 +1,6 @@
 <div class="win-pool-wrapper">
     <div class="win-pool-columns">
-      <% if @teams.size > 0 %>
+      <% if @teams.size > 2 %>
           <%= render :partial => "win_pool_picks/pick_team" %>
       <% else %>
           <%= render :partial => "win_pool_picks/win_pool_standings" %>
