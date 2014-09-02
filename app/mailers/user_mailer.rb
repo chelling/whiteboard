@@ -22,6 +22,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => 'FooNation is back!')
   end
 
+  def lines_set(user, week)
+    @week = week
+    mail(:to => user.email, :subject => "NFL Lines are set for Week #{@week}")
+  end
+
   def weekly_reminder
     User.all.map do |user|
       @year = Time.now.year
