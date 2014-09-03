@@ -48,7 +48,7 @@
             <% if @game.away_score.nil? && !@game.in_progress_or_complete? %>
                 <div class='pickem-radio-wrapper'>
                   <% if @pick.try(:team_id) == @game.away_team.id %>
-                      <%= radio_button_tag("game_#{@game.id}", @game.away_team.id, true, class: "radio-pickem-pick") %>
+                      <%= radio_button_tag("game_#{@game.id}", @game.away_team.id, false, class: "radio-pickem-pick") %>
                   <% else %>
                       <%= radio_button_tag("game_#{@game.id}", @game.away_team.id, false, class: "radio-pickem-pick") %>
                   <% end %>
@@ -96,7 +96,7 @@
             <% if @game.home_score.nil? && !@game.in_progress_or_complete? %>
                 <div class='pickem-radio-wrapper'>
                   <% if @pick.try(:team_id) == @game.home_team.id %>
-                      <%= radio_button_tag("game_#{@game.id}", @game.home_team.id, true) %>
+                      <%= radio_button_tag("game_#{@game.id}", @game.home_team.id, false) %>
                   <% else %>
                       <%= radio_button_tag("game_#{@game.id}", @game.home_team.id, false) %>
                   <% end %>
