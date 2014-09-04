@@ -193,6 +193,8 @@ class PickemPicksController < ApplicationController
         pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last)
         if pick.nil?
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Cannot bet without making a pick'
+        elsif pick.game.in_progress_or_complete?
+          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Cannot bet when game is in progress'
         end
         authorize! :update, pick
 
