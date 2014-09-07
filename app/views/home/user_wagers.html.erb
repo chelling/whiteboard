@@ -123,7 +123,7 @@
                               <%= "Line: Even" %>
                           <% end %>
                         </span><br/>
-                <%= @game.away_score.nil? ? "--" : "$#{wager.amount}" %>
+                <%= !@game.in_progress_or_complete? ? "--" : "$#{wager.amount}" %>
               </div>
             </div>
           </div>

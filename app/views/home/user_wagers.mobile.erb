@@ -58,7 +58,7 @@
                 <div class="ui body ui-body-b">
                   <div class="ui-grid-a">
                     <div class="ui-block-a">
-                      <h5>Wager Amount: <%= @game.away_score.nil? ? "--" : "$#{wager.amount}" %></h5>
+                      <h5>Wager Amount: <%= !@game.in_progress_or_complete? ? "--" : "$#{wager.amount}" %></h5>
                     </div>
                   </div>
                 </div>
