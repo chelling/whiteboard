@@ -23,17 +23,19 @@ class WinPoolLeague < ActiveRecord::Base
 
   def standings(year)
     record_list = Hash.new
-    standings_list = Hash.new
+    standings_list = []
     self.win_pool_picks.each do |pick|
-      wins = pick.team_one.wins_by_year(year) + pick.team_two.wins_by_year(year) + pick.team_three.wins_by_year(year)
+      wins = pick.team_one.try(:wins_by_year,year).to_i + pick.team_two.try(:wins_by_year,year).to_i +
+             pick.team_three.try(:wins_by_year,year).to_i
       record_list[pick.id] = wins
     end
 
     sorted_records = record_list.sort_by &:last
+    reversed_sort = Hash[sorted_records.to_a.reverse]
 
-    sorted_records.each do |key, value|
+    reversed_sort.each do |key, value|
       pick = self.win_pool_picks.find(key)
-      standings_list[pick] = value
+      standings_list << pick
     end
 
     return standings_list

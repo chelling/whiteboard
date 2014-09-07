@@ -1,28 +1,30 @@
 <div class="win-pool-standings-container">
   <div class="win-pool-standings-wrapper">
-    <% standings = WinPoolLeague.first.standings(2014) %>
+    <% year = Date.today.year %>
+    <% standings = WinPoolLeague.first.standings(year) %>
     <h2 class="win-pool-standings-h2">Standings</h2>
     <table>
       <tr>
         <th class="standings-user-header">User</th>
         <th class="standings-wins-header">Wins</th>
       </tr>
-      <% standings.each_with_index do |(key, value), index| %>
+      <% standings.each_with_index do |pick, index| %>
           <tr>
-            <td class="name"><%= "#{index+1}) #{key.user.name}" %></td>
-            <td class="name"><%= value %></td>
+            <td class="name"><%= "#{index+1}) #{pick.user.name}" %></td>
+            <td class="name"><%= pick.team_one.try(:wins_by_year,year).to_i + pick.team_two.try(:wins_by_year,year).to_i +
+                                         pick.team_three.try(:wins_by_year,year).to_i %></td>
           </tr>
           <tr>
-            <td class="team">&#8594;<%= key.team_one.name %></td>
-            <td class="team"><%= key.team_one.wins_by_year(Date.today.year) %></td>
+            <td class="team">&#8594;<%= pick.team_one.name %></td>
+            <td class="team"><%= pick.team_one.wins_by_year(year) %></td>
           </tr>
           <tr>
-            <td class="team">&#8594;<%= key.team_two.name %></td>
-            <td class="team"><%= key.team_two.wins_by_year(Date.today.year) %></td>
+            <td class="team">&#8594;<%= pick.team_two.name %></td>
+            <td class="team"><%= pick.team_two.wins_by_year(year) %></td>
           </tr>
           <tr>
-            <td class="team">&#8594;<%= key.team_three.name %></td>
-            <td class="team"><%= key.team_three.wins_by_year(Date.today.year) %></td>
+            <td class="team">&#8594;<%= pick.team_three.name %></td>
+            <td class="team"><%= pick.team_three.wins_by_year(year) %></td>
           </tr>
       <% end %>
     </table>

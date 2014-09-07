@@ -1,6 +1,7 @@
 <div class="ui-corner-all custom-corners">
   <div class="ui bar ui-bar-b">
-    <% standings = WinPoolLeague.first.standings(2014) %>
+    <% year = Date.today.year %>
+    <% standings = WinPoolLeague.first.standings(year) %>
     <h2>Standings</h2>
   </div>
   <div class="ui-body ui-body-b">
@@ -16,14 +17,14 @@
         </tr>
       </thead>
       <tbody>
-      <% standings.each_with_index do |(key, value), index| %>
-          <tr class="<%= key.user.id == current_user.id ? "highlighted" : "" %>">
-            <td class="<%= key.user.id == current_user.id ? "title highlighted" : "title" %>"><%= index + 1 %></td>
-            <td><%= key.user.name %></td>
-            <td><%= value %></th>
-            <td><%= "#{key.team_one.name} - #{key.team_one.wins_by_year(Date.today.year)}" %></td>
-            <td><%= "#{key.team_two.name} - #{key.team_two.wins_by_year(Date.today.year)}" %></td>
-            <td><%= "#{key.team_three.name} - #{key.team_three.wins_by_year(Date.today.year)}" %></td>
+      <% standings.each_with_index do |pick, index| %>
+          <tr class="<%= pick.user.id == current_user.id ? "highlighted" : "" %>">
+            <td class="<%= pick.user.id == current_user.id ? "title highlighted" : "title" %>"><%= index + 1 %></td>
+            <td><%= pick.user.name %></td>
+            <td><%= pick.team_one.try(:wins_by_year,year).to_i + pick.team_two.try(:wins_by_year,year).to_i + pick.team_three.try(:wins_by_year,year).to_i %></th>
+            <td><%= "#{pick.team_one.name} - #{pick.team_one.wins_by_year(year)}" %></td>
+            <td><%= "#{pick.team_two.name} - #{pick.team_two.wins_by_year(year)}" %></td>
+            <td><%= "#{pick.team_three.name} - #{pick.team_three.wins_by_year(year)}" %></td>
           </tr>
       <% end %>
       </tbody>
