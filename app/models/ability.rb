@@ -32,10 +32,10 @@ class Ability
        can [:update, :destroy], Wager do |wager|
          wager.try(:account).try(:user) == user
        end
-      # win pool
-      can :update, WinPoolPick do |win_pool_pick|
-        win_pool_pick.try(:user) == user
-      end
+       # win pool
+       can :update, WinPoolPick do |win_pool_pick|
+         win_pool_pick.try(:user) == user
+       end
     end
   end
 end

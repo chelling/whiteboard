@@ -224,4 +224,21 @@ class PickemPicksController < ApplicationController
     @year = Time.now.year
     @year = params[:year] if params[:year]
   end
+
+  # Update games
+  def update_games
+    if !user_signed_in?
+      return redirect_to "/users/sign_in"
+    end
+    @game = Game.new
+
+    authorize! :update, @game
+    @year = Time.now.year
+    @week = find_week
+    @year = params[:year] if params[:year]
+    @week = params[:week] if params[:week]
+
+    Game.create_or_update_games(@year, @week)
+    redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Games successfully updated.'
+  end
 end
