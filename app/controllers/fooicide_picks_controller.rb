@@ -177,6 +177,6 @@ class FooicidePicksController < ApplicationController
       end
     end
 
-    redirect_to "/fooicide?year=#{@year}&week=#{week.last}", notice: 'Your picks were successfully updated.'
+    redirect_to "/fooicide?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
   end
 end

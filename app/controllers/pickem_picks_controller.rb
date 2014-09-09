@@ -211,7 +211,7 @@ class PickemPicksController < ApplicationController
       end
     end
     
-    redirect_to "/pickem?year=#{@year}&week=#{week.last}", notice: 'Your picks were successfully updated.'
+    redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
   end
 
   # User stats
