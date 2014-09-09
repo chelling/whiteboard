@@ -207,12 +207,12 @@ class PickemPicksController < ApplicationController
         end
 
         if !wager.update_attributes(:account_id => current_user.accounts.find_by_year(@year).try(:id), :pickem_pick_id => pick.id, :amount => value)
-          return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your wagers.'
+          return redirect_to "/pickem?year=#{@year}&week=#{week.last}", alert: 'Error while updating your wagers.'
         end
       end
     end
     
-    redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
+    redirect_to "/pickem?year=#{@year}&week=#{week.last}", notice: 'Your picks were successfully updated.'
   end
 
   # User stats

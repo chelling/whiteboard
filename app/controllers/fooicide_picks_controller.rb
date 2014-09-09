@@ -153,6 +153,7 @@ class FooicidePicksController < ApplicationController
     # go through each "week_#"
     params.each do |key,value|
       week = key.split('_')
+      puts "\n\n\nweek = #{week} : #{week.last}\n\n\n"
       if week.first == "week"
         pick = FooicidePick.find_by_year_and_week_and_user_id(@year, week.last, current_user.id)
         if !pick.nil?
@@ -167,14 +168,20 @@ class FooicidePicksController < ApplicationController
         if game_id.nil?
           game_id = Game.find_by_year_and_week_and_home_team_id(@year, week.last, value).try(:id)
         end
+        puts "\n\n\ngame_id = #{game_id}"
+        puts "\n\n\nvalue = #{value}\n\n\n"
+        puts "\n\n\nyear = #{@year}\n\n\n"
+        puts "\n\n\n avail = #{current_user.is_team_available?(@year, @week, value)}\n\n\n"
+        puts "\n\n\nweek = #{@week}"
         # attempt to update
         if !current_user.is_team_available?(@year, @week, value) ||
             !pick.update_attributes(:user_id => current_user.id, :game_id => game_id, :team_id => value, :week => week.last, :year => @year)
-          return redirect_to "/fooicide?year=#{@year}&week=#{@week}", alert: 'Team already chosen'
+          return redirect_to "/fooicide?year=#{@year}&week=#{week.last}", alert: 'Team already chosen'
         end
       end
     end
 
-    redirect_to "/fooicide?year=#{@year}&week=#{@week}", notice: 'Your picks were successfully updated.'
+    redirect_to "/home"
+    #redirect_to "/fooicide?year=#{@year}&week=#{week.last}", notice: 'Your picks were successfully updated.'
   end
 end
