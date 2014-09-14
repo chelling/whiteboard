@@ -9,3 +9,8 @@ function change_pickem_url(value)
 {
   window.location.href = "pickem?year=" + value;
 }
+
+function change_fooicide_url(value)
+{
+    window.location.href = "fooicide?year=" + value;
+}

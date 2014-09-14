@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
     current_pick = fooicide_picks.find_by_year_and_week(year, week)
 
     if (pick.nil? || pick.week.to_i == week.to_i) && (current_pick.nil? || !current_pick.pick_locked?)
-        return true
+      return true
     else
       return false
     end
@@ -243,6 +243,11 @@ class User < ActiveRecord::Base
     users_sorted = []
     users_hash = Hash.new
     amounts_hash = Hash.new
+
+    if year.to_i < 2014
+      return User.order_all_by_pickem_record(year)
+    end
+
     User.includes(:accounts).where("accounts.year = ?", year).order("accounts.amount DESC").map do |user|
       a = user.find_balance_prior_to_week(year, week)
       if(a > 0)
