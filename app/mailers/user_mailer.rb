@@ -27,6 +27,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "NFL Lines are set for Week #{@week}")
   end
 
+  def fooicide_reminder(user, week)
+    @week = week
+    mail(:to => user.email, :subject => "Submit your fooicide pick for week #{@week}")
+  end
+
   def weekly_reminder
     User.all.map do |user|
       @year = Time.now.year
