@@ -3,8 +3,9 @@ task :send_weekly_email => :environment do
   if Date.today.strftime('%A') == 'Saturday'
     week = find_week
     User.all.map do |u|
-      if u.fooicide_picks.size > 0 && u.fooicide_picks.find_by_year_and_week(Date.today.year, week).nil? &&
-                                      !u.is_eliminated?(Date.today.year)
+      if u.fooicide_picks.find_all_by_year(Date.today.year).size > 0 &&
+         u.fooicide_picks.find_by_year_and_week(Date.today.year, week).nil? &&
+         !u.is_eliminated?(Date.today.year)
         UserMailer.fooicide_reminder(u, week).deliver
       end
     end
