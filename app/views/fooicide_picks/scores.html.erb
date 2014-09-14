@@ -3,6 +3,10 @@
         document.getElementById('picks-wrapper').style.height = "<%= (190 + ((@games.size - 1) / 3 * 161)).to_s + "px"  %>";
         $('#year').val(<%= @year %>)
     }
+
+    function change_fooicide_url(value) {
+        window.location.href = "fooicide?year=" + value;
+    }
 </script>
 
 <%= flash[:notice] %>
