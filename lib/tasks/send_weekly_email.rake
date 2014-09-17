@@ -15,7 +15,7 @@ task :send_weekly_email => :environment do
   if Date.today.strftime('%A') == 'Wednesday'
     week = find_week
     User.all.map do |u|
-      if u.accounts.find_by_year(Date.today.year).try(:amount) > 0
+      if u.accounts.find_by_year(Date.today.year).try(:amount).to_i > 0
         UserMailer.lines_set(u, week).deliver
       end
     end
