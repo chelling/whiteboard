@@ -8,7 +8,7 @@ class Wager < ActiveRecord::Base
   validates :account_id, :presence => true
   validates :pickem_pick_id, :presence => true
 
-  attr_accessible :account_id, :pickem_pick_id, :amount, :payout, :potential_payout, :win, :previous_amount
+  attr_accessor :account_id, :pickem_pick_id, :amount, :payout, :potential_payout, :win, :previous_amount
 
   # before_save
   def update_payouts

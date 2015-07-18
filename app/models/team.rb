@@ -7,8 +7,8 @@ class Team < ActiveRecord::Base
   has_many :win_pool_first_teams, :foreign_key => "team_one_id", :class_name => "WinPoolPick"
   has_many :win_pool_second_teams, :foreign_key => "team_two_id", :class_name => "WinPoolPick"
   has_many :win_pool_third_teams, :foreign_key => "team_three_id", :class_name => "WinPoolPick"
-  
-  attr_accessible :conference, :division, :image, :location, :name
+
+  attr_accessor :conference, :division, :image, :location, :name
   
   # methods
   def win_pools

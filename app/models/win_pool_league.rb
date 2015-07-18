@@ -2,7 +2,7 @@ class WinPoolLeague < ActiveRecord::Base
   has_many :win_pool_picks
 
   validates :name, :uniqueness => {:scope => :year}
-  attr_accessible :name, :year
+  attr_accessor :name, :year
 
   # methods
   def draft_recap(year)

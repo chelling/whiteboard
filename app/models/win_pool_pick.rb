@@ -8,7 +8,7 @@ class WinPoolPick < ActiveRecord::Base
   validates :user_id, :uniqueness => {:scope => :win_pool_league_id}
   validates :starting_position, :uniqueness => {:scope => :win_pool_league_id}
 
-  attr_accessible :starting_position, :team_one_id, :team_three_id, :team_two_id, :user_id, :win_pool_league_id, :year
+  attr_accessor :starting_position, :team_one_id, :team_three_id, :team_two_id, :user_id, :win_pool_league_id, :year
 
   # models
   def teams_full?
