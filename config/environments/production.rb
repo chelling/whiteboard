@@ -37,6 +37,8 @@ Whiteboard::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_files = false
 
+  config.assets.precompile += %w( .svg .eot .woff .ttf .png .jpg .gif)
+
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
