@@ -22,4 +22,10 @@ class ApplicationController < ActionController::Base
     session[:mobile_param] = params[:mobile] unless params[:mobile].nil?
     request.format = :mobile if mobile_device?
   end
+
+  def require_login
+    if !user_signed_in?
+      return redirect_to "/users/sign_in"
+    end
+  end
 end

@@ -1,10 +1,13 @@
 class WinPoolPicksController < ApplicationController
+  respond_to :html
+
+  before_action :require_login
+  before_action :load_win_pool_pick, except: [:index, :new, :create, :win_pool, :pick_team]
+  before_action :load_win_pool_league, only: [:win_pool, :pick_team]
+
   # GET /win_pool_picks
   # GET /win_pool_picks.json
   def index
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
     @win_pool_picks = WinPoolPick.all
     authorize! :manage, @win_pool_picks
 
@@ -17,10 +20,6 @@ class WinPoolPicksController < ApplicationController
   # GET /win_pool_picks/1
   # GET /win_pool_picks/1.json
   def show
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-    @win_pool_pick = WinPoolPick.find(params[:id])
     authorize! :manage, @win_pool_pick
 
     respond_to do |format|
@@ -32,9 +31,6 @@ class WinPoolPicksController < ApplicationController
   # GET /win_pool_picks/new
   # GET /win_pool_picks/new.json
   def new
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
     @win_pool_pick = WinPoolPick.new
     authorize! :create, @win_pool_pick
 
@@ -46,19 +42,12 @@ class WinPoolPicksController < ApplicationController
 
   # GET /win_pool_picks/1/edit
   def edit
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-    @win_pool_pick = WinPoolPick.find(params[:id])
     authorize! :update, @win_pool_pick
   end
 
   # POST /win_pool_picks
   # POST /win_pool_picks.json
   def create
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
     @win_pool_pick = WinPoolPick.new(params[:win_pool_pick])
     authorize! :create, @win_pool_pick
 
@@ -76,10 +65,6 @@ class WinPoolPicksController < ApplicationController
   # PUT /win_pool_picks/1
   # PUT /win_pool_picks/1.json
   def update
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-    @win_pool_pick = WinPoolPick.find(params[:id])
     authorize! :update, @win_pool_pick
 
     respond_to do |format|
@@ -96,10 +81,6 @@ class WinPoolPicksController < ApplicationController
   # DELETE /win_pool_picks/1
   # DELETE /win_pool_picks/1.json
   def destroy
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-    @win_pool_pick = WinPoolPick.find(params[:id])
     authorize! :destroy, @win_pool_pick
     @win_pool_pick.destroy
 
@@ -111,27 +92,17 @@ class WinPoolPicksController < ApplicationController
 
   def win_pool
     @mobile_header = "Win Pool"
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
 
-    @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(current_user.id, Date.today.year, params[:id])
-    @league = WinPoolLeague.find(params[:id])
+    @year = @league.year
     @teams = @league.teams_remaining
     if !@win_pool_pick.nil?
       authorize! :update, @win_pool_pick
-      @current_pick = @league.get_current_pick(Date.today.year)
+      @current_pick = @league.get_current_pick
       @is_my_pick = @win_pool_pick.is_current_user_turn?
     end
   end
 
   def pick_team
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(current_user.id, Date.today.year, params[:id])
-    @league = WinPoolLeague.find(params[:id])
     if !@win_pool_pick.nil?
       authorize! :update, @win_pool_pick
       team = Team.find(params[:teams])
@@ -155,5 +126,20 @@ class WinPoolPicksController < ApplicationController
     end
 
     redirect_to "/winpool/#{params[:id]}"
+  end
+
+private
+
+  def load_win_pool_league
+    @league = WinPoolLeague.find(params[:id])
+    @win_pool_pick = WinPoolPick.where(user_id: current_user.id, year: @league.year, win_pool_league_id: params[:id]).first
+  end
+
+  def load_win_pool_pick
+    @win_pool_pick = WinPoolPick.find(params[:id])
+  end
+
+  def win_pool_pick_params
+    params.require(:win_pool_pick).permit :starting_position, :team_one_id, :team_three_id, :team_two_id, :user_id, :win_pool_league_id, :year
   end
 end

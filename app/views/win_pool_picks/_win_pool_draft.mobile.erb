@@ -1,5 +1,5 @@
 <div data-role="collapsible" data-theme="b" data-content-theme="b">
-  <% draft_picks = WinPoolLeague.first.draft_recap(2014) %>
+  <% draft_picks = @league.draft_recap %>
   <h4>Draft Recap</h4>
   <ul data-role="listview">
     <% draft_picks.each do |pick| %>

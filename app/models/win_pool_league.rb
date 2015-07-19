@@ -2,26 +2,26 @@ class WinPoolLeague < ActiveRecord::Base
   has_many :win_pool_picks
 
   validates :name, :uniqueness => {:scope => :year}
-  attr_accessor :name, :year
+  #attr_accessor :name, :year
 
   # methods
-  def draft_recap(year)
+  def draft_recap
     draft_picks = []
 
     self.win_pool_picks.order('starting_position DESC').each do |pick|
-      draft_recap_string(draft_picks, pick.starting_position, pick.team_one, pick.user.name, year)
-      draft_recap_string(draft_picks, TEAM_TWO_PICKS[pick.starting_position-1], pick.team_two, pick.user.name, year)
-      draft_recap_string(draft_picks, TEAM_THREE_PICKS[pick.starting_position-1], pick.team_three, pick.user.name, year)
+      draft_recap_string(draft_picks, pick.starting_position, pick.team_one, pick.user.name)
+      draft_recap_string(draft_picks, TEAM_TWO_PICKS[pick.starting_position-1], pick.team_two, pick.user.name)
+      draft_recap_string(draft_picks, TEAM_THREE_PICKS[pick.starting_position-1], pick.team_three, pick.user.name)
     end
 
     return draft_picks
   end
 
-  def draft_recap_string(draft_picks, pick_number, team, user_name, year)
+  def draft_recap_string(draft_picks, pick_number, team, user_name)
     draft_picks[pick_number - 1] = "#{pick_number}) #{team.try(:name)} #{team.try(:record_formatted, year)} (#{user_name})"
   end
 
-  def standings(year)
+  def standings
     record_list = Hash.new
     standings_list = []
     self.win_pool_picks.each do |pick|
@@ -41,7 +41,7 @@ class WinPoolLeague < ActiveRecord::Base
     return standings_list
   end
 
-  def get_current_pick(year)
+  def get_current_pick
     current_pick = 33
     self.win_pool_picks.order('starting_position DESC').each do |pick|
       if pick.team_one.nil? && current_pick > pick.starting_position
@@ -56,7 +56,7 @@ class WinPoolLeague < ActiveRecord::Base
     return current_pick
   end
 
-  def get_current_user(year)
+  def get_current_user
     user = nil
     self.win_pool_picks.order('starting_position DESC').each do |pick|
       if pick.team_one.nil? && current_pick > pick.starting_position

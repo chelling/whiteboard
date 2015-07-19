@@ -1,5 +1,5 @@
 <div class="win-pool-draft">
-  <% draft_picks = WinPoolLeague.first.draft_recap(2014) %>
+  <% draft_picks = @league.draft_recap %>
   <h2 class="win-pool-draft-h2">Draft Recap</h2>
   <ul class="win-pool-draft-ul">
     <% draft_picks.each do |pick| %>
