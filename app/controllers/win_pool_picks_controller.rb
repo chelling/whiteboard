@@ -10,22 +10,12 @@ class WinPoolPicksController < ApplicationController
   def index
     @win_pool_picks = WinPoolPick.all
     authorize! :manage, @win_pool_picks
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @win_pool_picks }
-    end
   end
 
   # GET /win_pool_picks/1
   # GET /win_pool_picks/1.json
   def show
     authorize! :manage, @win_pool_pick
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @win_pool_pick }
-    end
   end
 
   # GET /win_pool_picks/new
@@ -33,11 +23,6 @@ class WinPoolPicksController < ApplicationController
   def new
     @win_pool_pick = WinPoolPick.new
     authorize! :create, @win_pool_pick
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @win_pool_pick }
-    end
   end
 
   # GET /win_pool_picks/1/edit
@@ -48,18 +33,11 @@ class WinPoolPicksController < ApplicationController
   # POST /win_pool_picks
   # POST /win_pool_picks.json
   def create
-    @win_pool_pick = WinPoolPick.new(params[:win_pool_pick])
+    @win_pool_pick = WinPoolPick.new
     authorize! :create, @win_pool_pick
+    @win_pool_pick.update win_pool_pick_params
 
-    respond_to do |format|
-      if @win_pool_pick.save
-        format.html { redirect_to @win_pool_pick, notice: 'Win pool pick was successfully created.' }
-        format.json { render json: @win_pool_pick, status: :created, location: @win_pool_pick }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @win_pool_pick.errors, status: :unprocessable_entity }
-      end
-    end
+    respond_with @win_pool_pick
   end
 
   # PUT /win_pool_picks/1
@@ -67,15 +45,8 @@ class WinPoolPicksController < ApplicationController
   def update
     authorize! :update, @win_pool_pick
 
-    respond_to do |format|
-      if @win_pool_pick.update_attributes(params[:win_pool_pick])
-        format.html { redirect_to @win_pool_pick, notice: 'Win pool pick was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @win_pool_pick.errors, status: :unprocessable_entity }
-      end
-    end
+    @win_pool_pick.update win_pool_pick_params
+    respond_with @win_pool_pick
   end
 
   # DELETE /win_pool_picks/1
@@ -84,10 +55,7 @@ class WinPoolPicksController < ApplicationController
     authorize! :destroy, @win_pool_pick
     @win_pool_pick.destroy
 
-    respond_to do |format|
-      format.html { redirect_to win_pool_picks_url }
-      format.json { head :no_content }
-    end
+    respond_with @win_pool_pick
   end
 
   def win_pool
@@ -131,8 +99,8 @@ class WinPoolPicksController < ApplicationController
 private
 
   def load_win_pool_league
-    @league = WinPoolLeague.find(params[:id])
-    @win_pool_pick = WinPoolPick.where(user_id: current_user.id, year: @league.year, win_pool_league_id: params[:id]).first
+    @league = WinPoolLeague.where(id: params[:id]).includes(win_pool_picks: [team_one: :records, team_two: :records, team_three: :records]).first
+    @win_pool_pick = WinPoolPick.where(user_id: current_user.id, year: @league.year, win_pool_league_id: params[:id]).includes(team_one: :records, team_two: :records, team_three: :records).first
   end
 
   def load_win_pool_pick
