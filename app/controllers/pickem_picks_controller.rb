@@ -1,126 +1,63 @@
 class PickemPicksController < ApplicationController
+  respond_to :html
+
+  before_action :require_login
+  before_action :load_pickem_pick, except: [:index, :new, :create, :scores, :update_picks]
+
   # GET /pickem_picks
   # GET /pickem_picks.json
   def index
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
     @pickem_picks = PickemPick.all
     authorize! :manage, @pickem_picks
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @pickem_picks }
-    end
   end
 
   # GET /pickem_picks/1
   # GET /pickem_picks/1.json
   def show
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @pickem_pick = PickemPick.find(params[:id])
     authorize! :manage, @pickem_pick
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @pickem_pick }
-    end
   end
 
   # GET /pickem_picks/new
   # GET /pickem_picks/new.json
   def new
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
     @pickem_pick = PickemPick.new
     authorize! :create, @pickem_pick
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @pickem_pick }
-    end
   end
 
   # GET /pickem_picks/1/edit
   def edit
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @pickem_pick = PickemPick.find(params[:id])
     authorize! :update, @pickem_pick
   end
 
   # POST /pickem_picks
   # POST /pickem_picks.json
   def create
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @pickem_pick = PickemPick.new(params[:pickem_pick])
+    @pickem_pick = PickemPick.new
     authorize! :create, @pickem_pick
 
-    respond_to do |format|
-      if @pickem_pick.save
-        format.html { redirect_to @pickem_pick, notice: 'Pickem pick was successfully created.' }
-        format.json { render json: @pickem_pick, status: :created, location: @pickem_pick }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @pickem_pick.errors, status: :unprocessable_entity }
-      end
-    end
+    @pickem_pick.update pickem_pick_params
+    respond_with @pickem_pick
   end
 
   # PUT /pickem_picks/1
   # PUT /pickem_picks/1.json
   def update
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @pickem_pick = PickemPick.find(params[:id])
     authorize! :update, @pickem_pick
 
-    respond_to do |format|
-      if @pickem_pick.update_attributes(params[:pickem_pick])
-        format.html { redirect_to @pickem_pick, notice: 'Pickem pick was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @pickem_pick.errors, status: :unprocessable_entity }
-      end
-    end
+    @pickem_pick.update pickem_pick_params
+    respond_with @pickem_pick
   end
 
   # DELETE /pickem_picks/1
   # DELETE /pickem_picks/1.json
   def destroy
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
-    @pickem_pick = PickemPick.find(params[:id])
     authorize! :destroy, @pickem_pick
     @pickem_pick.destroy
 
-    respond_to do |format|
-      format.html { redirect_to pickem_picks_url }
-      format.json { head :no_content }
-    end
+    respond_with @pickem_pick
   end
 
   def scores
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
     @mobile_header = "Pigskin Pickem"
     @year = Time.now.year
     @week = find_week
@@ -133,7 +70,7 @@ class PickemPicksController < ApplicationController
       Account.create(:user_id => current_user.id, :year => @year, :amount => 0)
     end
 
-    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
+    @games = Game.order("date ASC").where(year: @year, week: @week)
     @pickem_picks = current_user.pickem_picks_by_year_and_week(@year, @week)
     authorize! :read, @pickem_picks
     @users = User.order_all_by_account_amount(@year, @week)
@@ -160,10 +97,6 @@ class PickemPicksController < ApplicationController
   
   # add picks to user table
   def update_picks
-    if !user_signed_in?
-      return redirect_to "/users/sign_in"
-    end
-
     @year = Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
@@ -173,7 +106,7 @@ class PickemPicksController < ApplicationController
     params.each do |key,value|
       game = key.split('_')
       if game.first == "game"
-        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last)
+        pick = PickemPick.where(user_id: current_user.id, game_id: game.last).first
         if !pick.nil?
           authorize! :update, pick
         else
@@ -189,7 +122,7 @@ class PickemPicksController < ApplicationController
       # set wagers as well for single picks
       if game.first == "wager" && !value.empty?
 
-        pick = PickemPick.find_by_user_id_and_game_id(current_user.id, game.last)
+        pick = PickemPick.where(user_id: current_user.id, game_id: game.last).first
         if pick.nil?
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Cannot bet without making a pick'
         elsif pick.game.in_progress_or_complete?
@@ -239,5 +172,15 @@ class PickemPicksController < ApplicationController
 
     Game.create_or_update_games(@year, @week)
     redirect_to "/pickem?year=#{@year}&week=#{@week}", notice: 'Games successfully updated.'
+  end
+
+private
+
+  def load_pickem_pick
+    @pickem_pick = PickemPick.find(params[:id])
+  end
+
+  def pickem_pick_params
+    params.require(:pickem_pick).permit :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points, :tie
   end
 end

@@ -6,8 +6,6 @@ class PickemPick < ActiveRecord::Base
 
   before_save :update_wager
 
-  #attr_accessor :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points, :tie
-
   # before_save
   def update_wager
     if self.win.nil? || self.wager.nil?
@@ -29,8 +27,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_teams(year, start_week, end_week)
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    game = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    game = Game.find_by(id: game_id)
     games = Game.where("(home_team_id = ? or away_team_id = ?) and year = ? and week >= ? and week <= ?",
                       game.home_team_id, game.home_team_id, year, start_week, end_week)
 
@@ -61,8 +59,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_team_home(year, start_week, end_week)
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    game = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    game = Game.find_by(id: game_id)
     games = Game.where("home_team_id = ? and year = ? and week >= ? and week <= ?",
                        game.home_team_id, year, start_week, end_week)
     games.map do |g|
@@ -81,8 +79,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_team_away(year, start_week, end_week)
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    game = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    game = Game.find_by(id: game_id)
     games = Game.where("away_team_id = ? and year = ? and week >= ? and week <= ?",
                        game.away_team_id, year, start_week, end_week)
     games.map do |g|
@@ -101,7 +99,7 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_team_picked(year, start_week, end_week)
     wins = 0
     losses = 0
-    user = User.find(user_id)
+    user = User.find_by(id: user_id)
 
     picks = user.pickem_picks.where("year = ? and week >= ? and week <= ? and team_id = ?",
                                     year, start_week, end_week, team_id)
@@ -120,8 +118,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_team_not_picked(year, start_week, end_week)
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    game = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    game = Game.find_by(id: game_id)
     game.home_team_id == team_id ? t_id = game.away_team_id : t_id = game.home_team_id
     picks = user.pickem_picks.where("year = ? and week >= ? and week <= ? and team_id = ?",
                                     year, start_week, end_week, t_id)
@@ -142,8 +140,8 @@ class PickemPick < ActiveRecord::Base
     away_fav = false
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    g = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    g = Game.find_by(id: game_id)
 
     if g.line < 0
       home_fav = true
@@ -184,8 +182,8 @@ class PickemPick < ActiveRecord::Base
     away_dog = false
     wins = 0
     losses = 0
-    user = User.find(user_id)
-    g = Game.find(game_id)
+    user = User.find_by(id: user_id)
+    g = Game.find_by(id: game_id)
 
     if g.line < 0 && g.home_team_id == team_id
       home_fav = true
@@ -233,8 +231,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_conference(year, start_week, end_week)
     wins = 0
     losses = 0
-    g = Game.find(game_id)
-    user = User.find(user_id)
+    user = User.find_by(id: user_id)
+    g = Game.find_by(id: game_id)
 
     Game.where("year = ? and week >= ? and week <= ?", year, start_week, end_week).map do |game|
       # compare the divisions to the pick
@@ -255,8 +253,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_division(year, start_week, end_week)
     wins = 0
     losses = 0
-    g = Game.find(game_id)
-    user = User.find(user_id)
+    user = User.find_by(id: user_id)
+    g = Game.find_by(id: game_id)
 
     Game.where("year = ? and week >= ? and week <= ?", year, start_week, end_week).map do |game|
       # compare the divisions to the pick
@@ -280,8 +278,8 @@ class PickemPick < ActiveRecord::Base
   def get_user_record_on_time(year, start_week, end_week)
     wins = 0
     losses = 0
-    g = Game.find(game_id)
-    user = User.find(user_id)
+    user = User.find_by(id: user_id)
+    g = Game.find_by(id: game_id)
 
     Game.where("year = ? and week >= ? and week <= ?", year, start_week, end_week).map do |game|
       # compare the divisions to the pick
