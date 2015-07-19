@@ -6,7 +6,7 @@ class PickemPick < ActiveRecord::Base
 
   before_save :update_wager
 
-  attr_accessor :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points, :tie
+  #attr_accessor :game_id, :team_id, :user_id, :week, :year, :win, :recommended, :recommended_points, :tie
 
   # before_save
   def update_wager
