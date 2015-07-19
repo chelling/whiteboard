@@ -19,24 +19,24 @@ class User < ActiveRecord::Base
   # methods
   # pickem_picks
   def pickem_pick_by_game(game)
-    pickem_picks.find_by_game_id(game.id)
+    pickem_picks.where(game: game).first
   end
 
   def pickem_pick_by_game_id(id)
-    pickem_picks.find_by_game_id(id)
+    pickem_picks.where(game_id: id).first
   end
   
   def pickem_picks_by_year_and_week(year, week)
-    pickem_picks.find_all_by_year_and_week(year, week)
+    pickem_picks.where(year: year, week: week)
   end
 
   def pickem_picks_by_year(year)
-    pickem_picks.find_all_by_year(year)
+    pickem_picks.where(year: year)
   end
 
   def pickem_picks_wins_by_year(year)
     wins = 0
-    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+    pickem_picks.where(year: year).try(:map) do |pick|
       if !pick.win.nil?
         pick.win == true ? wins += 1 : ""
       end
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     wins = 0
     losses = 0
     ties = 0
-    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+    pickem_picks.where(year: year).try(:map) do |pick|
       if !pick.win.nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     wins = 0
     losses = 0
     ties = 0
-    pickem_picks.find_all_by_year_and_week(year, week).try(:map) do |pick|
+    pickem_picks.where(year: year, week: week).try(:map) do |pick|
       if !pick.win.nil?
         pick.win == true ? wins += 1 : losses += 1
         if pick.tie
@@ -80,7 +80,7 @@ class User < ActiveRecord::Base
     wins = 0
     losses = 0
     ties = 0
-    pickem_picks.find_all_by_year(year).try(:map) do |pick|
+    pickem_picks.where(year: year).try(:map) do |pick|
       if pick.try(:recommended)
         if !pick.win.nil?
           pick.win == true ? wins += 1 : losses += 1
@@ -96,23 +96,23 @@ class User < ActiveRecord::Base
 
   # fooicide_picks
   def fooicide_pick_by_game(game)
-    fooicide_picks.find_by_game_id(game.id)
+    fooicide_picks.where(game: game).first
   end
 
   def fooicide_pick_by_game_id(id)
-    fooicide_picks.find_by_game_id(id)
+    fooicide_picks.where(game_id: id).first
   end
 
   def fooicide_pick_by_year_and_week(year, week)
-    fooicide_picks.find_by_year_and_week(year, week)
+    fooicide_picks.where(year: year, week: week).first
   end
 
   def fooicide_picks_by_year(year)
-    fooicide_picks.find_all_by_year(year)
+    fooicide_picks.where(year: year)
   end
 
   def fooicide_pick_after_game_start(year, week)
-    pick = fooicide_picks.find_by_year_and_week(year, week)
+    pick = fooicide_picks.where(year: year, week: week).first
     if !pick.nil? && pick.try(:game).try(:in_progress_or_complete?)
       return pick
     else
@@ -131,7 +131,7 @@ class User < ActiveRecord::Base
   def fooicide_picks_correct_by_year(year)
     correct = 0
     incorrect = 0
-    fooicide_picks.find_all_by_year(year).try(:map) do |pick|
+    fooicide_picks.where(year: year).try(:map) do |pick|
       if !pick.win.nil?
         pick.win ? correct += 1 : incorrect += 1
       end
@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   def fooicide_picks_incorrect_by_year(year)
     correct = 0
     incorrect = 0
-    fooicide_picks.find_all_by_year(year).try(:map) do |pick|
+    fooicide_picks.where(year: year).try(:map) do |pick|
       if !pick.win.nil?
         pick.win ? correct += 1 : incorrect += 1
       end
@@ -155,7 +155,7 @@ class User < ActiveRecord::Base
   def fooicide_picks_record_by_year(year)
     correct = 0
     incorrect = 0
-    fooicide_picks.find_all_by_year(year).try(:map) do |pick|
+    fooicide_picks.where(year: year).try(:map) do |pick|
       if !pick.win.nil?
         pick.win ? correct += 1 : incorrect += 1
       end
@@ -167,12 +167,12 @@ class User < ActiveRecord::Base
   # other methods
 
   def find_balance_by_year(year)
-    amount = accounts.find_by_year(year).try(:amount)
+    amount = accounts.where(year: year).first.try(:amount)
     amount.nil? ? "$0" : "$#{amount.round(2)}"
   end
 
   def find_balance_prior_to_week(year, week)
-    current_amount = accounts.find_by_year(year).try(:amount)
+    current_amount = accounts.where(year: year).first.try(:amount)
     amount = 0
     wagers = self.wagers.joins(:pickem_pick).where("pickem_picks.year = ? and pickem_picks.week = ?", year, week)
     wagers.each do |wager|
@@ -205,8 +205,8 @@ class User < ActiveRecord::Base
   end
 
   def is_team_available?(year, week, team_id)
-    pick = fooicide_picks.find_by_year_and_team_id(year, team_id)
-    current_pick = fooicide_picks.find_by_year_and_week(year, week)
+    pick = fooicide_picks.where(year: year, team_id: team_id).first
+    current_pick = fooicide_picks.where(year: year, week: week).first
 
     if (pick.nil? || pick.week.to_i == week.to_i) && (current_pick.nil? || !current_pick.pick_locked?)
       return true
@@ -232,7 +232,7 @@ class User < ActiveRecord::Base
   end
 
   def fooicide_picks_submitted?(year, week)
-    if !fooicide_picks.find_by_year_and_week(year, week).nil?
+    if !fooicide_picks.where(year: year, week: week).first.nil?
       return true
     else
       return false
