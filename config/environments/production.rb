@@ -36,7 +36,7 @@ Whiteboard::Application.configure do
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_files = false
-
+  config.assets.compile = true
   config.assets.precompile += %w( .svg .eot .woff .ttf .png .jpg .gif)
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
