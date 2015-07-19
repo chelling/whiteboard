@@ -65,7 +65,7 @@ class PickemPicksController < ApplicationController
     @week = params[:week] if params[:week]
 
     # create account if it doesn't exist
-    if current_user.accounts.find_by_year(@year).nil?
+    if current_user.accounts.find_by(year: @year).nil?
       authorize! :create, Account
       Account.create(:user_id => current_user.id, :year => @year, :amount => 0)
     end
@@ -138,7 +138,7 @@ class PickemPicksController < ApplicationController
           authorize! :create, wager
         end
 
-        if !wager.update_attributes(:account_id => current_user.accounts.find_by_year(@year).try(:id), :pickem_pick_id => pick.id, :amount => value)
+        if !wager.update_attributes(:account_id => current_user.accounts.find_by(year: @year).try(:id), :pickem_pick_id => pick.id, :amount => value)
           return redirect_to "/pickem?year=#{@year}&week=#{@week}", alert: 'Error while updating your wagers.'
         end
       end

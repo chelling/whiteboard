@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def win_pool_pick
     User.all.map do |user|
-      @win_pool_pick = WinPoolPick.find_by_user_id_and_year_and_win_pool_league_id(user.id, Date.today.year, 1)
+      @win_pool_pick = WinPoolPick.where(user_id: user.id, year: Date.today.year, win_pool_league_id: 2).first
       if !@win_pool_pick.nil? && @win_pool_pick.is_current_user_turn?
         mail(:to => user.email, :subject => 'It\'s your turn to pick!')
       end

@@ -218,7 +218,7 @@ class Game < ActiveRecord::Base
     afc_v_nfc_win = 0
     afc_v_nfc_loss = 0
     output = []
-    Game.find_all_by_year(year).map do |game|
+    Game.where(year: year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         if game.away_team.conference == 'NFC' && game.home_team.conference == 'NFC'
           game.home_cover? ? nfc_v_nfc_win += 1 : ""
@@ -254,7 +254,7 @@ class Game < ActiveRecord::Base
     afc_v_nfc_win = 0
     afc_v_nfc_loss = 0
     output = []
-    Game.find_all_by_year(year).map do |game|
+    Game.where(year: year).map do |game|
       pick = user.pickem_pick_by_game_id(game.id)
       pick.nil? ? next : ""
       if !game.home_score.nil? && !game.away_score.nil?
@@ -286,7 +286,7 @@ class Game < ActiveRecord::Base
     division = Hash.new
     output = []
 
-    Game.find_all_by_year(year).map do |game|
+    Game.where(year: year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         if game.home_cover? == true
           if division[Game.divisional_binary.rassoc(game.division_matchup).first + "__h"]
@@ -334,7 +334,7 @@ class Game < ActiveRecord::Base
     away_fav_win = 0
     away_fav_loss = 0
     output = []
-    Game.find_all_by_year(year).map do |game|
+    Game.where(year: year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         # home favorites
         if game.line < 0
@@ -380,7 +380,7 @@ class Game < ActiveRecord::Base
     away_fav_win_picked = 0
     away_fav_loss_picked = 0
     output = []
-    Game.find_all_by_year(year).map do |game|
+    Game.where(year: year).map do |game|
       if !game.home_score.nil? && !game.away_score.nil?
         pick = user.pickem_pick_by_game_id(game.id)
         # home favorites
@@ -447,7 +447,7 @@ class Game < ActiveRecord::Base
       wins_picked = 0
       losses_picked = 0
       # find home teams
-      Game.find_all_by_year_and_home_team_id(year,team.id).map do |game|
+      Game.where(year: year, home_team_id: team.id).map do |game|
         pick = user.pickem_pick_by_game_id(game.id)
         if pick && pick.win == true
           wins += 1
@@ -462,7 +462,7 @@ class Game < ActiveRecord::Base
         end
       end
       # find away teams
-      Game.find_all_by_year_and_away_team_id(year,team.id).map do |game|
+      Game.where(year: year, away_team_id: team.id).map do |game|
         pick = user.pickem_pick_by_game_id(game.id)
         if pick && pick.win == true
           wins += 1
@@ -588,18 +588,18 @@ class Game < ActiveRecord::Base
       home_score = item.css(".home-team").css(".total-score").text unless item.css(".home-team").css(".total-score").text == "--"
 
       # Create game if it doesn't exist
-      game = Game.find_by_year_and_week_and_home_team_id(year, week, Team.find_by_name(home_team).try(:id))
-      if game.nil? && !Team.find_by_name(away_team).nil?  && !Team.find_by_name(home_team).nil?
-        Game.create(:away_team_id => Team.find_by_name(away_team).try(:id), \
-                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+      game = Game.where(year: year, week: week, home_team_id: Team.find_by(name: home_team).try(:id)).first
+      if game.nil? && !Team.find_by(name: away_team).nil?  && !Team.find_by(name: home_team).nil?
+        Game.create(:away_team_id => Team.find_by(name: away_team).try(:id), \
+                    :home_team_id => Team.find_by(name: home_team).try(:id), \
                     :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
-                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :location => Team.find_by(name: home_team).try(:location), :year => year, :week => week,
                     :away_score => away_score, :home_score => home_score)
       elsif !game.nil? && time.include?('FINAL')
-        game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
-                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+        game.update_attributes(:away_team_id => Team.find_by(name: away_team).try(:id), \
+                    :home_team_id => Team.find_by(name: home_team).try(:id), \
                     # :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
-                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :location => Team.find_by(name: home_team).try(:location), :year => year, :week => week,
                     :away_score => away_score, :home_score => home_score)
         game.save
       end
@@ -625,18 +625,18 @@ class Game < ActiveRecord::Base
       puts "\n\n\nhome_score: #{home_score}\n\n\n"
 
       # Create game if it doesn't exist
-      game = Game.find_by_year_and_week_and_home_team_id(year, week, Team.find_by_name(home_team).try(:id))
-      if game.nil? && !Team.find_by_name(away_team).nil?  && !Team.find_by_name(home_team).nil?
-        Game.create(:away_team_id => Team.find_by_name(away_team).try(:id), \
-                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+      game = Game.where(year: year, week: week, home_team_id: Team.find_by(name: home_team).try(:id)).first
+      if game.nil? && !Team.find_by(name: away_team).nil?  && !Team.find_by(name: home_team).nil?
+        Game.create(:away_team_id => Team.find_by(name: away_team).try(:id), \
+                    :home_team_id => Team.find_by(name: home_team).try(:id), \
                     :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
-                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :location => Team.find_by(name: home_team).try(:location), :year => year, :week => week,
                     :away_score => away_score, :home_score => home_score)
       elsif !game.nil?
-        game.update_attributes(:away_team_id => Team.find_by_name(away_team).try(:id), \
-                    :home_team_id => Team.find_by_name(home_team).try(:id), \
+        game.update_attributes(:away_team_id => Team.find_by(name: away_team).try(:id), \
+                    :home_team_id => Team.find_by(name: home_team).try(:id), \
                     :date => DateTime.strptime(date + " 2014 " + time, '%a, %b %d %Y %H:%M %p'), \
-                    :location => Team.find_by_name(home_team).try(:location), :year => year, :week => week,
+                    :location => Team.find_by(name: home_team).try(:location), :year => year, :week => week,
                                :away_score => away_score, :home_score => home_score)
         game.save
       end

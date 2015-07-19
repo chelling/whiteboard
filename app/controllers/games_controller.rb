@@ -94,7 +94,7 @@ class GamesController < ApplicationController
     @year = Time.now.year
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
-    @games = Game.order("date ASC").find_all_by_year_and_week(@year, @week)
+    @games = Game.order("date ASC").where(year: @year, week: @week)
     authorize! :read, @games
     team_ids = []
     @games.try(:map) do |game|

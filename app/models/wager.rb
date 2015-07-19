@@ -49,8 +49,8 @@ class Wager < ActiveRecord::Base
   # methods
   def self.find_amount_by_user_id_and_game_id(user_id, game_id)
     user = User.find(user_id)
-    pick = user.pickem_picks.find_by_game_id(game_id)
-    wager = user.wagers.find_by_pickem_pick_id(pick.try(:id))
+    pick = user.pickem_picks.find_by(game_id: game_id)
+    wager = user.wagers.find_by(pickem_pick_id: pick.try(:id))
 
     wager.nil? ? '' : wager.amount.to_f.round(2)
   end
