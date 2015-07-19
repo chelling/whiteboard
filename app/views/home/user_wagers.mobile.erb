@@ -17,7 +17,7 @@
                                     @pick.team_id == @game.away_team_id && @pick.tie == true ? "ui-grid-b game-tie" : \
                                     @pick.team_id == @game.away_team_id && @pick.win == false ? "ui-grid-b game-loss" : "ui-grid-b" %>">
                 <div class="ui-block-a">
-                  <img class="team-logo" src="<%= asset_path @game.away_team.image %>">
+                  <img class="team-logo" src="<%= image_path @game.away_team.image %>">
                 </div>
                 <div class="ui-block-b">
                   <div class="team-info"><%= @game.away_team.name %></div>
@@ -36,7 +36,7 @@
                                     @pick.team_id == @game.home_team_id && @pick.tie == true ? "ui-grid-b game-tie" : \
                                     @pick.team_id == @game.home_team_id && @pick.win == false ? "ui-grid-b game-loss" : "ui-grid-b" %>">
                 <div class="ui-block-a">
-                  <img class="team-logo" src="<%= asset_path @game.home_team.image %>">
+                  <img class="team-logo" src="<%= image_path @game.home_team.image %>">
                 </div>
                 <div class="ui-block-b">
                   <div class="team-info"><%= @game.home_team.name %></div>

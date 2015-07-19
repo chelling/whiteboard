@@ -84,7 +84,7 @@
                       <div class="team-wrapper">
                         <div class="away-team">
                   <% end %>
-                  <img class="team-logo" src="<%= asset_path game.away_team.image %>">
+                  <img class="team-logo" src="<%= image_path game.away_team.image %>">
                   <div class="team-data">
                     <div class="team-info">
                       <p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
@@ -132,7 +132,7 @@
                       <div class="team-wrapper">
                         <div class="home-team">
                   <% end %>
-                  <img class="team-logo" src="<%= asset_path game.home_team.image %>">
+                  <img class="team-logo" src="<%= image_path game.home_team.image %>">
                   <div class="team-data">
                     <div class="team-info">
                       <p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
@@ -162,7 +162,7 @@
                           <% if !game.line.nil? && game.line != 0 %>
                               <%= "Line: #{game.line}" %>
                               <% if @pick.try(:recommended) %>
-                                <img style="float:right" width="20" height="20" src="<%= asset_path "star.png" %>">
+                                <img style="float:right" width="20" height="20" src="<%= image_path "star.png" %>">
                               <% end %>
                           <% else %>
                               <%= "Line: Even" %>

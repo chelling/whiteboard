@@ -16,7 +16,7 @@
               <div class="team-wrapper-scores">
             <% end %>
 				<div class="away-team">
-					<img class="team-logo" src="<%= asset_path game.away_team.image %>">
+					<img class="team-logo" src="<%= image_path game.away_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.away_team.record_formatted(@year) %></p>
@@ -36,7 +36,7 @@
                 <div class="team-wrapper-scores">
             <% end %>
 				<div class="home-team">
-					<img class="team-logo" src="<%= asset_path game.home_team.image %>">
+					<img class="team-logo" src="<%= image_path game.home_team.image %>">
 					<div class="team-data">
 						<div class="team-info">
 							<p class="team-record"><%= game.home_team.record_formatted(@year) %></p>
