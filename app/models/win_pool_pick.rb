@@ -10,7 +10,7 @@ class WinPoolPick < ActiveRecord::Base
 
   # models
   def teams_full?
-    team_one.present? || team_two.present? || team_three.present?
+    team_one.present? && team_two.present? && team_three.present?
   end
 
   def is_current_user_turn?
