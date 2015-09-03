@@ -18,7 +18,7 @@ class WinPoolPick < ActiveRecord::Base
       return false
     end
 
-    current_pick = WinPoolLeague.find_by(id: self.win_pool_league_id).get_current_pick(year)
+    current_pick = WinPoolLeague.find_by(id: self.win_pool_league_id).get_current_pick
 
     if current_pick == self.next_pick
       return true
