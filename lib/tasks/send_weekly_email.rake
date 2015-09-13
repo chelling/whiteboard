@@ -12,7 +12,7 @@ task :send_weekly_email => :environment do
   end
 
   # Lines set email Wednesdays
-  if Date.today.strftime('%A') == 'Wednesday'
+  if Date.today.strftime('%A') == 'Wednesday' && false
     week = find_week
     User.all.map do |u|
       if u.accounts.where(year: Date.today.year).first.try(:amount).to_i > 0
