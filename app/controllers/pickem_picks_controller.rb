@@ -2,7 +2,7 @@ class PickemPicksController < ApplicationController
   respond_to :html
 
   before_action :require_login
-  before_action :load_pickem_pick, except: [:index, :new, :create, :scores, :update_picks]
+  before_action :load_pickem_pick, except: [:index, :new, :create, :scores, :update_picks, :update_games]
 
   # GET /pickem_picks
   # GET /pickem_picks.json
