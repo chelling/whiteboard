@@ -66,7 +66,7 @@ class GamesController < ApplicationController
     authorize! :manage, @game
 
     respond_to do |format|
-      if @game.update_attributes(params[:game])
+      if @game.update game_params
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
@@ -109,5 +109,10 @@ class GamesController < ApplicationController
         @bye_teams += ", #{team.location}"
       end
     end
+  end
+
+  def game_params
+    params.require(:game).permit  :away_team_id, :home_team_id, :week, :year, :location, :line,
+                                         :away_score, :home_score, :date
   end
 end
