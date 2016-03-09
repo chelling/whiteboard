@@ -23,7 +23,8 @@
 
   function togglePlayerRow() {
       child = $(this).next();
-      while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html') {
+
+      while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html' && el.size() > 0) {
           el.toggle();
           child = el.next();
       }
