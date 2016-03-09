@@ -1,4 +1,4 @@
-class BaseballController < ApplicationController
+class BaseballController < ActionController::Base
 
   def home
 
