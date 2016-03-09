@@ -13,6 +13,7 @@ Whiteboard::Application.routes.draw do
   get "/user_wagers/:year/:week/:user_id", to: "home#user_wagers"
   get "/user_wagers/:year/:user_id", to: "home#user_wagers"
   get "/update_games", to: "pickem_picks#update_games"
+  get "/baseball", to: "baseball#home"
 
   # match "/thirtyeight" => "thirty_eights#scores"
   # match "/thirtyeight" => "thirty_eights#rules"

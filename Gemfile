@@ -22,7 +22,7 @@ group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
 
-gem 'simple_form', '3.1.0'
+gem 'simple_form', '3.2.1'
 gem 'cancan'
 gem 'nested_form'
 gem 'nokogiri'

@@ -1,0 +1,41 @@
+<script>
+  window.onload = function() {
+      build_baseball_table();
+  };
+
+  function build_baseball_table(){
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if(xhttp.readyState == 4 && xhttp.status == 200) {
+              document.getElementById("main-baseball").innerHTML = xhttp.responseText;
+              bindRows();
+          }
+      };
+      xhttp.open("GET", "https://munleyixbl.execute-api.us-east-1.amazonaws.com/prod", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send();
+  }
+
+  function togglePlayerRow() {
+      child = $(this).next();
+      while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html') {
+          el.toggle("slow");
+          child = el.next();
+      }
+  }
+
+  function toggleStatsRow() {
+      $(this).find("tr.player-categories").toggle("slow");
+      $(this).find("tbody").toggle("slow");
+  }
+
+  function bindRows() {
+      $('.user-table').on("click", togglePlayerRow);
+      $('.player-stats').on("click", toggleStatsRow);
+  }
+
+</script>
+
+<div id="main-baseball">
+
+</div>
