@@ -24,17 +24,22 @@
   function togglePlayerRow() {
       child = $(this).next();
       while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html') {
-          el.toggle("slow");
+          el.toggle();
           child = el.next();
       }
   }
 
   function toggleStatsRow() {
-      $(this).find("tr.player-categories").toggle("slow");
-      $(this).find("tbody").toggle("slow");
+      $(this).find("tr.player-categories").toggle();
+      $(this).find(".sub-col").toggle();
+      $(this).find(".player-totals").toggle();
   }
 
   function bindRows() {
+      $('.sub-col').toggle();
+      $('.player-totals').toggle();
+      $('.player-stat-table').toggle();
+      $('.player-categories').toggle();
       $('.user-table').on("click", togglePlayerRow);
       $('.player-stats').on("click", toggleStatsRow);
   }
