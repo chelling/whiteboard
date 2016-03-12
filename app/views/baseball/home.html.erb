@@ -3,6 +3,20 @@
     <%= javascript_include_tag "application" %>
 </head>
 <body style="background-color: black;">
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43268283-1']);
+    _gaq.push(['_setDomainName', 'foo-nation.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
 <script>
   window.onload = function() {
       build_baseball_table();
@@ -14,6 +28,7 @@
           if(xhttp.readyState == 4 && xhttp.status == 200) {
               document.getElementById("main-baseball").innerHTML = xhttp.responseText;
               bindRows();
+              orderTableByTotal();
           }
       };
       xhttp.open("GET", "https://munleyixbl.execute-api.us-east-1.amazonaws.com/prod", true);
@@ -30,19 +45,141 @@
       }
   }
 
-  function toggleStatsRow() {
-      $(this).find("tr.player-categories").toggle();
-      $(this).find(".sub-col").toggle();
-      $(this).find(".player-totals").toggle();
+  function toggleStatsRowOn() {
+      $(this).find(".player-table").removeClass('dont-show');
+      $(this).find(".player-totals").removeClass('dont-show');
+      $(this).unbind();
+      $('.player-stats').on("click", toggleStatsRowOff);
+  }
+
+  function toggleStatsRowOff() {
+      $(this).find(".player-table").addClass('dont-show');
+      $(this).find(".player-totals").addClass('dont-show');
+      $(this).unbind();
+      $('.player-stats').on("click", toggleStatsRowOn);
+
+      $('.player-totals').each(function() {
+          previous_row = $(this).prev();
+          if(previous_row.attr("class").indexOf('player-table') > -1) {
+              previous_row.addClass('recent-game')
+          }
+      });
+
+      $('.recent-game').removeClass('dont-show');
   }
 
   function bindRows() {
-      $('.sub-col').toggle();
-      $('.player-totals').toggle();
-      $('.player-stat-table').toggle();
-      $('.player-categories').toggle();
+      $('.player-table').addClass('dont-show');
+      $('.player-totals').addClass('dont-show');
+      $('.player-stat-table').addClass('dont-show');
       $('.user-table').on("click", togglePlayerRow);
-      $('.player-stats').on("click", toggleStatsRow);
+      $('.player-stats').on("click", toggleStatsRowOn);
+
+      $('.player-totals').each(function() {
+          previous_row = $(this).prev();
+          if(previous_row.attr("class").indexOf('player-table') > -1) {
+            previous_row.addClass('recent-game')
+          }
+      });
+
+      $('.recent-game').removeClass('dont-show');
+  }
+
+    function orderTableByTotal() {
+        $('.user-table').each(function(){
+            var cur_val = parseInt($(this).find('*[data-col-name="TOT"]').text());
+            console.log("cur_val: " + cur_val);
+            var greater_el = findGreaterThanPosition(this, cur_val);
+            console.log('Greater');
+            console.log(greater_el);
+            if(greater_el != undefined) {
+                cutBeforeGreaterEl(this, greater_el);
+            }
+            var lesser_el = findLessThanPosition(this, cur_val);
+            console.log('Lesser');
+            console.log(lesser_el);
+            if(lesser_el != undefined) {
+                cutAfterLessEl(this, lesser_el);
+            }
+        });
+    }
+
+    function findGreaterThanPosition(tr, cur_val) {
+        child = $(tr).next();
+
+        while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html' && el.size() > 0) {
+            child = el.next();
+        }
+
+        if(el.attr("class") == "user-table") {
+            var new_val = parseInt($(el).find('*[data-col-name="TOT"]').text());
+            console.log("new_val: " + new_val);
+            if(cur_val > new_val) {
+                findGreaterThanPosition(el, cur_val);
+            } else {
+                return el;
+            }
+        }
+    }
+
+    function cutBeforeGreaterEl(el, greater_el) {
+        var el_array = [];
+        previous_el = greater_el.prev();
+        console.log('Previous');
+        console.log(previous_el);
+
+        el_array.push(el);
+
+        child = $(el).next();
+
+        while((tr = child) && tr.attr("class") != "user-table" && tr.tagName != 'html' && tr.size() > 0) {
+            el_array.push(tr);
+            child = tr.next();
+        }
+
+        console.log('el_array');
+        console.log(el_array);
+        el_array.forEach(function(entry) {
+            $(entry).insertAfter(previous_el);
+            previous_el = entry;
+        });
+    }
+
+  function findLessThanPosition(tr, cur_val) {
+      child = $(tr).prev();
+
+      while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html' && el.size() > 0) {
+          child = el.prev();
+      }
+
+      if(el.attr("class") == "user-table") {
+          var new_val = parseInt($(el).find('*[data-col-name="TOT"]').text());
+          console.log("new_val_lesser: " + new_val);
+          if(cur_val < new_val) {
+              findLessThanPosition(el, cur_val);
+          } else {
+              return el;
+          }
+      }
+  }
+
+  function cutAfterLessEl(el, lesser_el) {
+      var el_array = [];
+      previous_el = lesser_el;
+
+      el_array.push(el);
+
+      child = $(el).next();
+
+      while((tr = child) && tr.attr("class") != "user-table" && tr.tagName != 'html' && tr.size() > 0) {
+          el_array.push(tr);
+          child = tr.next();
+      }
+
+      el_array.reverse().forEach(function(entry) {
+          $(entry).insertBefore(previous_el);
+          previous_el = entry;
+      });
   }
 
 </script>
