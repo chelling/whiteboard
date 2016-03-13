@@ -75,6 +75,12 @@
       $('.user-table').on("click", togglePlayerRow);
       $('.player-stats').on("click", toggleStatsRowOn);
 
+      $('.main-categories th').each(function() {
+          if($(this).text() != 'USER'){
+              $(this).on("click", orderTableByTotal);
+          }
+      });
+
       $('.player-totals').each(function() {
           previous_row = $(this).prev();
           if(previous_row.attr("class").indexOf('player-table') > -1) {
@@ -86,25 +92,32 @@
   }
 
     function orderTableByTotal() {
+        category = $(this).text();
+        if(category == undefined || category.length <= 0 ) {
+            category = 'TOT';
+        }
         $('.user-table').each(function(){
-            var cur_val = parseInt($(this).find('*[data-col-name="TOT"]').text());
-            console.log("cur_val: " + cur_val);
-            var greater_el = findGreaterThanPosition(this, cur_val);
-            console.log('Greater');
-            console.log(greater_el);
+
+            var full_val = $(this).find('*[data-col-name="' + category + '"]').text();
+            var split_val = full_val.split('(');
+
+            if(split_val.length > 1) {
+                split_val = split_val[1].split(')')[0];
+            }
+            var cur_val = parseInt(split_val);
+
+            var greater_el = findGreaterThanPosition(this, cur_val, category);
             if(greater_el != undefined) {
                 cutBeforeGreaterEl(this, greater_el);
             }
-            var lesser_el = findLessThanPosition(this, cur_val);
-            console.log('Lesser');
-            console.log(lesser_el);
+            var lesser_el = findLessThanPosition(this, cur_val, category);
             if(lesser_el != undefined) {
                 cutAfterLessEl(this, lesser_el);
             }
         });
     }
 
-    function findGreaterThanPosition(tr, cur_val) {
+    function findGreaterThanPosition(tr, cur_val, category) {
         child = $(tr).next();
 
         while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html' && el.size() > 0) {
@@ -112,8 +125,14 @@
         }
 
         if(el.attr("class") == "user-table") {
-            var new_val = parseInt($(el).find('*[data-col-name="TOT"]').text());
-            console.log("new_val: " + new_val);
+            var full_val = $(el).find('*[data-col-name="' + category + '"]').text();
+            var split_val = full_val.split('(');
+
+            if(split_val.length > 1) {
+                split_val = split_val[1].split(')')[0];
+            }
+            var new_val = parseInt(split_val);
+
             if(cur_val > new_val) {
                 findGreaterThanPosition(el, cur_val);
             } else {
@@ -125,8 +144,6 @@
     function cutBeforeGreaterEl(el, greater_el) {
         var el_array = [];
         previous_el = greater_el.prev();
-        console.log('Previous');
-        console.log(previous_el);
 
         el_array.push(el);
 
@@ -137,15 +154,13 @@
             child = tr.next();
         }
 
-        console.log('el_array');
-        console.log(el_array);
         el_array.forEach(function(entry) {
             $(entry).insertAfter(previous_el);
             previous_el = entry;
         });
     }
 
-  function findLessThanPosition(tr, cur_val) {
+  function findLessThanPosition(tr, cur_val, category) {
       child = $(tr).prev();
 
       while((el = child) && el.attr("class") != "user-table" && el.tagName != 'html' && el.size() > 0) {
@@ -153,8 +168,14 @@
       }
 
       if(el.attr("class") == "user-table") {
-          var new_val = parseInt($(el).find('*[data-col-name="TOT"]').text());
-          console.log("new_val_lesser: " + new_val);
+          var full_val = $(el).find('*[data-col-name="' + category + '"]').text();
+          var split_val = full_val.split('(');
+
+          if(split_val.length > 1) {
+              split_val = split_val[1].split(')')[0];
+          }
+          var new_val = parseInt(split_val);
+
           if(cur_val < new_val) {
               findLessThanPosition(el, cur_val);
           } else {

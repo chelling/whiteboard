@@ -225,6 +225,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
   gamelog_final.reverse.map do |game|
     if game["Game"].present?
       if i == 1
+        last_5["score"] = game["Score"].to_s
+        last_5["opponent"] = game["Opponent"].to_s
         last_5["game"] = game["Date"].to_s
         last_5["bb"] = game["BB"].to_s
         last_5["h"] = game["H"].to_s
@@ -239,6 +241,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
       end
 
       if i == 2
+        last_4["score"] = game["Score"].to_s
+        last_4["opponent"] = game["Opponent"].to_s
         last_4["game"] = game["Date"].to_s
         last_4["bb"] = game["BB"].to_s
         last_4["h"] = game["H"].to_s
@@ -253,6 +257,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
       end
 
       if i == 3
+        last_3["score"] = game["Score"].to_s
+        last_3["opponent"] = game["Opponent"].to_s
         last_3["game"] = game["Date"].to_s
         last_3["bb"] = game["BB"].to_s
         last_3["h"] = game["H"].to_s
@@ -267,6 +273,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
       end
 
       if i == 4
+        last_2["score"] = game["Score"].to_s
+        last_2["opponent"] = game["Opponent"].to_s
         last_2["game"] = game["Date"].to_s
         last_2["bb"] = game["BB"].to_s
         last_2["h"] = game["H"].to_s
@@ -281,6 +289,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
       end
 
       if i == 5
+        last_1["score"] = game["Score"].to_s
+        last_1["opponent"] = game["Opponent"].to_s
         last_1["game"] = game["Date"].to_s
         last_1["bb"] = game["BB"].to_s
         last_1["h"] = game["H"].to_s
@@ -497,6 +507,8 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
   gamelog_final.reverse.map do |game|
     if game["Game"].present?
       if i == 1
+        last_5["score"] = game["Score"].to_s
+        last_5["opponent"] = game["Opponent"].to_s
         last_5["game"] = game["Date"].to_s
         last_5["ip"] = game["IP"].to_s
         last_5["r"] = game["R"].to_s
@@ -511,6 +523,8 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
       end
 
       if i == 2
+        last_4["score"] = game["Score"].to_s
+        last_4["opponent"] = game["Opponent"].to_s
         last_4["game"] = game["Date"].to_s
         last_4["ip"] = game["IP"].to_s
         last_4["r"] = game["R"].to_s
@@ -525,6 +539,8 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
       end
 
       if i == 3
+        last_3["score"] = game["Score"].to_s
+        last_3["opponent"] = game["Opponent"].to_s
         last_3["game"] = game["Date"].to_s
         last_3["ip"] = game["IP"].to_s
         last_3["r"] = game["R"].to_s
@@ -539,6 +555,8 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
       end
 
       if i == 4
+        last_2["score"] = game["Score"].to_s
+        last_2["opponent"] = game["Opponent"].to_s
         last_2["game"] = game["Date"].to_s
         last_2["ip"] = game["IP"].to_s
         last_2["r"] = game["R"].to_s
@@ -553,6 +571,8 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
       end
 
       if i == 5
+        last_1["score"] = game["Score"].to_s
+        last_1["opponent"] = game["Opponent"].to_s
         last_1["game"] = game["Date"].to_s
         last_1["ip"] = game["IP"].to_s
         last_1["r"] = game["R"].to_s
@@ -712,15 +732,12 @@ def find_player_war(player_war_url, position)
     end
   end
 
-  print "\n\nwar row=#{war_row}\n\n"
 
   # loop through war table
   doc.css('#' + table_id + " tr").each do |tr|
     if tr.attribute('id').to_s == "#{table_id}.2015"
-      print "here"
       i = 0
       tr.css('td').each do |td|
-        print "there"
         if i == war_row
           war = td.text
         end
@@ -728,8 +745,6 @@ def find_player_war(player_war_url, position)
       end
     end
   end
-
-  print "WAR: #{war}"
 
   return war
 end
