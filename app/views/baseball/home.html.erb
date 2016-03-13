@@ -55,6 +55,7 @@
   function toggleStatsRowOff() {
       $(this).find(".player-table").addClass('dont-show');
       $(this).find(".player-totals").addClass('dont-show');
+      $('.player-totals-season').removeClass('dont-show');
       $(this).unbind();
       $('.player-stats').on("click", toggleStatsRowOn);
 
@@ -71,6 +72,7 @@
   function bindRows() {
       $('.player-table').addClass('dont-show');
       $('.player-totals').addClass('dont-show');
+      $('.player-totals-season').removeClass('dont-show');
       $('.player-stat-table').addClass('dont-show');
       $('.user-table').on("click", togglePlayerRow);
       $('.player-stats').on("click", toggleStatsRowOn);
