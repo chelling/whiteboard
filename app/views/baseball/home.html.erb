@@ -27,7 +27,8 @@
       xhttp.onreadystatechange = function() {
           if(xhttp.readyState == 4 && xhttp.status == 200) {
               document.getElementById("main-baseball").innerHTML = xhttp.responseText;
-              bindRows();
+              //bindRows();
+              bindRows2();
               orderTableByTotal();
           }
       };
@@ -93,30 +94,48 @@
       $('.recent-game').removeClass('dont-show');
   }
 
+  function bindRows2() {
+      $('.player-totals').addClass('dont-show');
+      $('.player-categories').addClass('dont-show');
+      $('.sub-col').addClass('dont-show');
+      $('.player-stat-table').each(function() {
+          el = $(this);
+         $(this).find('th').each(function(){
+            if($(this).text().indexOf('--') >= 0){
+                el.addClass('dont-show');
+            }
+         });
+      });
+  }
+
     function orderTableByTotal() {
         category = $(this).text();
         if(category == undefined || category.length <= 0 ) {
             category = 'TOT';
         }
-        $('.user-table').each(function(){
+        i = 0;
+        while(i < 15) {
+            $('.user-table').each(function () {
 
-            var full_val = $(this).find('*[data-col-name="' + category + '"]').text();
-            var split_val = full_val.split('(');
+                var full_val = $(this).find('*[data-col-name="' + category + '"]').text();
+                var split_val = full_val.split('(');
 
-            if(split_val.length > 1) {
-                split_val = split_val[1].split(')')[0];
-            }
-            var cur_val = parseInt(split_val);
+                if (split_val.length > 1) {
+                    split_val = split_val[1].split(')')[0];
+                }
+                var cur_val = parseInt(split_val);
 
-            var greater_el = findGreaterThanPosition(this, cur_val, category);
-            if(greater_el != undefined) {
-                cutBeforeGreaterEl(this, greater_el);
-            }
-            var lesser_el = findLessThanPosition(this, cur_val, category);
-            if(lesser_el != undefined) {
-                cutAfterLessEl(this, lesser_el);
-            }
-        });
+                var greater_el = findGreaterThanPosition(this, cur_val, category);
+                if (greater_el != undefined) {
+                    cutBeforeGreaterEl(this, greater_el);
+                }
+                var lesser_el = findLessThanPosition(this, cur_val, category);
+                if (lesser_el != undefined) {
+                    cutAfterLessEl(this, lesser_el);
+                }
+            });
+            i += 1;
+        }
     }
 
     function findGreaterThanPosition(tr, cur_val, category) {
