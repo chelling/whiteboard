@@ -31,6 +31,12 @@
         <li class="b-nav-group"><a class="nav-list" href="/winpool/2">Win Pool</a></li>
     <% end %>
 
+    <% if request.fullpath == "/baseball" %>
+        <li class="b-nav-group"><a class="nav-list" href="/baseball">Baseball</a></li>
+    <% else %>
+        <li class="b-nav-group"><a class="nav-list" href="/baseball">Baseball</a></li>
+    <% end %>
+
     <% if user_signed_in? %>
         <li class="b-nav-group"><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, class: "nav-list" %></li>
     <% else %>
