@@ -27,8 +27,8 @@
       xhttp.onreadystatechange = function() {
           if(xhttp.readyState == 4 && xhttp.status == 200) {
               document.getElementById("main-baseball").innerHTML = xhttp.responseText;
-              //bindRows();
-              bindRows2();
+              bindRows();
+              //bindRows2();
               orderTableByTotal();
           }
       };
