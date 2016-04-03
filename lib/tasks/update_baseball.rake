@@ -167,6 +167,10 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
     end
   end
 
+  if batting_categories.empty?
+    return
+  end
+
   # find the column number we care about
   i = 0
   batting_categories.map do |cat|
@@ -451,6 +455,10 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
     thead.css("th").each do |th|
       pitching_categories << th["data-stat"].downcase
     end
+  end
+
+  if pitching_categories.empty?
+    return
   end
 
   # find the column number we care about
