@@ -5,8 +5,8 @@ require 'aws-sdk'
 task :find_player_ranks => :environment do
   client = Aws::DynamoDB::Client.new(
       region: 'us-east-1',
-      access_key_id: 'AKIAIMKDIK3CYIZ762DQ',
-      secret_access_key: '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'
+      access_key_id: ENV['AWS_KEY'],
+      secret_access_key: ENV['AWS_SECRET']
   )
   resp = client.scan({
        table_name: '5_Stat_MLB'
