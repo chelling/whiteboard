@@ -70,6 +70,8 @@ task :find_player_ranks => :environment do
       i += 1
     end
 
+    sleep(1)
+
     resp = client.update_item({
         table_name: '5_Stat_MLB',
         key: {
@@ -135,6 +137,7 @@ task :update_players => :environment do
         end
       end
       i += 1
+      sleep(1)
     end
   end
 end
