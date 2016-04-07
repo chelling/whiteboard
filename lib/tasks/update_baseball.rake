@@ -376,29 +376,29 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
   stat_gamelog["position"] = "field"
   stat_gamelog["stat"] = stat
   i = 0
-  if last_5
+  if !last_5.empty?
     stat_gamelog["game1"] = last_5
     i += 1
   end
-  if last_4
+  if !last_4.empty?
     stat_gamelog["game1"] = last_4
     stat_gamelog["game2"] = last_5
     i += 1
   end
-  if last_3
+  if !last_3.empty?
     stat_gamelog["game1"] = last_3
     stat_gamelog["game2"] = last_4
     stat_gamelog["game3"] = last_5
     i += 1
   end
-  if last_2
+  if !last_2.empty?
     stat_gamelog["game1"] = last_2
     stat_gamelog["game2"] = last_3
     stat_gamelog["game3"] = last_4
     stat_gamelog["game4"] = last_5
     i += 1
   end
-  if last_1
+  if !last_1.empty?
     stat_gamelog["game1"] = last_1
     stat_gamelog["game2"] = last_2
     stat_gamelog["game3"] = last_3
@@ -665,29 +665,29 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
   stat_gamelog["position"] = "pitcher"
   stat_gamelog["stat"] = stat
   i = 0
-  if last_5
+  if !last_5.empty?
     stat_gamelog["game1"] = last_5
     i += 1
   end
-  if last_4
+  if !last_4.empty?
     stat_gamelog["game1"] = last_4
     stat_gamelog["game2"] = last_5
     i += 1
   end
-  if last_3
+  if !last_3.empty?
     stat_gamelog["game1"] = last_3
     stat_gamelog["game2"] = last_4
     stat_gamelog["game3"] = last_5
     i += 1
   end
-  if last_2
+  if !last_2.empty?
     stat_gamelog["game1"] = last_2
     stat_gamelog["game2"] = last_3
     stat_gamelog["game3"] = last_4
     stat_gamelog["game4"] = last_5
     i += 1
   end
-  if last_1
+  if !last_1.empty?
     stat_gamelog["game1"] = last_1
     stat_gamelog["game2"] = last_2
     stat_gamelog["game3"] = last_3
