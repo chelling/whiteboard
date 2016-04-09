@@ -420,7 +420,7 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
        },
        attribute_updates: {
            stat_string + "_value" => {
-               value: season[stat.downcase].to_f.round(3),
+               value: season[stat.downcase],
                action: "PUT"
            },
            stat_string + "_gamelog" => {

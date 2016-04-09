@@ -62,7 +62,7 @@
 
       $('.player-totals').each(function() {
           previous_row = $(this).prev();
-          if(previous_row.attr("class").indexOf('player-table') > -1) {
+          if(previous_row.attr("class") != undefined && previous_row.attr("class").indexOf('player-table') > -1) {
               previous_row.addClass('recent-game')
           }
       });
@@ -86,7 +86,7 @@
 
       $('.player-totals').each(function() {
           previous_row = $(this).prev();
-          if(previous_row.attr("class").indexOf('player-table') > -1) {
+          if(previous_row.attr("class") != undefined && previous_row.attr("class").indexOf('player-table') > -1) {
             previous_row.addClass('recent-game')
           }
       });
