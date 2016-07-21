@@ -22,15 +22,15 @@ task :find_player_ranks => :environment do
     i = 1
     while(i <= 5)
       if item["stat_" + i.to_s] == 'OBP'
-        obp << item["stat_" + i.to_s + "_value"].to_f
+        obp << item["stat_" + i.to_s + "_value_2"].to_f
       elsif item["stat_" + i.to_s] == 'HR'
-        hr << item["stat_" + i.to_s + "_value"].to_f
+        hr << item["stat_" + i.to_s + "_value_2"].to_f
       elsif item["stat_" + i.to_s] == 'RBI'
-        rbi << item["stat_" + i.to_s + "_value"].to_f
+        rbi << item["stat_" + i.to_s + "_value_2"].to_f
       elsif item["stat_" + i.to_s] == 'ERA'
-        era << item["stat_" + i.to_s + "_value"].to_f
+        era << item["stat_" + i.to_s + "_value_2"].to_f
       elsif item["stat_" + i.to_s] == 'WAR'
-        war << item["stat_" + i.to_s + "_value"].to_f
+        war << item["stat_" + i.to_s + "_value_2"].to_f
       end
       i += 1
     end
@@ -61,7 +61,7 @@ task :find_player_ranks => :environment do
 
       j = 1
       x.map do |val|
-        if item["stat_" + i.to_s + "_value"].to_f == val
+        if item["stat_" + i.to_s + "_value_2"].to_f == val
           score[i] = j
           break
         end
@@ -79,23 +79,23 @@ task :find_player_ranks => :environment do
             "Year" => item["Year"]
         },
         attribute_updates: {
-            "stat_1_score" => {
+            "stat_1_score_2" => {
                 value: score[1],
                 action: "PUT"
             },
-            "stat_2_score" => {
+            "stat_2_score_2" => {
                 value: score[2],
                 action: "PUT"
             },
-            "stat_3_score" => {
+            "stat_3_score_2" => {
                 value: score[3],
                 action: "PUT"
             },
-            "stat_4_score" => {
+            "stat_4_score_2" => {
                 value: score[4],
                 action: "PUT"
             },
-            "stat_5_score" => {
+            "stat_5_score_2" => {
                 value: score[5],
                 action: "PUT"
             }
@@ -115,25 +115,32 @@ task :update_players => :environment do
   })
 
   resp.items.map do |item|
+    if item["User"] != 'Jay' && item["User"] != 'Larry' && item["User"] != 'Stoobs'
+      next
+    end
     i = 1
     while(i <= 5)
-      if item["stat_" + i.to_s + "_player"].present? && item["stat_" + i.to_s + "_url"].present? && item["stat_" + i.to_s]
+      if item["stat_" + i.to_s + "_player_2"].present? && item["stat_" + i.to_s + "_url"].present? && item["stat_" + i.to_s]
         if item["stat_" + i.to_s + "_player_position"] == "field"
-          find_field_player_and_update(item["stat_" + i.to_s + "_player"],
+          find_field_player_and_update(item["stat_" + i.to_s + "_player_2"],
                                        item["stat_" + i.to_s + "_url"],
                                        client,
                                        item["User"], "stat_" + i.to_s,
                                        item["stat_" + i.to_s],
                                        item["stat_" + i.to_s + "_player_position"],
-                                       item["stat_" + i.to_s + "_war_url"])
+                                       item["stat_" + i.to_s + "_war_url"],
+                                       item["stat_" + i.to_s + "_starting_war"],
+                                       item["stat_" + i.to_s + "_gamelog"])
         else
-          find_pitcher_player_and_update(item["stat_" + i.to_s + "_player"],
+          find_pitcher_player_and_update(item["stat_" + i.to_s + "_player_2"],
                                          item["stat_" + i.to_s + "_url"],
                                          client,
                                          item["User"], "stat_" + i.to_s,
                                          item["stat_" + i.to_s],
                                          item["stat_" + i.to_s + "_player_position"],
-                                         item["stat_" + i.to_s + "_war_url"])
+                                         item["stat_" + i.to_s + "_war_url"],
+                                         item["stat_" + i.to_s + "_starting_war"],
+                                         item["stat_" + i.to_s + "_gamelog"])
         end
       end
       i += 1
@@ -142,7 +149,7 @@ task :update_players => :environment do
   end
 end
 
-def find_field_player_and_update(player_name, player_url, client, user, stat_string, stat, position, war_url)
+def find_field_player_and_update(player_name, player_url, client, user, stat_string, stat, position, war_url, starting_war, starting_gamelog)
   dynamodb_stat_hash = {'ab' => "AB", 'bb' => "BB", 'date_game' => "Date", 'team_game_num' => 'Game',
   'h' => 'H', 'hbp' => 'HBP', 'hr' => 'HR', 'opp_id' => 'Opponent', 'r' => 'R', 'rbi' => 'RBI',
   'game_result' => 'Score', 'sf' => 'SF', 'war' => 'WAR', 'ibb' => 'IBB'}
@@ -230,7 +237,7 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
   season_sf = 0
   i = 1
   gamelog_final.reverse.map do |game|
-    if game["Game"].present?
+    if game["Game"].present? && is_2nd_half_date?(game)
       if i == 1
         last_5["score"] = game["Score"].to_s
         last_5["opponent"] = game["Opponent"].to_s
@@ -368,7 +375,8 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
   season["sf"] = season_sf
   season["h_ab"] = season["h"].to_s + "/" + season["ab"].to_s
   season["obp"] = ("%.3f" % ((season_bb.to_i + season_h.to_i + season_hbp.to_i) / (season_ab.to_f + season_bb.to_i + season_hbp.to_i + season_sf.to_i)))
-  season["war"] = find_player_war(war_url, position)
+  puts "\n\n#{war_url}\n\n"
+  season["war"] = find_player_war(war_url, position, starting_war)
 
   # create gamelog
   stat_gamelog = Hash.new
@@ -412,6 +420,14 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
   stat_gamelog["season"] = season
   stat_gamelog["game_count"] = i
 
+  if stat.downcase == 'hr' || stat.downcase == 'rbi'
+    value = season[stat.downcase].to_i + starting_gamelog['season'][stat.downcase].to_i
+  elsif stat.downcase == 'war'
+    value = ("%.1f" % (season[stat.downcase].to_f + starting_gamelog['season'][stat.downcase].to_f)).to_s
+  elsif stat.downcase == 'obp'
+    value = ("%.3f" % ((season['bb'].to_i + season['h'].to_i + season['hbp'].to_i + starting_gamelog['season']['bb'].to_i + starting_gamelog['season']['h'].to_i + starting_gamelog['season']['hbp'].to_i) / (season['ab'].to_f + season['bb'].to_i + season['hbp'].to_i + season['sf'].to_i + starting_gamelog['season']['ab'].to_f + starting_gamelog['season']['bb'].to_i + starting_gamelog['season']['hbp'].to_i + starting_gamelog['season']['sf'].to_i))).to_s
+  end
+
   resp = client.update_item({
        table_name: '5_Stat_MLB',
        key: {
@@ -419,11 +435,11 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
            "Year" => 2016
        },
        attribute_updates: {
-           stat_string + "_value" => {
-               value: season[stat.downcase],
+           stat_string + "_value_2" => {
+               value: value,
                action: "PUT"
            },
-           stat_string + "_gamelog" => {
+           stat_string + "_gamelog_2" => {
                value: stat_gamelog,
                action: "PUT"
            }
@@ -431,7 +447,7 @@ def find_field_player_and_update(player_name, player_url, client, user, stat_str
    })
 end
 
-def find_pitcher_player_and_update(player_name, player_url, client, user, stat_string, stat, position, war_url)
+def find_pitcher_player_and_update(player_name, player_url, client, user, stat_string, stat, position, war_url, starting_war, starting_gamelog)
   dynamodb_stat_hash = {'ip' => "IP", 'bb' => "BB", 'date_game' => "Date", 'team_game_num' => 'Game',
                         'h' => 'H', 'hbp' => 'HBP', 'hr' => 'HR', 'opp_id' => 'Opponent', 'r' => 'R', 'er' => 'ER',
                         'game_result' => 'Score', 'so' => 'SO', 'war' => 'WAR',
@@ -516,7 +532,7 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
   season_so = 0
   i = 1
   gamelog_final.reverse.map do |game|
-    if game["Game"].present?
+    if game["Game"].present? && is_2nd_half_date?(game)
       if i == 1
         last_5["score"] = game["Score"].to_s
         last_5["opponent"] = game["Opponent"].to_s
@@ -625,6 +641,9 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
     end
   end
 
+  if last_7_ip.nil? || last_7_ip == 0
+    return
+  end
   # Fill out hashes
   last_7["bb"] = last_7_bb.to_s
   last_7["h"] = last_7_h.to_s
@@ -652,7 +671,7 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
   season["so"] = season_so.to_s
   season["era"] = ("%.2f" % (9 * season_er / season_ip)).to_s
   season["whip"] = ("%.2f" % ((season_bb + season_h) / season_ip)).to_s
-  season["war"] = find_player_war(war_url, position)
+  season["war"] = find_player_war(war_url, position, starting_war)
 
   # Fix IP
   last_7["ip"] = ("%.1f" % (last_7["ip"].to_i + ((last_7["ip"].to_f % 1) / 3.33333333))).to_s
@@ -701,6 +720,12 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
   stat_gamelog["season"] = season
   stat_gamelog["game_count"] = i
 
+  if stat.downcase == 'war'
+    value = ("%.1f" % (season[stat.downcase].to_f + starting_gamelog['season'][stat.downcase].to_f)).to_s
+  elsif stat.downcase == 'era'
+    value = ("%.2f" % (9 * (season['er'].to_f + starting_gamelog['season']['er'].to_f) / (season['ip'].to_i + ((season['ip'].to_f % 1) * 3.3333333) + starting_gamelog['season']['ip'].to_i + ((starting_gamelog['season']['ip'].to_f % 1) * 3.3333333)))).to_s
+  end
+
   resp = client.update_item({
                                 table_name: '5_Stat_MLB',
                                 key: {
@@ -708,11 +733,11 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
                                     "Year" => 2016
                                 },
                                 attribute_updates: {
-                                    stat_string + "_value" => {
-                                        value: season[stat.downcase],
+                                    stat_string + "_value_2" => {
+                                        value: value,
                                         action: "PUT"
                                     },
-                                    stat_string + "_gamelog" => {
+                                    stat_string + "_gamelog_2" => {
                                         value: stat_gamelog,
                                         action: "PUT"
                                     }
@@ -720,7 +745,7 @@ def find_pitcher_player_and_update(player_name, player_url, client, user, stat_s
                             })
 end
 
-def find_player_war(player_war_url, position)
+def find_player_war(player_war_url, position, starting_war)
   war_row = -1
   war = 0
 
@@ -756,6 +781,26 @@ def find_player_war(player_war_url, position)
       end
     end
   end
+  puts "\n\nWAR: #{war}\n\n"
+  if !starting_war.nil?
+    war = ("%.1f" % (war.to_f - starting_war.to_f)).to_s
+  end
 
   return war
+end
+
+def is_2nd_half_date?(game)
+  if(game["Date"].present?)
+    month = game["Date"][0..2]
+    day = game["Date"][-2..-1]
+    if month == 'Aug' || month == 'Sep' || month == 'Oct' || month == 'Jul'
+      if month == 'Jul'
+        if day.to_i <= 11
+          return false
+        end
+      end
+      return true
+    end
+  end
+  return false
 end
