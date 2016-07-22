@@ -115,9 +115,6 @@ task :update_players => :environment do
   })
 
   resp.items.map do |item|
-    if item["User"] != 'Jay' && item["User"] != 'Larry' && item["User"] != 'Stoobs'
-      next
-    end
     i = 1
     while(i <= 5)
       if item["stat_" + i.to_s + "_player_2"].present? && item["stat_" + i.to_s + "_url"].present? && item["stat_" + i.to_s]
