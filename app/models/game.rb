@@ -79,7 +79,7 @@ class Game < ActiveRecord::Base
   end
 
   def in_progress_or_complete?
-      Time.now.in_time_zone('Eastern Time (US & Canada)') - 5 * 60 * 60 > date_eastern
+      Time.now.in_time_zone('Eastern Time (US & Canada)') - 3 * 60 * 60 > date_eastern
   end
   
   # hooks
