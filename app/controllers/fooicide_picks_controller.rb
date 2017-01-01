@@ -87,7 +87,7 @@ class FooicidePicksController < ApplicationController
 
   # add picks to user table
   def update_picks
-    @year = Time.now.year
+    @year = 2016#Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
