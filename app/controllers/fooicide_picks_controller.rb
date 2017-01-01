@@ -59,7 +59,7 @@ class FooicidePicksController < ApplicationController
 
   def scores
     @mobile_header = "Fooicide"
-    @year = Time.now.year
+    @year = 2016#Time.now.year
     @week = find_week
     @year = params[:year] if params[:year]
     @week = params[:week] if params[:week]
